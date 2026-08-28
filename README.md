@@ -10,3 +10,5 @@ I'll try to have a clean repo where everyone can see the progress and tell me wh
 The first commit consists of the base of the project with the Makefile, main.c, some simple functions for error handling and for the "-h" to work, a base for the tests, some exemple files to test the program (given by Epitech) and all the necessary infos for the corewar in the includes (given by Epitech as well).
 
 The commit norm will have this form: "action(scope): details" (except for the first commit).
+
+The coding style follows what Epitech impose to first year students (the pdf is in docs/). It will be respected everywhere in the repo except for the tests/ folder where it's less important and harder to respect the coding style. 
