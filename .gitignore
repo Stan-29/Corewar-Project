@@ -1,0 +1,4 @@
+corewar
+tests_results
+*.gcda
+*.gcno
