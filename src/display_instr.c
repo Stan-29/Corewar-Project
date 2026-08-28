@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include "utils.h"
 
-int display_instr(void)
+unsigned int display_instr(void)
 {
     char *message = "USAGE\n"
         "./corewar [-dump nbr_cycle] [[-n prog_number]"
