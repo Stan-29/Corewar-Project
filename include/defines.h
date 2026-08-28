@@ -9,8 +9,11 @@
     #define DEFINES_H_
 
     #define NBR_ERROR_MESSAGES 3
+
+    #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
     #define TOO_MANY_ARGS 2
+
 
     #define MEM_SIZE (6 * 1024)
     #define IDX_MOD 512 /* modulo of the index < */

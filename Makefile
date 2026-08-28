@@ -5,7 +5,8 @@
 ## Makefile
 ##
 
-SRC = src/const/error_messages.c 		\
+SRC = src/args/check_args.c 	\
+	src/const/error_messages.c 			\
 	src/const/op.c 						\
 	src/utils/display_error.c 		\
 	src/utils/is_same_str.c 		\
@@ -18,11 +19,13 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/utils_tests/test_my_strlen.c 	\
+TEST_SRC = tests/unit_tests/args_tests/test_check_args.c 			\
+	tests/unit_tests/args_tests/test_check_helper.c 				\
+	tests/unit_tests/utils_tests/test_my_strlen.c 			\
 	tests/unit_tests/utils_tests/test_is_same_str.c 		\
 	tests/unit_tests/utils_tests/test_display_error.c 		\
 	tests/unit_tests/test_display_instr.c 		\
-	tests/functionnal_tests/test_start_game.c 		\
+	tests/functionnal_tests/test_start_game.c 			\
 
 TEST_NAME = tests_results
 
