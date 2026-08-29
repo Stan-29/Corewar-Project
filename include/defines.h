@@ -8,11 +8,15 @@
 #ifndef DEFINES_H_
     #define DEFINES_H_
 
+    #define ERROR 84
+    #define OK 0
+
     #define NBR_ERROR_MESSAGES 3
 
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
     #define TOO_MANY_ARGS 2
+    #define MALLOC_FAIL 3
 
 
     #define MEM_SIZE (6 * 1024)

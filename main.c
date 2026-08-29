@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv)
 {
-    if (start_game(argc, argv) == 84)
-        return 84;
-    return 0;
+    if (start_game(argc, argv) == ERROR)
+        return ERROR;
+    return OK;
 }

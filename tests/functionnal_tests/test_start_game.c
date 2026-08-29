@@ -20,7 +20,7 @@ Test(start_game, no_args)
     int argc = 1;
     char *argv[] = {"corewar"};
 
-    cr_assert(start_game(argc, argv) == 84);
+    cr_assert(start_game(argc, argv) == ERROR);
 }
 
 Test(start_game, two_args)
@@ -36,5 +36,5 @@ Test(start_game, not_a_flag)
     int argc = 2;
     char *argv[] = {"corewar", "-a"};
 
-    cr_assert(start_game(argc, argv) == 84);
+    cr_assert(start_game(argc, argv) == ERROR);
 }

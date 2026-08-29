@@ -28,5 +28,5 @@ Test(handle_helper, not_a_flag)
     int argc = 2;
     char *argv[] = {"corewar", "-a"};
 
-    cr_assert(handle_helper(argc, argv) == 84);
+    cr_assert(handle_helper(argc, argv) == ERROR);
 }

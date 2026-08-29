@@ -18,5 +18,5 @@ unsigned int display_error(unsigned int error_id)
     else
         message = error_messages[error_id];
     write(2, message, my_strlen(message));
-    return 84;
+    return ERROR;
 }

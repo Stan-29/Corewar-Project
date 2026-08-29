@@ -6,12 +6,14 @@
 ##
 
 SRC = src/args/handle_helper.c 	\
-	src/const/error_messages.c 			\
-	src/const/op.c 						\
-	src/utils/display_error.c 		\
-	src/utils/is_same_str.c 		\
-	src/utils/my_strlen.c 			\
-	src/start_game.c			\
+	src/args/handle_args.c 		\
+	src/const/error_messages.c 		\
+	src/const/op.c 					\
+	src/init/init_robots.c				\
+	src/utils/display_error.c 	\
+	src/utils/is_same_str.c 	\
+	src/utils/my_strlen.c 		\
+	src/start_game.c				\
 
 NAME = corewar
 

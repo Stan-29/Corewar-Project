@@ -5,14 +5,18 @@
 ** main function
 */
 #include "main.h"
+#include "structs.h"
 #include "utils.h"
-#include "defines.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 unsigned int start_game(int argc, char **argv)
 {
-    if (argc < 2)
-        return display_error(ARGS_NEEDED);
-    if (handle_helper(argc, argv) == 84)
-        return 84;
-    return 0;
+    robot_t *robots = init_robots();
+
+    if (!robots)
+        return display_error(MALLOC_FAIL);
+    if (handle_args(argc, argv, &robots) == ERROR)
+        return ERROR;
+    return OK;
 }

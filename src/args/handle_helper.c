@@ -25,7 +25,7 @@ unsigned int display_instr(void)
         " The addresses are MEM_SIZE modulo.";
 
     write(1, message, my_strlen(message));
-    return 0;
+    return OK;
 }
 
 unsigned int handle_helper(int argc, char **argv)
@@ -36,5 +36,5 @@ unsigned int handle_helper(int argc, char **argv)
         else
             return display_error(ARGS_NEEDED);
     }
-    return 0;
+    return OK;
 }
