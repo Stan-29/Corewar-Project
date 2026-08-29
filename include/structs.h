@@ -31,8 +31,9 @@ typedef struct header_s {
 
 typedef struct robot_s {
     header_t header;
+    int dump;
     unsigned int prog_nb;
-    unsigned int load_adress;
+    int load_adress;
     char *instr_list;
 } robot_t;
 

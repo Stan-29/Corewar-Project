@@ -19,7 +19,9 @@ unsigned int find_flags(char *flag, char *value, robot_t *robots,
 unsigned int handle_flags(int argc, char **argv, robot_t *robots,
     unsigned int *arg_index)
 {
-    if (argv[*arg_index][0] == '-' && *arg_index + 1 < argc) {
+    if (argv[*arg_index][0] == '-') {
+        if (*arg_index + 1 > argc)
+            return ERROR;
         if (find_flags(argv[*arg_index], argv[*arg_index + 1],
                 robots, arg_index) == ERROR)
             return ERROR;

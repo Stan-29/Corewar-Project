@@ -12,7 +12,7 @@ Test(handle_helper, helper_arg)
     int argc = 2;
     char *argv[] = {"corewar", "-h"};
 
-    cr_assert(handle_helper(argc, argv) == 0);
+    cr_assert(handle_helper(argc, argv) == 1);
 }
 
 Test(handle_helper, two_args)
