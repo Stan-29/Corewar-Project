@@ -5,13 +5,12 @@
 ## Makefile
 ##
 
-SRC = src/args/check_args.c 	\
+SRC = src/args/handle_helper.c 	\
 	src/const/error_messages.c 			\
 	src/const/op.c 						\
 	src/utils/display_error.c 		\
 	src/utils/is_same_str.c 		\
 	src/utils/my_strlen.c 			\
-	src/display_instr.c 		\
 	src/start_game.c			\
 
 NAME = corewar
@@ -19,8 +18,7 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/args_tests/test_check_args.c 			\
-	tests/unit_tests/args_tests/test_check_helper.c 				\
+TEST_SRC = tests/unit_tests/args_tests/test_handle_helper.c 		\
 	tests/unit_tests/utils_tests/test_my_strlen.c 			\
 	tests/unit_tests/utils_tests/test_is_same_str.c 		\
 	tests/unit_tests/utils_tests/test_display_error.c 		\

@@ -4,8 +4,9 @@
 ** File description:
 ** main function
 */
-#include <unistd.h>
 #include "utils.h"
+#include "defines.h"
+#include <unistd.h>
 
 unsigned int display_instr(void)
 {
@@ -24,5 +25,16 @@ unsigned int display_instr(void)
         " The addresses are MEM_SIZE modulo.";
 
     write(1, message, my_strlen(message));
+    return 0;
+}
+
+unsigned int handle_helper(int argc, char **argv)
+{
+    if (argc == 2) {
+        if (is_same_str(argv[1], "-h") == 0)
+            return display_instr();
+        else
+            return display_error(ARGS_NEEDED);
+    }
     return 0;
 }

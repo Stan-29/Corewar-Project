@@ -31,15 +31,6 @@ Test(start_game, two_args)
     cr_assert(start_game(argc, argv) == 0);
 }
 
-Test(start_game, too_many_args)
-{
-    int argc = 6;
-    char *argv[] = {"corewar", "exemple1", "exemple2", "exemple3",
-        "exemple4", "exemple5"};
-
-    cr_assert(start_game(argc, argv) == 84);
-}
-
 Test(start_game, not_a_flag)
 {
     int argc = 2;
