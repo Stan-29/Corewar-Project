@@ -20,7 +20,7 @@ robot_t *init_robots(void)
         if (!&robots[index]) {
             return NULL;
         }
-        robots[index].intr_list = NULL;
+        robots[index].instr_list = NULL;
         robots[index].load_adress = 0;
         robots[index].prog_nb = 0;
     }
