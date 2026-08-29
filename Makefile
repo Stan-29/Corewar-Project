@@ -7,6 +7,8 @@
 
 SRC = src/args/handle_helper.c 	\
 	src/args/handle_args.c 		\
+	src/args/handle_files.c 	\
+	src/args/handle_flags.c 	\
 	src/const/error_messages.c 		\
 	src/const/op.c 					\
 	src/init/init_robots.c				\
@@ -21,6 +23,8 @@ CC = epiclang
 
 
 TEST_SRC = tests/unit_tests/args_tests/test_handle_helper.c 	\
+	tests/unit_tests/args_tests/test_handle_flags.c 			\
+	tests/unit_tests/args_tests/test_handle_args.c 				\
 	tests/unit_tests/init_tests/test_init_robots.c					\
 	tests/unit_tests/utils_tests/test_my_strlen.c 			\
 	tests/unit_tests/utils_tests/test_is_same_str.c 		\

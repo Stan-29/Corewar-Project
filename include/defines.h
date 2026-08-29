@@ -8,17 +8,26 @@
 #ifndef DEFINES_H_
     #define DEFINES_H_
 
+//return values
     #define ERROR 84
     #define OK 0
 
-    #define NBR_ERROR_MESSAGES 3
+//error handling
+    #define NBR_ERROR_MESSAGES 6
 
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
     #define TOO_MANY_ARGS 2
     #define MALLOC_FAIL 3
+    #define FLAG_ERROR 4
+    #define FILE_ERROR 5
 
+//flags
+    #define DUMP_FLAG "-dump"
+    #define PROG_NB_FLAG "-n"
+    #define LOAD_ADRESS_FLAG "-a"
 
+//corewar infos
     #define MEM_SIZE (6 * 1024)
     #define IDX_MOD 512 /* modulo of the index < */
     #define MAX_ARGS_NUMBER 4 /* this may not be changed 2^*IND_SIZE */
