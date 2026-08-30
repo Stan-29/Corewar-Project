@@ -10,6 +10,7 @@
 #include "consts.h"
 #include <stdbool.h>
 #include <unistd.h>
+#include <stdio.h>
 
 static unsigned int manage_flag_value(char *value, int *robot_value)
 {

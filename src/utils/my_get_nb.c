@@ -4,11 +4,25 @@
 ** File description:
 ** utils
 */
-#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
 int my_get_nb(char *str)
 {
     int result = 0;
+    int sign = 1;
+    unsigned int index = 0;
 
-    return result;
+    if (str == NULL)
+        return result;
+    if (str[0] == '-') {
+        sign = -1;
+        index++;
+    }
+    while (str[index] <= '9' && str[index] >= '0') {
+        result *= 10;
+        result += str[index] - '0';
+        index++;
+    }
+    return result * sign;
 }

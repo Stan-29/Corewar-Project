@@ -23,7 +23,7 @@ Test(handle_args, dump_flag)
 Test(handle_args, valid_load_adress_flag)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-a", "1234", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-a", "123", "robot1", "robot2"};
     robot_t *robots = init_robots();
 
     if (robots == NULL)
