@@ -7,17 +7,36 @@
 #include "defines.h"
 #include "structs.h"
 #include "utils.h"
-#include "main.h"
+#include "consts.h"
 #include <stdbool.h>
+#include <unistd.h>
+
+unsigned int dump_flag(char *value, robot_t *robots)
+{
+    return OK;
+}
+
+unsigned int load_flag(char *value, robot_t *robots)
+{
+    return OK;
+}
+
+unsigned int prog_nb_flag(char *value, robot_t *robots)
+{
+    return OK;
+}
 
 unsigned int find_flag(char *flag, char *value, robot_t *robots,
     unsigned int *arg_index)
 {
     if (is_positive_nb(value) != true)
         return ERROR;
-    if (flag[1] != 'a' && flag[1] != 'n' && flag[1] != 'd')
-        return ERROR;
-    return OK;
+    for (unsigned int flag_index = 0; flags_tab[flag_index].flag != NULL;
+        flag_index++) {
+        if (is_same_str(flags_tab[flag_index].flag, flag) == 0)
+            return flags_tab[flag_index].flag_func(value, robots);
+    }
+    return ERROR;
 }
 
 unsigned int handle_flags(int argc, char **argv, robot_t *robots,

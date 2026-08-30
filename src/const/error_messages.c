@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2025
-** asm
+** EPITECH PROJECT, 2026
+** corewar
 ** File description:
-** The main instructions
+** a tab of the error messages
 */
 
 const char *error_messages[] = {

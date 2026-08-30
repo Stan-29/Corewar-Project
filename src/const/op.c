@@ -1,8 +1,8 @@
 /*
-** EPITECH PROJECT, 2025
-** asm
+** EPITECH PROJECT, 2026
+** corewar
 ** File description:
-** The main instructions
+** instructions infos
 */
 
 #include "defines.h"

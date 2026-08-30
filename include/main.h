@@ -20,6 +20,9 @@ unsigned int handle_helper(int, char **);
 unsigned int find_flag(char *, char *, robot_t *, unsigned int *);
 unsigned int handle_flags(int, char **, robot_t *, unsigned int *);
 unsigned int handle_file(char *, robot_t *, unsigned int *, unsigned int *);
+unsigned int dump_flag(char *, robot_t *);
+unsigned int load_flag(char *, robot_t *);
+unsigned int prog_nb_flag(char *, robot_t *);
 
 //init
 robot_t *init_robots(void);

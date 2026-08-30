@@ -10,6 +10,7 @@ SRC = src/args/handle_helper.c 	\
 	src/args/handle_files.c 	\
 	src/args/handle_flags.c 	\
 	src/const/error_messages.c 		\
+	src/const/flags_tab.c			\
 	src/const/op.c 					\
 	src/init/init_robots.c				\
 	src/utils/display_error.c 	\

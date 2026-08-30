@@ -37,4 +37,9 @@ typedef struct robot_s {
     char *instr_list;
 } robot_t;
 
+typedef struct flags_s {
+    char *flag;
+    unsigned int (*flag_func)(char *, robot_t *);
+} flags_t;
+
 #endif /* OP_H_ */
