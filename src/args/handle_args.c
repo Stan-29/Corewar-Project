@@ -9,6 +9,20 @@
 #include "structs.h"
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
+
+unsigned int check_dump_flag(robot_t *robots)
+{
+    unsigned int nb_dump_flag = 0;
+
+    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+        if (robots[index].dump != -1)
+            nb_dump_flag++;
+    }
+    if (nb_dump_flag > 1)
+        return ERROR;
+    return OK;
+}
 
 unsigned int parse_args(int argc, char **argv, robot_t *robots)
 {
@@ -21,6 +35,10 @@ unsigned int parse_args(int argc, char **argv, robot_t *robots)
                 &robot_index, &arg_index) == ERROR)
             return FILE_ERROR;
     }
+    if (robot_index < 2 || robot_index > 4)
+        return ROBOT_ERROR;
+    if (check_dump_flag(robots) == ERROR)
+        return DUMP_FLAG_ERROR;
     return OK;
 }
 

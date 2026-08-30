@@ -13,14 +13,15 @@
     #define OK 0
 
 //error handling
-    #define NBR_ERROR_MESSAGES 6
+    #define NBR_ERROR_MESSAGES 7
 
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
-    #define TOO_MANY_ARGS 2
+    #define ROBOT_ERROR 2
     #define MALLOC_FAIL 3
     #define FLAG_ERROR 4
     #define FILE_ERROR 5
+    #define DUMP_FLAG_ERROR 6
 
 //flags
     #define DUMP_FLAG "-dump"

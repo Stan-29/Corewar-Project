@@ -51,8 +51,10 @@ unsigned int find_flag(char *flag, char *value, robot_t *robot,
         return ERROR;
     for (unsigned int flag_index = 0; flags_tab[flag_index].flag != NULL;
         flag_index++) {
-        if (is_same_str(flags_tab[flag_index].flag, flag) == 0)
+        if (is_same_str(flags_tab[flag_index].flag, flag) == 0) {
+            *arg_index += 2;
             return flags_tab[flag_index].flag_func(value, robot);
+        }
     }
     return ERROR;
 }
