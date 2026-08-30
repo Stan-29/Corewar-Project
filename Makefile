@@ -13,6 +13,7 @@ SRC = src/args/handle_helper.c 	\
 	src/const/op.c 					\
 	src/init/init_robots.c				\
 	src/utils/display_error.c 	\
+	src/utils/is_positive_nb.c 	\
 	src/utils/is_same_str.c 	\
 	src/utils/my_strlen.c 		\
 	src/start_game.c				\
@@ -27,6 +28,7 @@ TEST_SRC = tests/unit_tests/args_tests/test_handle_helper.c 	\
 	tests/unit_tests/args_tests/test_handle_args.c 				\
 	tests/unit_tests/init_tests/test_init_robots.c					\
 	tests/unit_tests/utils_tests/test_my_strlen.c 			\
+	tests/unit_tests/utils_tests/test_is_positive_nb.c 		\
 	tests/unit_tests/utils_tests/test_is_same_str.c 		\
 	tests/unit_tests/utils_tests/test_display_error.c 		\
 	tests/unit_tests/test_display_instr.c 						\

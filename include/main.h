@@ -17,7 +17,7 @@ unsigned int start_game(int, char **);
 //args
 unsigned int handle_args(int, char **, robot_t *);
 unsigned int handle_helper(int, char **);
-unsigned int find_flags(char *, char *, robot_t *, unsigned int *);
+unsigned int find_flag(char *, char *, robot_t *, unsigned int *);
 unsigned int handle_flags(int, char **, robot_t *, unsigned int *);
 unsigned int handle_file(char *, robot_t *, unsigned int *, unsigned int *);
 

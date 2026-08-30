@@ -10,7 +10,7 @@
 Test(handle_flags, dump_flag)
 {
     int argc = 4;
-    char *argv[] = {"corewar", "-dump", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "0", "robot1", "robot2"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 

@@ -7,8 +7,6 @@
 #include "main.h"
 #include "structs.h"
 #include "utils.h"
-#include <stdlib.h>
-#include <stdio.h>
 
 unsigned int start_game(int argc, char **argv)
 {
