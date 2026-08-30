@@ -61,7 +61,7 @@ unsigned int handle_flags(int argc, char **argv, robot_t *robot,
     unsigned int *arg_index)
 {
     if (argv[*arg_index][0] == '-') {
-        if (*arg_index + 1 > argc)
+        if (*arg_index + 1 >= argc)
             return ERROR;
         if (find_flag(argv[*arg_index], argv[*arg_index + 1],
                 robot, arg_index) == ERROR)

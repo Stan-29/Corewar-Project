@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int my_get_nb(char *str)
+int my_get_nb(const char *str)
 {
     int result = 0;
     int sign = 1;
@@ -19,7 +19,7 @@ int my_get_nb(char *str)
         sign = -1;
         index++;
     }
-    while (str[index] <= '9' && str[index] >= '0') {
+    while (str[index] >= '0' && str[index] <= '9') {
         result *= 10;
         result += str[index] - '0';
         index++;
