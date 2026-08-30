@@ -16,6 +16,7 @@ SRC = src/args/handle_helper.c 	\
 	src/utils/display_error.c 	\
 	src/utils/is_positive_nb.c 	\
 	src/utils/is_same_str.c 	\
+	src/utils/my_get_nb.c		\
 	src/utils/my_strlen.c 		\
 	src/start_game.c				\
 

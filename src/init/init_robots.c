@@ -22,7 +22,7 @@ robot_t *init_robots(void)
         }
         robots[index].instr_list = NULL;
         robots[index].load_adress = -1;
-        robots[index].prog_nb = 0;
+        robots[index].prog_nb = -1;
         robots[index].dump = -1;
     }
     return robots;

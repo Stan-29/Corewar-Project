@@ -16,6 +16,7 @@ unsigned int is_same_str(const char *, const char *);
 
 //number handling
 bool is_positive_nb(char *);
+int my_get_nb(char *);
 
 unsigned int display_error(unsigned int);
 

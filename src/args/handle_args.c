@@ -15,7 +15,7 @@ unsigned int parse_args(int argc, char **argv, robot_t *robots)
     unsigned int robot_index = 0;
 
     for (unsigned int arg_index = 1; arg_index < argc; arg_index++) {
-        if (handle_flags(argc, argv, robots, &arg_index) == ERROR)
+        if (handle_flags(argc, argv, &robots[robot_index], &arg_index) == ERROR)
             return FLAG_ERROR;
         if (arg_index < argc && handle_file(argv[arg_index], robots,
                 &robot_index, &arg_index) == ERROR)

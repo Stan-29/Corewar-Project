@@ -32,7 +32,7 @@ typedef struct header_s {
 typedef struct robot_s {
     header_t header;
     int dump;
-    unsigned int prog_nb;
+    int prog_nb;
     int load_adress;
     char *instr_list;
 } robot_t;
