@@ -26,7 +26,7 @@ Test(start_game, no_args)
 Test(start_game, two_args)
 {
     int argc = 3;
-    char *argv[] = {"corewar", "exemple1", "exemple2"};
+    char *argv[] = {"corewar", "./champions/bill.cor", "./champions/bill.cor"};
 
     cr_assert(start_game(argc, argv) == 0);
 }

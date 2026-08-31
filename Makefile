@@ -26,6 +26,7 @@ CC = epiclang
 
 
 TEST_SRC = tests/unit_tests/args_tests/test_handle_helper.c 	\
+	tests/unit_tests/args_tests/test_handle_files.c 			\
 	tests/unit_tests/args_tests/test_handle_flags.c 			\
 	tests/unit_tests/args_tests/test_handle_args.c 				\
 	tests/unit_tests/init_tests/test_init_robots.c					\

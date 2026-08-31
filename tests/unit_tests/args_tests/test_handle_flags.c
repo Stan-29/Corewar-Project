@@ -10,7 +10,7 @@
 Test(handle_flags, valid_dump_flag)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-dump", "0", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "0", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -24,7 +24,7 @@ Test(handle_flags, valid_dump_flag)
 Test(handle_flags, unvalid_dump_flag_bacause_two_flags)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-dump", "1", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -38,7 +38,7 @@ Test(handle_flags, unvalid_dump_flag_bacause_two_flags)
 Test(handle_flags, unvalid_dump_flag_with_negative_value)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-dump", "-20", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "-20", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -51,7 +51,7 @@ Test(handle_flags, unvalid_dump_flag_with_negative_value)
 Test(handle_flags, unvalid_dump_flag_with_no_value)
 {
     int argc = 4;
-    char *argv[] = {"corewar", "-dump", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -64,7 +64,7 @@ Test(handle_flags, unvalid_dump_flag_with_no_value)
 Test(handle_flags, unvalid_dump_flag_with_greater_value_than_max)
 {
     int argc = 4;
-    char *argv[] = {"corewar", "-dump", "120093", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-dump", "120093", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -77,7 +77,7 @@ Test(handle_flags, unvalid_dump_flag_with_greater_value_than_max)
 Test(handle_flags, valid_load_adress_flag)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-a", "123", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-a", "123", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -91,7 +91,7 @@ Test(handle_flags, valid_load_adress_flag)
 Test(handle_flags, unvalid_load_adress_flag_with_greater_than_max)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-a", "123273", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-a", "123273", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -104,7 +104,7 @@ Test(handle_flags, unvalid_load_adress_flag_with_greater_than_max)
 Test(handle_flags, unvalid_load_adress_flag_baceause_two_flags)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-a", "1", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-a", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -118,7 +118,7 @@ Test(handle_flags, unvalid_load_adress_flag_baceause_two_flags)
 Test(handle_flags, valid_prog_nb_flag)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-n", "1", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-n", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -132,7 +132,7 @@ Test(handle_flags, valid_prog_nb_flag)
 Test(handle_flags, unvalid_prog_nb_flag_baceause_two_flags)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-n", "1", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-n", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 
@@ -146,7 +146,7 @@ Test(handle_flags, unvalid_prog_nb_flag_baceause_two_flags)
 Test(handle_flags, unvalid_flag_because_nothing_after)
 {
     int argc = 3;
-    char *argv[] = {"corewar", "robot1", "-dump"};
+    char *argv[] = {"corewar", "./champions/bill.cor", "-dump"};
     unsigned int arg_index = 2;
     robot_t *robots = init_robots();
 
@@ -159,7 +159,7 @@ Test(handle_flags, unvalid_flag_because_nothing_after)
 Test(handle_flags, wrong_flag)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-z", "1", "robot1", "robot2"};
+    char *argv[] = {"corewar", "-z", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_t *robots = init_robots();
 

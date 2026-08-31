@@ -27,11 +27,13 @@ unsigned int check_dump_flag(robot_t *robots)
 unsigned int parse_args(int argc, char **argv, robot_t *robots)
 {
     unsigned int robot_index = 0;
+    unsigned int arg_index = 1;
 
-    for (unsigned int arg_index = 1; arg_index < argc; arg_index++) {
+    while (arg_index < argc) {
         if (handle_flags(argc, argv, &robots[robot_index], &arg_index) == ERROR)
             return FLAG_ERROR;
-        if (arg_index < argc && handle_file(argv[arg_index], robots,
+        if (arg_index < argc && argv[arg_index][0] != '-' &&
+            handle_file(argv[arg_index], robots,
                 &robot_index, &arg_index) == ERROR)
             return FILE_ERROR;
     }
