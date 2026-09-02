@@ -13,7 +13,6 @@
     #define OK 0
 
 //error handling
-    #define NBR_ERROR_MESSAGES 7
 
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
@@ -22,6 +21,7 @@
     #define FLAG_ERROR 4
     #define FILE_ERROR 5
     #define DUMP_FLAG_ERROR 6
+    #define MAGIC_ERROR 7
 
 //flags
     #define DUMP_FLAG "-dump"
@@ -58,23 +58,17 @@
 /* LABEL */
     #define T_LAB 8
 
-/*
-** size (in bytes)
-*/
+//size (in bytes)
     #define IND_SIZE 2
     #define DIR_SIZE 4
     #define REG_SIZE DIR_SIZE
 
-/*
-** header
-*/
+//header
     #define PROG_NAME_LENGTH 128
     #define COMMENT_LENGTH 2048
     #define COREWAR_EXEC_MAGIC 0xea83f3
 
-/*
-** live
-*/
+//live
     #define CYCLE_TO_DIE 1536 /* number of cycle before beig declared dead */
     #define CYCLE_DELTA 5
     #define NBR_LIVE 40

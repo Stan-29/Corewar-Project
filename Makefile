@@ -25,18 +25,11 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/args_tests/test_handle_helper.c 	\
-	tests/unit_tests/args_tests/test_handle_files.c 			\
-	tests/unit_tests/args_tests/test_handle_flags.c 			\
-	tests/unit_tests/args_tests/test_handle_args.c 				\
-	tests/unit_tests/init_tests/test_init_robots.c					\
-	tests/unit_tests/utils_tests/test_my_strlen.c 			\
-	tests/unit_tests/utils_tests/test_is_positive_nb.c 		\
-	tests/unit_tests/utils_tests/test_is_same_str.c 		\
-	tests/unit_tests/utils_tests/test_my_get_nb.c 			\
-	tests/unit_tests/utils_tests/test_display_error.c 		\
-	tests/unit_tests/test_display_instr.c 						\
-	tests/functionnal_tests/test_start_game.c 						\
+TEST_SRC = tests/unit_tests/args_tests/*.c		\
+	tests/unit_tests/init_tests/*.c				\
+	tests/unit_tests/utils_tests/*.c			\
+	tests/unit_tests/*.c						\
+	tests/functionnal_tests/*.c					\
 
 TEST_NAME = tests_results
 
@@ -68,3 +61,5 @@ gcovrex:	re
 		--exclude "tests/.*"
 	gcovr --txt-metric branch --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"
+
+.PHONY: all clean fclean re mac_tests_run gcovrex 

@@ -32,6 +32,42 @@ Test(handle_args, no_flags_four_robots)
     free(robots);
 }
 
+Test(handle_args, no_flags_five_robots)
+{
+    int argc = 6;
+    char *argv[] = {"corewar", "./champions/bill.cor", "./champions/pdd.cor", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor"};
+    robot_t *robots = init_robots();
+
+    if (robots == NULL)
+        return;
+    cr_assert(handle_args(argc, argv, robots) == ERROR);
+    free(robots);
+}
+
+Test(handle_args, no_flags_one_robots)
+{
+    int argc = 2;
+    char *argv[] = {"corewar", "./champions/bill.cor"};
+    robot_t *robots = init_robots();
+
+    if (robots == NULL)
+        return;
+    cr_assert(handle_args(argc, argv, robots) == ERROR);
+    free(robots);
+}
+
+Test(handle_args, flags_one_robots)
+{
+    int argc = 6;
+    char *argv[] = {"corewar", "-dump", "0", "-a", "264", "./champions/bill.cor"};
+    robot_t *robots = init_robots();
+
+    if (robots == NULL)
+        return;
+    cr_assert(handle_args(argc, argv, robots) == ERROR);
+    free(robots);
+}
+
 Test(handle_args, no_flags_two_robots)
 {
     int argc = 3;

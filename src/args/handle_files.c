@@ -7,8 +7,29 @@
 #include "defines.h"
 #include "structs.h"
 #include "main.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int my_htonl(int val)
+{
+    int result = 0;
+
+    result = (val >> 24) & 0xFF;
+    result += (val >> 8) & 0xFF00;
+    result += (val << 8) & 0xFF0000;
+    result += (val << 24) & 0xFF000000;
+    return result;
+}
+
+unsigned int check_header(FILE *fp, robot_t *robots, unsigned int *robot_index)
+{
+    if (fread(&robots[*robot_index].header, sizeof(header_t), 1, fp) == 0)
+        return ERROR;
+    if (my_htonl(robots[*robot_index].header.magic) != COREWAR_EXEC_MAGIC)
+        return display_error(MAGIC_ERROR);
+    return OK;
+}
 
 unsigned int handle_file(char *filepath, robot_t *robots,
     unsigned int *robot_index, unsigned int *arg_index)
@@ -17,6 +38,10 @@ unsigned int handle_file(char *filepath, robot_t *robots,
 
     if (fp == NULL)
         return ERROR;
+    if (check_header(fp, robots, robot_index) == ERROR) {
+        fclose(fp);
+        return ERROR;
+    }
     *robot_index += 1;
     *arg_index += 1;
     fclose(fp);
