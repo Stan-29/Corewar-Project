@@ -22,12 +22,24 @@ int my_htonl(int val)
     return result;
 }
 
-unsigned int check_header(FILE *fp, robot_t *robots, unsigned int *robot_index)
+unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
 {
+    unsigned char *buffer = malloc(sizeof(unsigned char) * BYTE_READ);
+
+    if (buffer == NULL)
+        return ERROR;
     if (fread(&robots[*robot_index].header, sizeof(header_t), 1, fp) == 0)
         return ERROR;
     if (my_htonl(robots[*robot_index].header.magic) != COREWAR_EXEC_MAGIC)
         return display_error(MAGIC_ERROR);
+    while (fread(buffer, sizeof(unsigned char), BYTE_READ, fp) != 0) {
+        robots[*robot_index].instr_list = my_ustrcat(robots[*robot_index].
+            instr_list, robots[*robot_index].len_instr_list, buffer, BYTE_READ);
+        if (robots[*robot_index].instr_list == NULL)
+            return ERROR;
+        robots[*robot_index].len_instr_list += BYTE_READ;
+    }
+    free(buffer);
     return OK;
 }
 
@@ -38,7 +50,7 @@ unsigned int handle_file(char *filepath, robot_t *robots,
 
     if (fp == NULL)
         return ERROR;
-    if (check_header(fp, robots, robot_index) == ERROR) {
+    if (check_file(fp, robots, robot_index) == ERROR) {
         fclose(fp);
         return ERROR;
     }

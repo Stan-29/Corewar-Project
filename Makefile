@@ -12,13 +12,15 @@ SRC = src/args/handle_helper.c 	\
 	src/const/error_messages.c 		\
 	src/const/flags_tab.c			\
 	src/const/op.c 					\
-	src/init/init_robots.c				\
-	src/utils/display_error.c 	\
-	src/utils/is_positive_nb.c 	\
-	src/utils/is_same_str.c 	\
-	src/utils/my_get_nb.c		\
-	src/utils/my_strlen.c 		\
-	src/start_game.c				\
+	src/free/free_robots.c				\
+	src/init/init_robots.c		\
+	src/utils/display_error.c 		\
+	src/utils/is_positive_nb.c 		\
+	src/utils/is_same_str.c 		\
+	src/utils/my_get_nb.c			\
+	src/utils/my_strlen.c 			\
+	src/utils/my_ustrcat.c 			\
+	src/start_game.c					\
 
 NAME = corewar
 
@@ -62,4 +64,12 @@ gcovrex:	re
 	gcovr --txt-metric branch --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"
 
-.PHONY: all clean fclean re mac_tests_run gcovrex 
+valgrind: re
+	$(MAKE) clean
+	valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --log-file=valgrind-out.txt \
+         ./$(NAME) -dump 2 ./champions/bill.cor ./champions/pdd.cor
+
+.PHONY: all clean fclean re mac_tests_run gcovrex valgrind

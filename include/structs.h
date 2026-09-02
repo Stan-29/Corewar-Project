@@ -34,7 +34,8 @@ typedef struct robot_s {
     int dump;
     int prog_nb;
     int load_adress;
-    char *instr_list;
+    unsigned char *instr_list;
+    unsigned int len_instr_list;
 } robot_t;
 
 typedef struct flags_s {

@@ -22,6 +22,7 @@ Test(init_robots, check_inside_init_values)
     cr_assert(robots[0].load_adress == -1);
     cr_assert(robots[3].prog_nb == -1);
     cr_assert(robots[1].dump == -1);
+    cr_assert(robots[1].len_instr_list == 0);
     cr_assert(robots[3].instr_list == NULL);
     free(robots);
 }

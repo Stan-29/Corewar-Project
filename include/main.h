@@ -27,4 +27,7 @@ unsigned int prog_nb_flag(char *, robot_t *);
 //init
 robot_t *init_robots(void);
 
+//free
+void free_robots(robot_t *);
+
 #endif
