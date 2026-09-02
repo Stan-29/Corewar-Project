@@ -5,6 +5,7 @@
 ** utils
 */
 #include "utils.h"
+#include "defines.h"
 
 unsigned int is_same_str(const char *word1, const char *word2)
 {
@@ -16,5 +17,5 @@ unsigned int is_same_str(const char *word1, const char *word2)
         if (word1[index] != word2[index])
             return 1;
     }
-    return 0;
+    return OK;
 }

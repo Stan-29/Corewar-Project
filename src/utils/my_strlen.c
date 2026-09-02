@@ -4,6 +4,7 @@
 ** File description:
 ** utils
 */
+#include <stdio.h>
 
 unsigned int my_strlen(const char *word)
 {

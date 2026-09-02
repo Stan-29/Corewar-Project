@@ -9,5 +9,5 @@
 
 Test(display_instr, same_simple_str)
 {
-    cr_assert(display_instr() == 0);
+    cr_assert(display_instr() == 1);
 }

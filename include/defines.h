@@ -8,12 +8,28 @@
 #ifndef DEFINES_H_
     #define DEFINES_H_
 
-    #define NBR_ERROR_MESSAGES 3
+//return values
+    #define ERROR 84
+    #define OK 0
+
+//error handling
 
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
-    #define TOO_MANY_ARGS 2
+    #define ROBOT_ERROR 2
+    #define MALLOC_FAIL 3
+    #define FLAG_ERROR 4
+    #define FILE_ERROR 5
+    #define DUMP_FLAG_ERROR 6
+    #define MAGIC_ERROR 7
 
+//flags
+    #define DUMP_FLAG "-dump"
+    #define PROG_NB_FLAG "-n"
+    #define LOAD_ADRESS_FLAG "-a"
+
+//corewar infos
+    #define BYTE_READ 1
 
     #define MEM_SIZE (6 * 1024)
     #define IDX_MOD 512 /* modulo of the index < */
@@ -44,23 +60,17 @@
 /* LABEL */
     #define T_LAB 8
 
-/*
-** size (in bytes)
-*/
+//size (in bytes)
     #define IND_SIZE 2
     #define DIR_SIZE 4
     #define REG_SIZE DIR_SIZE
 
-/*
-** header
-*/
+//header
     #define PROG_NAME_LENGTH 128
     #define COMMENT_LENGTH 2048
     #define COREWAR_EXEC_MAGIC 0xea83f3
 
-/*
-** live
-*/
+//live
     #define CYCLE_TO_DIE 1536 /* number of cycle before beig declared dead */
     #define CYCLE_DELTA 5
     #define NBR_LIVE 40

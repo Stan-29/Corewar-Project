@@ -1,12 +1,19 @@
 /*
-** EPITECH PROJECT, 2025
-** asm
+** EPITECH PROJECT, 2026
+** corewar
 ** File description:
-** The main instructions
+** a tab of the error messages
 */
+#include <unistd.h>
 
 const char *error_messages[] = {
     "Error\n",
-    "There are not enough arguments, there should be at least two.",
-    "There are too many arguments, there can't be more than four arguments.\n"
+    "There are not enough arguments, there should be at least two.\n",
+    "There needs to be between 2 and 4 robots.\n",
+    "There has been an error with memory allocation, please try again.\n",
+    "There is a problem with a flag, use \"corewar -h\" to learn more.\n",
+    "There is a problem with one file, make sure they have the right format.\n",
+    "There can't be more than two \"-dump\".\n",
+    "The magic number from your robot is wrong.\n",
+    NULL
 };

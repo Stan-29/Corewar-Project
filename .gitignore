@@ -1,4 +1,5 @@
 corewar
 tests_results
+valgrind-out.txt
 *.gcda
 *.gcno

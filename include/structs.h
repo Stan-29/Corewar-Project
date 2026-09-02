@@ -29,4 +29,18 @@ typedef struct header_s {
     char padding2[3];
 } header_t;
 
+typedef struct robot_s {
+    header_t header;
+    int dump;
+    int prog_nb;
+    int load_adress;
+    unsigned char *instr_list;
+    unsigned int len_instr_list;
+} robot_t;
+
+typedef struct flags_s {
+    char *flag;
+    unsigned int (*flag_func)(char *, robot_t *);
+} flags_t;
+
 #endif /* OP_H_ */

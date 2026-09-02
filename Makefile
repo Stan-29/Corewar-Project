@@ -5,31 +5,39 @@
 ## Makefile
 ##
 
-SRC = src/args/check_args.c 	\
-	src/const/error_messages.c 			\
-	src/const/op.c 						\
+SRC = src/args/handle_helper.c 	\
+	src/args/handle_args.c 		\
+	src/args/handle_files.c 	\
+	src/args/handle_flags.c 	\
+	src/const/error_messages.c 		\
+	src/const/flags_tab.c			\
+	src/const/op.c 					\
+	src/free/free_robots.c				\
+	src/init/init_robots.c		\
 	src/utils/display_error.c 		\
+	src/utils/is_positive_nb.c 		\
 	src/utils/is_same_str.c 		\
+	src/utils/my_get_nb.c			\
 	src/utils/my_strlen.c 			\
-	src/display_instr.c 		\
-	src/start_game.c			\
+	src/utils/my_ustrcat.c 			\
+	src/start_game.c					\
 
 NAME = corewar
 
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/args_tests/test_check_args.c 			\
-	tests/unit_tests/args_tests/test_check_helper.c 				\
-	tests/unit_tests/utils_tests/test_my_strlen.c 			\
-	tests/unit_tests/utils_tests/test_is_same_str.c 		\
-	tests/unit_tests/utils_tests/test_display_error.c 		\
-	tests/unit_tests/test_display_instr.c 		\
-	tests/functionnal_tests/test_start_game.c 			\
+TEST_SRC = tests/unit_tests/args_tests/*.c		\
+	tests/unit_tests/init_tests/*.c				\
+	tests/unit_tests/utils_tests/*.c			\
+	tests/unit_tests/*.c						\
+	tests/functionnal_tests/*.c					\
 
 TEST_NAME = tests_results
 
 TEST_CC = gcc
+
+VALGRIND_NAME = valgrind-out.txt
 
 all : 
 	$(CC) -o $(NAME) main.c $(SRC) -I./include
@@ -41,6 +49,7 @@ clean:
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f $(VALGRIND_NAME)
 
 re:	
 	$(MAKE) fclean
@@ -57,3 +66,13 @@ gcovrex:	re
 		--exclude "tests/.*"
 	gcovr --txt-metric branch --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"
+
+valgrind: re
+	$(MAKE) clean
+	valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --log-file=$(VALGRIND_NAME) \
+         ./$(NAME) -dump 2 ./champions/bill.cor ./champions/pdd.cor
+
+.PHONY: all clean fclean re mac_tests_run gcovrex valgrind
