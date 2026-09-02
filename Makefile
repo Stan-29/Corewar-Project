@@ -37,6 +37,8 @@ TEST_NAME = tests_results
 
 TEST_CC = gcc
 
+VALGRIND_NAME = valgrind-out.txt
+
 all : 
 	$(CC) -o $(NAME) main.c $(SRC) -I./include
 
@@ -47,6 +49,7 @@ clean:
 
 fclean:	clean
 	rm -f $(NAME)
+	rm -f $(VALGRIND_NAME)
 
 re:	
 	$(MAKE) fclean
@@ -69,7 +72,7 @@ valgrind: re
 	valgrind --leak-check=full \
          --show-leak-kinds=all \
          --track-origins=yes \
-         --log-file=valgrind-out.txt \
+         --log-file=$(VALGRIND_NAME) \
          ./$(NAME) -dump 2 ./champions/bill.cor ./champions/pdd.cor
 
 .PHONY: all clean fclean re mac_tests_run gcovrex valgrind

@@ -22,16 +22,12 @@ int my_htonl(int val)
     return result;
 }
 
-unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
+unsigned int store_instr(FILE *fp, robot_t *robots, unsigned int *robot_index)
 {
     unsigned char *buffer = malloc(sizeof(unsigned char) * BYTE_READ);
 
     if (buffer == NULL)
         return ERROR;
-    if (fread(&robots[*robot_index].header, sizeof(header_t), 1, fp) == 0)
-        return ERROR;
-    if (my_htonl(robots[*robot_index].header.magic) != COREWAR_EXEC_MAGIC)
-        return display_error(MAGIC_ERROR);
     while (fread(buffer, sizeof(unsigned char), BYTE_READ, fp) != 0) {
         robots[*robot_index].instr_list = my_ustrcat(robots[*robot_index].
             instr_list, robots[*robot_index].len_instr_list, buffer, BYTE_READ);
@@ -40,6 +36,17 @@ unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
         robots[*robot_index].len_instr_list += BYTE_READ;
     }
     free(buffer);
+    return OK;
+}
+
+unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
+{
+    if (fread(&robots[*robot_index].header, sizeof(header_t), 1, fp) == 0)
+        return ERROR;
+    if (my_htonl(robots[*robot_index].header.magic) != COREWAR_EXEC_MAGIC)
+        return display_error(MAGIC_ERROR);
+    if (store_instr(fp, robots, robot_index) == ERROR)
+        return ERROR;
     return OK;
 }
 
