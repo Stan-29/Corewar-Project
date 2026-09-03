@@ -74,6 +74,6 @@ valgrind: re
          --show-leak-kinds=all \
          --track-origins=yes \
          --log-file=$(VALGRIND_NAME) \
-         ./$(NAME) -dump 2 ./champions/bill.cor ./champions/pdd.cor
+         ./$(NAME) ./champions/bill.cor ./champions/pdd.cor
 
 .PHONY: all clean fclean re mac_tests_run gcovrex valgrind

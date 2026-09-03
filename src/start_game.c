@@ -19,9 +19,8 @@ unsigned int start_game(int argc, char **argv)
         return display_error(MALLOC_FAIL);
     if (handle_args(argc, argv, robots) == ERROR)
         return ERROR;
-    if (prepare_infos(robots, game_infos) == ERROR)
+    if (prepare_infos(robots, &game_infos) == ERROR)
         return ERROR;
-    free_robots_args(robots);
     free_game_infos(game_infos);
     return OK;
 }

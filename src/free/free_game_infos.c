@@ -7,8 +7,9 @@
 #include "defines.h"
 #include "structs.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void free_robots_args(robot_args_t *robots)
+void free_robot_args(robot_args_t *robots)
 {
     if (robots == NULL)
         return;
@@ -25,6 +26,7 @@ void free_game_infos(game_infos_t *game_infos)
         free(game_infos->robots_game[index].reg);
     }
     free(game_infos->robots_game);
-    free_robots_args(game_infos->robots_args);
+    free_robot_args(game_infos->robots_args);
+    free(game_infos->arena);
     free(game_infos);
 }

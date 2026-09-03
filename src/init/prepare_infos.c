@@ -59,11 +59,12 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     return OK;
 }
 
-unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t *game_infos)
+unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
 {
-    game_infos = malloc(sizeof(game_infos_t));
+    *game_infos = malloc(sizeof(game_infos_t));
     if (game_infos == NULL)
         return display_error(MALLOC_FAIL);
-    init_game_infos(robots_args, game_infos);
+    if (init_game_infos(robots_args, *game_infos) == ERROR)
+        return ERROR;
     return OK;
 }

@@ -27,10 +27,10 @@ unsigned int prog_nb_flag(char *, robot_args_t *);
 
 //init
 robot_args_t *init_robots(void);
-unsigned int prepare_infos(robot_args_t *, game_infos_t *);
+unsigned int prepare_infos(robot_args_t *, game_infos_t **);
 
 //free
-void free_robots_args(robot_args_t *);
+void free_robot_args(robot_args_t *);
 void free_game_infos(game_infos_t *);
 
 #endif
