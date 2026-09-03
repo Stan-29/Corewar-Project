@@ -8,15 +8,20 @@
 #include "main.h"
 #include "structs.h"
 #include "utils.h"
+#include <unistd.h>
 
 unsigned int start_game(int argc, char **argv)
 {
-    robot_t *robots = init_robots();
+    robot_args_t *robots = init_robots();
+    game_infos_t *game_infos = NULL;
 
     if (!robots)
         return display_error(MALLOC_FAIL);
     if (handle_args(argc, argv, robots) == ERROR)
         return ERROR;
-    free_robots(robots);
+    if (prepare_infos(robots, game_infos) == ERROR)
+        return ERROR;
+    free_robots_args(robots);
+    free_game_infos(game_infos);
     return OK;
 }

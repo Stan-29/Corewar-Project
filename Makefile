@@ -5,15 +5,16 @@
 ## Makefile
 ##
 
-SRC = src/args/handle_helper.c 	\
-	src/args/handle_args.c 		\
-	src/args/handle_files.c 	\
-	src/args/handle_flags.c 	\
+SRC = src/parsing/handle_helper.c 	\
+	src/parsing/handle_args.c 		\
+	src/parsing/handle_files.c 	\
+	src/parsing/handle_flags.c 	\
 	src/const/error_messages.c 		\
 	src/const/flags_tab.c			\
 	src/const/op.c 					\
-	src/free/free_robots.c				\
+	src/free/free_game_infos.c			\
 	src/init/init_robots.c		\
+	src/init/prepare_infos.c 			\
 	src/utils/display_error.c 		\
 	src/utils/is_positive_nb.c 		\
 	src/utils/is_same_str.c 		\
@@ -27,7 +28,7 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/args_tests/*.c		\
+TEST_SRC = tests/unit_tests/parsing_tests/*.c	\
 	tests/unit_tests/init_tests/*.c				\
 	tests/unit_tests/utils_tests/*.c			\
 	tests/unit_tests/*.c						\

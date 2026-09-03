@@ -9,7 +9,7 @@
 
 Test(init_robots, check_not_null)
 {
-    robot_t *robots = init_robots();
+    robot_args_t *robots = init_robots();
 
     cr_assert(robots != NULL);
     free(robots);
@@ -17,7 +17,7 @@ Test(init_robots, check_not_null)
 
 Test(init_robots, check_inside_init_values)
 {
-    robot_t *robots = init_robots();
+    robot_args_t *robots = init_robots();
 
     cr_assert(robots[0].load_adress == -1);
     cr_assert(robots[3].prog_nb == -1);
@@ -29,7 +29,7 @@ Test(init_robots, check_inside_init_values)
 
 Test(init_robots, check_inside_values)
 {
-    robot_t *robots = init_robots();
+    robot_args_t *robots = init_robots();
 
     robots[0].load_adress = 300;
     robots[3].prog_nb = 1;
@@ -38,7 +38,7 @@ Test(init_robots, check_inside_values)
     free(robots);
 }
 
-void test_modify_value(robot_t *robots)
+void test_modify_value(robot_args_t *robots)
 {
     robots[0].load_adress = 300;
     robots[3].prog_nb = 1;
@@ -48,7 +48,7 @@ void test_modify_value(robot_t *robots)
 
 Test(init_robots, check_inside_values_from_other_function)
 {
-    robot_t *robots = init_robots();
+    robot_args_t *robots = init_robots();
 
     test_modify_value(robots);
     cr_assert(robots[0].load_adress == 300);

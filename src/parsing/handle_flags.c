@@ -21,7 +21,7 @@ static unsigned int manage_flag_value(char *value, int *robot_value)
     return OK;
 }
 
-unsigned int dump_flag(char *value, robot_t *robot)
+unsigned int dump_flag(char *value, robot_args_t *robot)
 {
     if (manage_flag_value(value, &robot->dump) == ERROR)
         return ERROR;
@@ -30,7 +30,7 @@ unsigned int dump_flag(char *value, robot_t *robot)
     return OK;
 }
 
-unsigned int load_flag(char *value, robot_t *robot)
+unsigned int load_flag(char *value, robot_args_t *robot)
 {
     if (manage_flag_value(value, &robot->load_adress) == ERROR)
         return ERROR;
@@ -39,12 +39,12 @@ unsigned int load_flag(char *value, robot_t *robot)
     return OK;
 }
 
-unsigned int prog_nb_flag(char *value, robot_t *robot)
+unsigned int prog_nb_flag(char *value, robot_args_t *robot)
 {
     return manage_flag_value(value, &robot->prog_nb);
 }
 
-unsigned int find_flag(char *flag, char *value, robot_t *robot,
+unsigned int find_flag(char *flag, char *value, robot_args_t *robot,
     unsigned int *arg_index)
 {
     if (is_positive_nb(value) != true)
@@ -59,7 +59,7 @@ unsigned int find_flag(char *flag, char *value, robot_t *robot,
     return ERROR;
 }
 
-unsigned int handle_flags(int argc, char **argv, robot_t *robot,
+unsigned int handle_flags(int argc, char **argv, robot_args_t *robot,
     unsigned int *arg_index)
 {
     if (argv[*arg_index][0] == '-') {

@@ -22,7 +22,8 @@ int my_htonl(int val)
     return result;
 }
 
-unsigned int store_instr(FILE *fp, robot_t *robots, unsigned int *robot_index)
+unsigned int store_instr(FILE *fp, robot_args_t *robots,
+    unsigned int *robot_index)
 {
     unsigned char *buffer = malloc(sizeof(unsigned char) * BYTE_READ);
 
@@ -39,7 +40,8 @@ unsigned int store_instr(FILE *fp, robot_t *robots, unsigned int *robot_index)
     return OK;
 }
 
-unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
+unsigned int check_file(FILE *fp, robot_args_t *robots,
+    unsigned int *robot_index)
 {
     if (fread(&robots[*robot_index].header, sizeof(header_t), 1, fp) == 0)
         return ERROR;
@@ -50,7 +52,7 @@ unsigned int check_file(FILE *fp, robot_t *robots, unsigned int *robot_index)
     return OK;
 }
 
-unsigned int handle_file(char *filepath, robot_t *robots,
+unsigned int handle_file(char *filepath, robot_args_t *robots,
     unsigned int *robot_index, unsigned int *arg_index)
 {
     FILE *fp = fopen(filepath, "r");
