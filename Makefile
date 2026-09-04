@@ -43,10 +43,15 @@ TEST_CC = gcc
 
 VALGRIND_NAME = valgrind-out.txt
 
-all : 
-	$(CC) -o $(NAME) main.c $(SRC) -I./include
+CFLAGS = -I./include -g
+
+OBJ = 	$(SRC:.c=.o)
+
+all : $(OBJ)
+	$(CC) -o $(NAME) main.c $(OBJ) $(CFLAGS)
 
 clean:
+	rm -f $(OBJ)
 	rm -f *.gcno
 	rm -f *.gcda
 	rm -f $(TEST_NAME)
