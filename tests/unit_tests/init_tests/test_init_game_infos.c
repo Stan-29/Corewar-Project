@@ -10,9 +10,11 @@
 Test(init_game_infos, check_not_null)
 {
     robot_args_t *robots = init_robots();
-    game_infos_t *game_infos = NULL;
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
 
-    prepare_infos(robots, &game_infos);
+    if (game_infos == NULL)
+        return;
+    init_game_infos(robots, game_infos);
     cr_assert(game_infos != NULL);
     free_game_infos(game_infos);
 }
@@ -20,9 +22,11 @@ Test(init_game_infos, check_not_null)
 Test(init_game_infos, free_game_with_robot_args_null)
 {
     robot_args_t *robots = init_robots();
-    game_infos_t *game_infos = NULL;
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
 
-    prepare_infos(robots, &game_infos);
+    if (game_infos == NULL)
+        return;
+    init_game_infos(robots, game_infos);
     cr_assert(game_infos != NULL);
     free_robot_args(game_infos->robots_args);
     game_infos->robots_args = NULL;
@@ -41,10 +45,12 @@ static void test_init_values(robot_args_t *robots)
 Test(init_game_infos, check_inside_init_values)
 {
     robot_args_t *robots = init_robots();
-    game_infos_t *game_infos = NULL;
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
 
+    if (game_infos == NULL)
+        return;
     test_init_values(robots);
-    prepare_infos(robots, &game_infos);
+    init_game_infos(robots, game_infos);
     cr_assert(game_infos->nb_robots == 3);
     cr_assert(game_infos->cycle_nb == 0);
     cr_assert(game_infos->robots_args[0].dump == 100);
@@ -55,10 +61,12 @@ Test(init_game_infos, check_inside_init_values)
 Test(init_game_infos, check_inside_values)
 {
     robot_args_t *robots = init_robots();
-    game_infos_t *game_infos = NULL;
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
 
+    if (game_infos == NULL)
+        return;
     test_init_values(robots);
-    prepare_infos(robots, &game_infos);
+    init_game_infos(robots, game_infos);
     game_infos->cycle_nb = 12;
     game_infos->robots_args[0].load_adress = 300;
     game_infos->robots_args[3].prog_nb = 1;
@@ -78,10 +86,12 @@ static void modify_some_values(game_infos_t *game_infos)
 Test(init_game_infos, check_inside_values_from_other_function)
 {
     robot_args_t *robots = init_robots();
-    game_infos_t *game_infos = NULL;
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
 
+    if (game_infos == NULL)
+        return;
     test_init_values(robots);
-    prepare_infos(robots, &game_infos);
+    init_game_infos(robots, game_infos);
     modify_some_values(game_infos);
     cr_assert(game_infos->dump == 20);
     cr_assert(game_infos->robots_args[0].load_adress == 166);
