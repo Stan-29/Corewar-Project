@@ -4,3 +4,4 @@ valgrind-out.txt
 *.gcda
 *.gcno
 *.o
+corewar.dSYM

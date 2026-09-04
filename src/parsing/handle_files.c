@@ -31,10 +31,10 @@ unsigned int store_instr(FILE *fp, robot_args_t *robots,
         return ERROR;
     while (fread(buffer, sizeof(unsigned char), BYTE_READ, fp) != 0) {
         robots[*robot_index].instr_list = my_ustrcat(robots[*robot_index].
-            instr_list, robots[*robot_index].len_instr_list, buffer, BYTE_READ);
+            instr_list, robots[*robot_index].len_instr, buffer, BYTE_READ);
         if (robots[*robot_index].instr_list == NULL)
             return ERROR;
-        robots[*robot_index].len_instr_list += BYTE_READ;
+        robots[*robot_index].len_instr += BYTE_READ;
     }
     free(buffer);
     return OK;

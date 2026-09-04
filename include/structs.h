@@ -37,7 +37,7 @@ typedef struct robot_args_s {
     int prog_nb;
     int load_adress;
     unsigned char *instr_list;
-    unsigned int len_instr_list;
+    unsigned int len_instr;
 } robot_args_t;
 
 typedef struct robot_game_s {

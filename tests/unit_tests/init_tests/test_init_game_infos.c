@@ -80,7 +80,7 @@ static void modify_some_values(game_infos_t *game_infos)
 {
     game_infos->dump = 20;
     game_infos->robots_args[0].load_adress = 166;
-    game_infos->robots_args[3].len_instr_list = 8;
+    game_infos->robots_args[3].len_instr = 8;
 }
 
 Test(init_game_infos, check_inside_values_from_other_function)
@@ -95,6 +95,6 @@ Test(init_game_infos, check_inside_values_from_other_function)
     modify_some_values(game_infos);
     cr_assert(game_infos->dump == 20);
     cr_assert(game_infos->robots_args[0].load_adress == 166);
-    cr_assert(game_infos->robots_args[3].len_instr_list = 8);
+    cr_assert(game_infos->robots_args[3].len_instr = 8);
     free_game_infos(game_infos);
 }

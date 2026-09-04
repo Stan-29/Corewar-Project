@@ -36,6 +36,7 @@ void free_game_infos(game_infos_t *);
 
 //setup infos
 unsigned int prepare_infos(robot_args_t *, game_infos_t **);
-void manage_robots_id(robot_args_t *robots, unsigned int nb_robots);
+void manage_robots_id(robot_args_t *, unsigned int);
+unsigned int manage_load_pos(robot_args_t *, unsigned int);
 
 #endif
