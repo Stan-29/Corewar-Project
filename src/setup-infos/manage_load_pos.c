@@ -97,7 +97,7 @@ static void add_load_pos(robot_args_t *robots, int **gap_list,
     unsigned int max_gap_id = 0;
 
     for (unsigned int index = 0; index < nb_of_gaps; index++) {
-        if (gap_list[index][2] > max_gap_id)
+        if (gap_list[index][2] > gap_list[max_gap_id][2])
             max_gap_id = index;
     }
     robots[index_robot].load_adress = gap_list[max_gap_id][1] +
@@ -112,9 +112,10 @@ unsigned int find_best_place(robot_args_t *robots, unsigned int nb_robots,
 
     if (nb_robots == left_to_place) {
         robots[0].load_adress = 0;
-        left_to_place -= 1;
+        find_best_place(robots, nb_robots, left_to_place - 1, index_robot + 1);
+        return OK;
     }
-    if (robots[index_robot].load_adress != -1 && left_to_place > 1 &&
+    if (robots[index_robot].load_adress != -1 && left_to_place >= 1 &&
         index_robot + 1 < nb_robots) {
         find_best_place(robots, nb_robots, left_to_place, index_robot + 1);
         return OK;
