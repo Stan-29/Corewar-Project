@@ -24,7 +24,9 @@ Test(put_robots_in_arena, two_args)
     cr_assert(game_infos->arena[0] == 11);
     cr_assert(game_infos->arena[21] == 244);
     cr_assert(game_infos->arena[22] == 0);
+    cr_assert(game_infos->arena[62] == 0);
     cr_assert(game_infos->arena[63] == 11);
     cr_assert(game_infos->arena[84] == 244);
+    cr_assert(game_infos->arena[85] == 0);
     free_game_infos(game_infos);
 }

@@ -33,6 +33,9 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
         robot_game[index].reg = malloc(sizeof(unsigned char) * REG_NUMBER);
         if (robot_game[index].reg == NULL)
             return ERROR;
+        for (unsigned int index_reg = 0; index_reg < REG_NUMBER; index_reg++) {
+            robot_game[index].reg[index_reg] = 0;
+        }
     }
     return OK;
 }
@@ -54,6 +57,8 @@ unsigned int init_game_infos(robot_args_t *robots_args,
         free(game_infos->robots_game);
         return ERROR;
     }
+    for (unsigned int index = 0; index < MEM_SIZE; index++)
+        game_infos->arena[index] = 0;
     game_infos->cycle_nb = 0;
     return OK;
 }
