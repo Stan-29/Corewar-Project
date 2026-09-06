@@ -3,3 +3,5 @@ tests_results
 valgrind-out.txt
 *.gcda
 *.gcno
+*.o
+corewar.dSYM

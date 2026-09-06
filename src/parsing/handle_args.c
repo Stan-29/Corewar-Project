@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-unsigned int check_dump_flag(robot_t *robots)
+unsigned int check_dump_flag(robot_args_t *robots)
 {
     unsigned int nb_dump_flag = 0;
 
@@ -24,7 +24,7 @@ unsigned int check_dump_flag(robot_t *robots)
     return OK;
 }
 
-unsigned int parse_args(int argc, char **argv, robot_t *robots)
+unsigned int parse_args(int argc, char **argv, robot_args_t *robots)
 {
     unsigned int robot_index = 0;
     unsigned int arg_index = 1;
@@ -44,7 +44,7 @@ unsigned int parse_args(int argc, char **argv, robot_t *robots)
     return OK;
 }
 
-unsigned int handle_args(int argc, char **argv, robot_t *robots)
+unsigned int handle_args(int argc, char **argv, robot_args_t *robots)
 {
     unsigned int return_value = 0;
 

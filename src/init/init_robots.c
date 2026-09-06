@@ -10,9 +10,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-robot_t *init_robots(void)
+robot_args_t *init_robots(void)
 {
-    robot_t *robots = malloc(sizeof(robot_t) * MAX_ARGS_NUMBER);
+    robot_args_t *robots = malloc(sizeof(robot_args_t) * MAX_ARGS_NUMBER);
 
     if (!robots)
         return NULL;
@@ -21,7 +21,7 @@ robot_t *init_robots(void)
             return NULL;
         }
         robots[index].instr_list = NULL;
-        robots[index].len_instr_list = 0;
+        robots[index].len_instr = 0;
         robots[index].load_adress = -1;
         robots[index].prog_nb = -1;
         robots[index].dump = -1;
