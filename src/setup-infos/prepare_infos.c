@@ -12,15 +12,15 @@
 #include <stdio.h>
 
 void if_same_add(robot_args_t *robots_args, game_infos_t *game_infos,
-    unsigned int *index, unsigned int index_robot)
+    unsigned int index, unsigned int index_robot)
 {
-    if (*index != robots_args[index_robot].load_adress)
+    if (index != robots_args[index_robot].load_adress)
         return;
     for (unsigned int index_instr = 0;
         index_instr < robots_args[index_robot].len_instr; index_instr++) {
-        game_infos->arena[*index % MEM_SIZE] = robots_args[index_robot].
+        game_infos->arena[index % MEM_SIZE] = robots_args[index_robot].
             instr_list[index_instr];
-        *index += 1;
+        index += 1;
     }
 }
 
@@ -29,12 +29,8 @@ void put_robots_in_arena(robot_args_t *robots_args, game_infos_t *game_infos)
     for (unsigned int index = 0; index < MEM_SIZE; index++) {
         for (unsigned int index_robot = 0; index_robot < game_infos->nb_robots;
             index_robot++)
-            if_same_add(robots_args, game_infos, &index, index_robot);
+            if_same_add(robots_args, game_infos, index, index_robot);
     }
-    for (unsigned int index_robot = 0; index_robot < game_infos->nb_robots;
-        index_robot++)
-        game_infos->robots_game[index_robot].pc =
-            robots_args[index_robot].load_adress;
 }
 
 unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
@@ -49,5 +45,9 @@ unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
             (*game_infos)->nb_robots) == ERROR)
         return ERROR;
     put_robots_in_arena(robots_args, *game_infos);
+    for (unsigned int index_robot = 0; index_robot < (*game_infos)->nb_robots;
+        index_robot++)
+        (*game_infos)->robots_game[index_robot].pc =
+            robots_args[index_robot].load_adress;
     return OK;
 }
