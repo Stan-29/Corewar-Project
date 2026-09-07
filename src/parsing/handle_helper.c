@@ -11,10 +11,10 @@
 unsigned int display_instr(void)
 {
     char *message = "USAGE\n"
-        "./corewar [-dump nbr_cycle] [[-n prog_number]"
+        "./corewar [-dump_cycle nbr_cycle] [[-n prog_number]"
         "[-a load_address] prog_name] ...\n"
         "DESCRIPTION\n"
-        "-dump nbr_cycle dumps the state of the virtual machine"
+        "-dump_cycle nbr_cycle dump_cycles the state of the virtual machine"
         " after the nbr_cycle execution\n"
         "-n prog_number sets the next program's number."
         "By default, the first free number in the parameter order\n"

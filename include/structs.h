@@ -52,10 +52,13 @@ typedef struct robot_game_s {
 typedef struct game_info_s {
     robot_args_t *robots_args;
     robot_game_t *robots_game;
+    unsigned int cycle_to_die;
+    unsigned int nbr_live_exec;
+    unsigned int last_to_live;
     unsigned int nb_robots;
     unsigned int cycle_nb;
     unsigned char *arena;
-    int dump;
+    int dump_cycle;
 } game_infos_t;
 
 typedef struct flags_s {
