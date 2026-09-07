@@ -41,6 +41,8 @@ unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
     if (init_game_infos(robots_args, *game_infos) == ERROR)
         return ERROR;
     manage_robots_id(robots_args, (*game_infos)->nb_robots);
+    for (unsigned int index = 0; index < (*game_infos)->nb_robots; index++)
+        (*game_infos)->robots_game[index].reg[0] = robots_args[index].prog_nb;
     if (manage_load_pos(robots_args,
             (*game_infos)->nb_robots) == ERROR)
         return ERROR;

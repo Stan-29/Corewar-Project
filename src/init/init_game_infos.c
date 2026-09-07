@@ -10,15 +10,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void get_nb_robots_and_dump(robot_args_t *robots_args, game_infos_t *game_infos)
+void get_nb_robots_and_dump_cycle(robot_args_t *robots_args,
+    game_infos_t *game_infos)
 {
-    game_infos->dump = -1;
+    game_infos->dump_cycle = -1;
     game_infos->nb_robots = 0;
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
         if (robots_args[index].instr_list != NULL)
             game_infos->nb_robots += 1;
         if (robots_args[index].dump != -1)
-            game_infos->dump = robots_args[index].dump;
+            game_infos->dump_cycle = robots_args[index].dump;
     }
 }
 
@@ -43,7 +44,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
 unsigned int init_game_infos(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
-    get_nb_robots_and_dump(robots_args, game_infos);
+    get_nb_robots_and_dump_cycle(robots_args, game_infos);
     game_infos->robots_game = malloc(sizeof
         (robot_game_t) * game_infos->nb_robots);
     if (game_infos->robots_game == NULL)
@@ -60,5 +61,7 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     for (unsigned int index = 0; index < MEM_SIZE; index++)
         game_infos->arena[index] = 0;
     game_infos->cycle_nb = 0;
+    game_infos->cycle_to_die = CYCLE_TO_DIE;
+    game_infos->nbr_live_exec = 0;
     return OK;
 }

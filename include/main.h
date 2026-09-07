@@ -13,6 +13,8 @@
 
 unsigned int display_instr(void);
 unsigned int start_game(int, char **);
+void print_arena(game_infos_t *);
+void game_loop(game_infos_t *);
 
 //args
 unsigned int handle_args(int, char **, robot_args_t *);

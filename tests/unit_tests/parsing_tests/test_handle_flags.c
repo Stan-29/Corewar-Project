@@ -7,7 +7,7 @@
 #include "main.h"
 #include <criterion/criterion.h>
 
-Test(handle_flags, valid_dump_flag)
+Test(handle_flags, valid_dump_cycle_flag)
 {
     int argc = 5;
     char *argv[] = {"corewar", "-dump", "0", "./champions/bill.cor", "./champions/pdd.cor"};
@@ -21,10 +21,10 @@ Test(handle_flags, valid_dump_flag)
     free(robots);
 }
 
-Test(handle_flags, unvalid_dump_flag_bacause_two_flags)
+Test(handle_flags, unvalid_dump_cycle_flag_bacause_two_flags)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-dump", "1", "./champions/bill.cor", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "1", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_args_t *robots = init_robots();
 
@@ -35,10 +35,10 @@ Test(handle_flags, unvalid_dump_flag_bacause_two_flags)
     free(robots);
 }
 
-Test(handle_flags, unvalid_dump_flag_with_negative_value)
+Test(handle_flags, unvalid_dump_cycle_flag_with_negative_value)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "-dump", "-20", "./champions/bill.cor", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "-20", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_args_t *robots = init_robots();
 
@@ -48,10 +48,10 @@ Test(handle_flags, unvalid_dump_flag_with_negative_value)
     free(robots);
 }
 
-Test(handle_flags, unvalid_dump_flag_with_no_value)
+Test(handle_flags, unvalid_dump_cycle_flag_with_no_value)
 {
     int argc = 4;
-    char *argv[] = {"corewar", "-dump", "./champions/bill.cor", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_args_t *robots = init_robots();
 
@@ -61,10 +61,10 @@ Test(handle_flags, unvalid_dump_flag_with_no_value)
     free(robots);
 }
 
-Test(handle_flags, unvalid_dump_flag_with_greater_value_than_max)
+Test(handle_flags, unvalid_dump_cycle_flag_with_greater_value_than_max)
 {
     int argc = 4;
-    char *argv[] = {"corewar", "-dump", "120093", "./champions/bill.cor", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "120093", "./champions/bill.cor", "./champions/pdd.cor"};
     unsigned int arg_index = 1;
     robot_args_t *robots = init_robots();
 
@@ -146,7 +146,7 @@ Test(handle_flags, unvalid_prog_nb_flag_baceause_two_flags)
 Test(handle_flags, unvalid_flag_because_nothing_after)
 {
     int argc = 3;
-    char *argv[] = {"corewar", "./champions/bill.cor", "-dump"};
+    char *argv[] = {"corewar", "./champions/bill.cor", "-dump_cycle"};
     unsigned int arg_index = 2;
     robot_args_t *robots = init_robots();
 

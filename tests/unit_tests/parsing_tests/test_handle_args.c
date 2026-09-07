@@ -59,7 +59,7 @@ Test(handle_args, no_flags_one_robots)
 Test(handle_args, flags_one_robots)
 {
     int argc = 6;
-    char *argv[] = {"corewar", "-dump", "0", "-a", "264", "./champions/bill.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "0", "-a", "264", "./champions/bill.cor"};
     robot_args_t *robots = init_robots();
 
     if (robots == NULL)
@@ -134,7 +134,7 @@ Test(handle_args, several_valid_flags)
 Test(handle_args, more_than_one_flags_following)
 {
     int argc = 11;
-    char *argv[] = {"corewar", "-dump", "0", "-a", "264", "-a", "123",  "./champions/bill.cor", "-n", "41", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump_cycle", "0", "-a", "264", "-a", "123",  "./champions/bill.cor", "-n", "41", "./champions/pdd.cor"};
     robot_args_t *robots = init_robots();
 
     if (robots == NULL)
@@ -146,7 +146,7 @@ Test(handle_args, more_than_one_flags_following)
 Test(handle_args, more_than_one_flags_seperated)
 {
     int argc = 11;
-    char *argv[] = {"corewar", "-a", "264", "-dump", "0", "-a", "123",  "./champions/bill.cor", "-n", "41", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-a", "264", "-dump_cycle", "0", "-a", "123",  "./champions/bill.cor", "-n", "41", "./champions/pdd.cor"};
     robot_args_t *robots = init_robots();
 
     if (robots == NULL)
@@ -207,10 +207,10 @@ Test(handle_args, not_a_flag)
     free(robots);
 }
 
-Test(handle_args, too_many_dump_flag)
+Test(handle_args, too_many_dump_cycle_flag)
 {
     int argc = 9;
-    char *argv[] = {"corewar", "-dump", "0", "-a", "123",  "./champions/bill.cor", "-dump", "0", "./champions/pdd.cor"};
+    char *argv[] = {"corewar", "-dump", "0", "-a", "123",  "./champions/bill.cor", "-dump_cycle", "0", "./champions/pdd.cor"};
     robot_args_t *robots = init_robots();
 
     if (robots == NULL)
