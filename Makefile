@@ -22,6 +22,8 @@ SRC = src/const/error_messages.c 	\
 	src/utils/is_positive_nb.c 				\
 	src/utils/is_same_str.c 				\
 	src/utils/my_get_nb.c					\
+	src/utils/my_put_nbr.c					\
+	src/utils/my_put_str.c					\
 	src/utils/my_strlen.c 					\
 	src/utils/my_ustrcat.c 					\
 	src/start_game.c				\
@@ -92,6 +94,6 @@ valgrind: re_docker
          --show-leak-kinds=all \
          --track-origins=yes \
          --log-file=$(VALGRIND_NAME) \
-         ./$(NAME) ./champions/bill.cor ./champions/pdd.cor 
+         ./$(NAME) -dump 0 ./champions/bill.cor ./champions/pdd.cor 
 
 .PHONY: all clean fclean re mac_tests_run gcovrex valgrind

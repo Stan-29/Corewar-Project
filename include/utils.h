@@ -14,6 +14,7 @@
 unsigned int my_tablen(const char *tab[]);
 
 //str handling
+void my_put_str(char *str);
 unsigned int my_strlen(const char *);
 unsigned int is_same_str(const char *, const char *);
 unsigned char *my_ustrcat(unsigned char *, unsigned int,
@@ -22,6 +23,7 @@ unsigned char *my_ustrcat(unsigned char *, unsigned int,
 //number handling
 bool is_positive_nb(char *);
 int my_get_nb(const char *);
+void my_put_nbr(int nb);
 
 unsigned int display_error(unsigned int);
 
