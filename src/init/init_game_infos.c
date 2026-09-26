@@ -31,7 +31,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
         robot_game[index].has_said_alive = false;
         robot_game[index].is_alive = true;
         robot_game[index].pc = 0;
-        robot_game[index].reg = malloc(sizeof(unsigned char) * REG_NUMBER);
+        robot_game[index].reg = malloc(sizeof(int) * REG_NUMBER);
         if (robot_game[index].reg == NULL)
             return ERROR;
         for (unsigned int index_reg = 0; index_reg < REG_NUMBER; index_reg++) {

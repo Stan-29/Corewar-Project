@@ -51,12 +51,12 @@ void print_robot_infos(robot_game_t *robot_game, robot_args_t *robot_arg)
 
 void print_memory(game_infos_t *game_infos)
 {
-    my_put_str("Memory: ");
+    my_put_str("Memory:   ");
     for (unsigned int index = 0; index < 32; index++) {
         print_hexa(index, 2);
         my_putchar(' ');
     }
-    my_putchar('\n');
+    my_put_str("\n        ");
     for (unsigned int index = 0; index < 32; index++)
         my_put_str("  -");
     my_putchar('\n');
