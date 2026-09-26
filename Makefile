@@ -29,6 +29,7 @@ SRC = src/const/error_messages.c 	\
 	src/utils/my_strlen.c 					\
 	src/utils/my_ustrcat.c 					\
 	src/utils/print_hexa.c 					\
+	src/utils/print_modular.c 				\
 	src/start_game.c				\
 	src/game_loop.c					\
 	src/dump_function.c				\

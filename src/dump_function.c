@@ -10,26 +10,6 @@
 #include "utils.h"
 #include <ncurses.h>
 
-static void print_str(char *str, bool is_ncurse_active, int color_index)
-{
-    if (is_ncurse_active) {
-        attron(COLOR_PAIR(color_index));
-        printw("%s", str);
-        attroff(COLOR_PAIR(color_index));
-    } else
-        my_put_str(str);
-}
-
-static void print_nbr(int nbr, bool is_ncurse_active, int color_index)
-{
-    if (is_ncurse_active) {
-        attron(COLOR_PAIR(color_index));
-        printw("%i", nbr);
-        attroff(COLOR_PAIR(color_index));
-    } else
-        my_put_nbr(nbr);
-}
-
 void print_header(robot_args_t *robot_arg, robot_game_t *robot_game,
     bool is_ncurse_active)
 {
@@ -50,7 +30,7 @@ void print_reg(robot_game_t *robot_game, bool is_ncurse_active)
         print_str("r", is_ncurse_active, 0);
         print_nbr(reg, is_ncurse_active, 0);
         print_str(" : ", is_ncurse_active, 0);
-        print_hexa(robot_game->reg[reg], 8, is_ncurse_active);
+        print_hexa(robot_game->reg[reg], 8, is_ncurse_active, 0);
         if (reg != 0 && reg % 6 == 0)
             print_str("\n", is_ncurse_active, 0);
         else
@@ -65,30 +45,36 @@ void print_robot_infos(robot_game_t *robot_game, robot_args_t *robot_arg,
     print_header(robot_arg, robot_game, is_ncurse_active);
     print_reg(robot_game, is_ncurse_active);
     print_str("\nPC: ", is_ncurse_active, 0);
-    print_hexa(robot_game->pc, 8, is_ncurse_active);
+    print_hexa(robot_game->pc, 8, is_ncurse_active, 0);
     print_str(" carry: ", is_ncurse_active, 0);
     print_nbr(robot_game->carry, is_ncurse_active, 0);
     print_str("\n", is_ncurse_active, 0);
 }
 
-void print_memory(game_infos_t *game_infos, bool is_ncurse_active)
+static void print_memory_header(bool is_ncurse_active)
 {
     print_str("Memory:   ", is_ncurse_active, 0);
     for (unsigned int index = 0; index < WIDTH_DISPLAY; index++) {
-        print_hexa(index, 2, is_ncurse_active);
+        print_hexa(index, 2, is_ncurse_active, 0);
         print_str(" ", is_ncurse_active, 0);
     }
     print_str("        ", is_ncurse_active, 0);
     for (unsigned int index = 0; index < WIDTH_DISPLAY; index++)
         print_str("  -", is_ncurse_active, 0);
     print_str("\n", is_ncurse_active, 0);
+}
+
+void print_memory(game_infos_t *game_infos, bool is_ncurse_active)
+{
+    print_memory_header(is_ncurse_active);
     for (unsigned int index = 0; index < MEM_SIZE; index++) {
-        print_hexa(index, 8, is_ncurse_active);
+        print_hexa(index, 8, is_ncurse_active, 0);
         print_str(":", is_ncurse_active, 0);
-        for (unsigned int index_mem = index; index_mem < index + WIDTH_DISPLAY;
-            index_mem++) {
+        for (unsigned int index_mem = index; index_mem < index + WIDTH_DISPLAY
+            && index_mem < MEM_SIZE; index_mem++) {
             print_str(" ", is_ncurse_active, 0);
-            print_hexa(game_infos->arena[index_mem], 2, is_ncurse_active);
+            print_hexa(game_infos->arena[index_mem], 2, is_ncurse_active,
+                game_infos->index_colors[index_mem]);
         }
         print_str("\n", is_ncurse_active, 0);
         index += WIDTH_DISPLAY;

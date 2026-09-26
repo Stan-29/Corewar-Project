@@ -62,6 +62,7 @@ typedef struct game_info_s {
     unsigned int nb_robots;
     unsigned int cycle_nb;
     unsigned char *arena;
+    unsigned int *index_colors;
     int dump_cycle;
 } game_infos_t;
 

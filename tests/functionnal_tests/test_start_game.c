@@ -47,6 +47,14 @@ Test(start_game, four_args_with_flags)
     cr_assert(start_game(argc, argv) == 0);
 }
 
+Test(start_game, four_robots_with_vflag)
+{
+    int argc = 15;
+    char *argv[] = {"corewar", "-dump", "65", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor", "-v", "5"};
+
+    cr_assert(start_game(argc, argv) == 0);
+}
+
 Test(start_game, not_a_flag)
 {
     int argc = 2;

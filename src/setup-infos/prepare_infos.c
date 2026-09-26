@@ -10,6 +10,18 @@
 #include "utils.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <ncurses.h>
+
+void init_ncurse(game_infos_t *game_infos)
+{
+    initscr();
+    start_color();
+    init_pair(0, COLOR_WHITE, COLOR_BLACK);
+    for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
+        init_pair(index + 1, COLOR_BLACK + index + 1, COLOR_BLACK);
+        game_infos->robots_game[index].color_index = index + 1;
+    }
+}
 
 void if_same_add(robot_args_t *robots_args, game_infos_t *game_infos,
     unsigned int index, unsigned int index_robot)
@@ -20,6 +32,8 @@ void if_same_add(robot_args_t *robots_args, game_infos_t *game_infos,
         index_instr < robots_args[index_robot].len_instr; index_instr++) {
         game_infos->arena[index % MEM_SIZE] = robots_args[index_robot].
             instr_list[index_instr];
+        game_infos->index_colors[index % MEM_SIZE] =
+            game_infos->robots_game[index_robot].color_index;
         index += 1;
     }
 }
@@ -40,6 +54,8 @@ unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
         return display_error(MALLOC_FAIL);
     if (init_game_infos(robots_args, *game_infos) == ERROR)
         return ERROR;
+    if ((*game_infos)->ncurse_active)
+        init_ncurse(*game_infos);
     manage_robots_id(robots_args, (*game_infos)->nb_robots);
     for (unsigned int index = 0; index < (*game_infos)->nb_robots; index++)
         (*game_infos)->robots_game[index].reg[0] = robots_args[index].prog_nb;

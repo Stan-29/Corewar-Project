@@ -45,6 +45,21 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
     return OK;
 }
 
+unsigned init_arena(game_infos_t *game_infos)
+{
+    game_infos->arena = malloc(sizeof(unsigned char) * MEM_SIZE);
+    game_infos->index_colors = malloc(sizeof(unsigned int) * MEM_SIZE);
+    if (game_infos->arena == NULL || game_infos->index_colors == NULL) {
+        free(game_infos->robots_game);
+        return ERROR;
+    }
+    for (unsigned int index = 0; index < MEM_SIZE; index++) {
+        game_infos->arena[index] = 0;
+        game_infos->index_colors[index] = 0;
+    }
+    return OK;
+}
+
 unsigned int init_game_infos(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
@@ -56,14 +71,9 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     if (init_robot_game(game_infos->robots_game,
             game_infos->nb_robots) == ERROR)
         return ERROR;
-    game_infos->robots_args = robots_args;
-    game_infos->arena = malloc(sizeof(unsigned char) * MEM_SIZE);
-    if (game_infos->arena == NULL) {
-        free(game_infos->robots_game);
+    if (init_arena(game_infos) == ERROR)
         return ERROR;
-    }
-    for (unsigned int index = 0; index < MEM_SIZE; index++)
-        game_infos->arena[index] = 0;
+    game_infos->robots_args = robots_args;
     game_infos->cycle_nb = 0;
     game_infos->cycle_to_die = CYCLE_TO_DIE;
     game_infos->nbr_live_exec = 0;
