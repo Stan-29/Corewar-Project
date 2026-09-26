@@ -44,7 +44,7 @@ typedef struct robot_game_s {
     unsigned int cycle_remaining;
     bool has_said_alive;
     bool is_alive;
-    unsigned char *reg;
+    int *reg;
     unsigned int pc;
     bool carry;
 } robot_game_t;

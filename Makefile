@@ -24,8 +24,10 @@ SRC = src/const/error_messages.c 	\
 	src/utils/my_get_nb.c					\
 	src/utils/my_put_nbr.c					\
 	src/utils/my_put_str.c					\
+	src/utils/my_putchar.c					\
 	src/utils/my_strlen.c 					\
 	src/utils/my_ustrcat.c 					\
+	src/utils/print_hexa.c 					\
 	src/start_game.c				\
 	src/game_loop.c					\
 	src/dump_function.c				\
