@@ -13,13 +13,13 @@
 void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
-    game_infos->dump_cycle = -1;
+    game_infos->cycle_infos.dump_cycle = -1;
     game_infos->nb_robots = 0;
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
         if (robots_args[index].instr_list != NULL)
             game_infos->nb_robots += 1;
         if (robots_args[index].dump != -1)
-            game_infos->dump_cycle = robots_args[index].dump;
+            game_infos->cycle_infos.dump_cycle = robots_args[index].dump;
         if (robots_args[index].ncurse_active != -1) {
             game_infos->ncurse_timer = robots_args[index].ncurse_active;
             game_infos->ncurse_active = true;
@@ -74,8 +74,8 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     if (init_arena(game_infos) == ERROR)
         return ERROR;
     game_infos->robots_args = robots_args;
-    game_infos->cycle_nb = 0;
-    game_infos->cycle_to_die = CYCLE_TO_DIE;
+    game_infos->cycle_infos.cycle_nb = 0;
+    game_infos->cycle_infos.cycle_to_die = CYCLE_TO_DIE;
     game_infos->nbr_live_exec = 0;
     return OK;
 }

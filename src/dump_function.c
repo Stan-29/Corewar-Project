@@ -84,7 +84,7 @@ void print_memory(game_infos_t *game_infos, bool is_ncurse_active)
 void print_arena(game_infos_t *game_infos, bool is_ncurse_active)
 {
     print_str("Cycle: ", is_ncurse_active, 0);
-    print_nbr(game_infos->cycle_nb, is_ncurse_active, 0);
+    print_nbr(game_infos->cycle_infos.cycle_nb, is_ncurse_active, 0);
     print_str("\n", is_ncurse_active, 0);
     print_str("Registers:\n", is_ncurse_active, 0);
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {

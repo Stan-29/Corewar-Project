@@ -28,5 +28,6 @@ void free_game_infos(game_infos_t *game_infos)
     free(game_infos->robots_game);
     free_robot_args(game_infos->robots_args);
     free(game_infos->arena);
+    free(game_infos->index_colors);
     free(game_infos);
 }

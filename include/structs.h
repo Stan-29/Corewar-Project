@@ -51,19 +51,23 @@ typedef struct robot_game_s {
     unsigned int color_index;
 } robot_game_t;
 
+typedef struct cycle_infos_s {
+    int dump_cycle;
+    unsigned int cycle_to_die;
+    unsigned int cycle_nb;
+} cycle_infos_t;
+
 typedef struct game_info_s {
     robot_args_t *robots_args;
     robot_game_t *robots_game;
+    unsigned int nb_robots;
+    cycle_infos_t cycle_infos;
     bool ncurse_active;
     int ncurse_timer;
-    unsigned int cycle_to_die;
     unsigned int nbr_live_exec;
     unsigned int last_to_live;
-    unsigned int nb_robots;
-    unsigned int cycle_nb;
     unsigned char *arena;
     unsigned int *index_colors;
-    int dump_cycle;
 } game_infos_t;
 
 typedef struct flags_s {
