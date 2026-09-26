@@ -7,6 +7,7 @@
 #include "defines.h"
 #include "main.h"
 #include "structs.h"
+#include <ncurses.h>
 
 void manage_instructions(game_infos_t *game_infos)
 {
@@ -43,5 +44,9 @@ void game_loop(game_infos_t *game_infos)
         print_arena(game_infos);
     game_infos->cycle_nb += 1;
     game_infos->cycle_to_die -= 1;
+    if (game_infos->ncurse_active) {
+        refresh();
+        getch();
+    }
     game_loop(game_infos);
 }

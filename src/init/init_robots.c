@@ -25,6 +25,7 @@ robot_args_t *init_robots(void)
         robots[index].load_adress = -1;
         robots[index].prog_nb = -1;
         robots[index].dump = -1;
+        robots[index].ncurse_active = -1;
     }
     return robots;
 }

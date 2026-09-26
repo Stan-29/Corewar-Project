@@ -9,6 +9,7 @@
 #include "structs.h"
 #include "utils.h"
 #include <unistd.h>
+#include <ncurses.h>
 
 unsigned int start_game(int argc, char **argv)
 {
@@ -21,7 +22,11 @@ unsigned int start_game(int argc, char **argv)
         return ERROR;
     if (prepare_infos(robots, &game_infos) == ERROR)
         return ERROR;
+    if (game_infos->ncurse_active)
+        initscr();
     game_loop(game_infos);
+    if (game_infos->ncurse_active)
+        endwin();
     free_game_infos(game_infos);
     return OK;
 }

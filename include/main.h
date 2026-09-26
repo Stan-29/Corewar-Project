@@ -13,7 +13,6 @@
 
 unsigned int display_instr(void);
 unsigned int start_game(int, char **);
-void print_arena(game_infos_t *);
 void game_loop(game_infos_t *);
 
 //args
@@ -26,6 +25,7 @@ unsigned int handle_file(char *, robot_args_t *, unsigned int *,
 unsigned int dump_flag(char *, robot_args_t *);
 unsigned int load_flag(char *, robot_args_t *);
 unsigned int prog_nb_flag(char *, robot_args_t *);
+unsigned int ncurse_flag(char *value, robot_args_t *robot);
 
 //init
 robot_args_t *init_robots(void);
@@ -42,6 +42,7 @@ void manage_robots_id(robot_args_t *, unsigned int);
 unsigned int manage_load_pos(robot_args_t *, unsigned int);
 
 //dump
+void print_arena(game_infos_t *);
 void print_header(char *, unsigned int, bool);
 
 #endif

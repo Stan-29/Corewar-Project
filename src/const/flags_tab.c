@@ -13,5 +13,6 @@ const flags_t flags_tab[] = {
     {DUMP_FLAG, &dump_flag},
     {LOAD_ADRESS_FLAG, &load_flag},
     {PROG_NB_FLAG, &prog_nb_flag},
+    {NCURSE_FLAG, &ncurse_flag},
     {NULL, NULL}
 };

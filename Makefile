@@ -11,6 +11,7 @@ SRC = src/const/error_messages.c 	\
 	src/free/free_game_infos.c			\
 	src/init/init_robots.c					\
 	src/init/init_game_infos.c 				\
+	src/parsing/flags_func.c 		\
 	src/parsing/handle_helper.c 	\
 	src/parsing/handle_args.c 		\
 	src/parsing/handle_files.c 		\
@@ -50,12 +51,12 @@ TEST_CC = gcc
 
 VALGRIND_NAME = valgrind-out.txt
 
-CFLAGS = -I./include -g
+CFLAGS = -I./include
 
 OBJ = 	$(SRC:.c=.o)
 
 all : $(OBJ)
-	$(CC) -o $(NAME) main.c $(OBJ) $(CFLAGS)
+	$(CC) -o $(NAME) main.c $(OBJ) $(CFLAGS) -lncurses
 
 all_val :
 	$(CC) -o $(NAME) main.c $(SRC) -I./include
