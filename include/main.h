@@ -42,6 +42,6 @@ unsigned int manage_load_pos(robot_args_t *, unsigned int);
 
 //dump
 void print_arena(game_infos_t *, bool);
-void print_header(char *, unsigned int, bool, bool);
+void print_header(robot_args_t *, robot_game_t *, bool);
 
 #endif

@@ -6,7 +6,6 @@
 */
 #include "defines.h"
 #include "structs.h"
-#include "utils.h"
 #include "consts.h"
 #include <stdbool.h>
 #include <unistd.h>

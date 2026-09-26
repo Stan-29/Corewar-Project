@@ -7,7 +7,6 @@
 #include "defines.h"
 #include "main.h"
 #include "structs.h"
-#include "utils.h"
 #include <ncurses.h>
 
 void manage_instructions(game_infos_t *game_infos)

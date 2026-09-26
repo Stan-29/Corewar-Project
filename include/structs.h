@@ -48,6 +48,7 @@ typedef struct robot_game_s {
     int *reg;
     unsigned int pc;
     bool carry;
+    unsigned int color_index;
 } robot_game_t;
 
 typedef struct game_info_s {
