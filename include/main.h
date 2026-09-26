@@ -41,4 +41,7 @@ unsigned int prepare_infos(robot_args_t *, game_infos_t **);
 void manage_robots_id(robot_args_t *, unsigned int);
 unsigned int manage_load_pos(robot_args_t *, unsigned int);
 
+//dump
+void print_header(char *, unsigned int, bool);
+
 #endif
