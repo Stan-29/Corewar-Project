@@ -27,6 +27,7 @@
     #define DUMP_FLAG "-dump"
     #define PROG_NB_FLAG "-n"
     #define LOAD_ADRESS_FLAG "-a"
+    #define NCURSE_FLAG "-v"
 
 //corewar infos
     #define BYTE_READ 1

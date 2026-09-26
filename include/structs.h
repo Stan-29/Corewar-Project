@@ -34,6 +34,7 @@ typedef struct header_s {
 typedef struct robot_args_s {
     header_t header;
     int dump;
+    int ncurse_active;
     int prog_nb;
     int load_adress;
     unsigned char *instr_list;
@@ -52,6 +53,7 @@ typedef struct robot_game_s {
 typedef struct game_info_s {
     robot_args_t *robots_args;
     robot_game_t *robots_game;
+    bool ncurse_active;
     unsigned int cycle_to_die;
     unsigned int nbr_live_exec;
     unsigned int last_to_live;

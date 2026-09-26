@@ -4,7 +4,6 @@
 ** File description:
 ** game_loop
 */
-#include <stdio.h>
 #include "defines.h"
 #include "main.h"
 #include "structs.h"

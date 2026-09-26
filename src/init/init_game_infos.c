@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void get_nb_robots_and_dump_cycle(robot_args_t *robots_args,
+void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
     game_infos->dump_cycle = -1;
@@ -20,6 +20,8 @@ void get_nb_robots_and_dump_cycle(robot_args_t *robots_args,
             game_infos->nb_robots += 1;
         if (robots_args[index].dump != -1)
             game_infos->dump_cycle = robots_args[index].dump;
+        if (robots_args[index].ncurse_active != -1)
+            game_infos->ncurse_active = true;
     }
 }
 
@@ -44,7 +46,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
 unsigned int init_game_infos(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
-    get_nb_robots_and_dump_cycle(robots_args, game_infos);
+    get_nb_robots_and_unique_values(robots_args, game_infos);
     game_infos->robots_game = malloc(sizeof
         (robot_game_t) * game_infos->nb_robots);
     if (game_infos->robots_game == NULL)
