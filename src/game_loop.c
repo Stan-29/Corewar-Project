@@ -7,6 +7,7 @@
 #include "defines.h"
 #include "main.h"
 #include "structs.h"
+#include "utils.h"
 #include <ncurses.h>
 
 void manage_instructions(game_infos_t *game_infos)
@@ -39,14 +40,17 @@ void game_loop(game_infos_t *game_infos)
     if (game_infos->cycle_to_die == 0)
         if (check_robots_alive(game_infos) == 1)
             return;
+    if (game_infos->ncurse_active) {
+        clear();
+        print_arena(game_infos, game_infos->ncurse_active);
+        timeout(game_infos->ncurse_timer);
+    }
     manage_instructions(game_infos);
     if (game_infos->cycle_nb == game_infos->dump_cycle)
-        print_arena(game_infos);
+        print_arena(game_infos, 0);
     game_infos->cycle_nb += 1;
     game_infos->cycle_to_die -= 1;
-    if (game_infos->ncurse_active) {
-        refresh();
-        getch();
-    }
-    game_loop(game_infos);
+    if ((game_infos->ncurse_active && getch() != 'q') ||
+        !game_infos->ncurse_active)
+        game_loop(game_infos);
 }

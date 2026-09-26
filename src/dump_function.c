@@ -8,81 +8,100 @@
 #include "main.h"
 #include "structs.h"
 #include "utils.h"
+#include <ncurses.h>
 
-void print_header(char *name, unsigned int id, bool is_alive)
+static void print_str(char *str, bool is_ncurse_active)
 {
-    my_put_str(name);
-    my_putchar('(');
-    my_put_nbr(id);
-    my_putchar(')');
-    if (is_alive)
-        my_put_str(": alive\n");
+    if (is_ncurse_active)
+        printw("%s", str);
     else
-        my_put_str(": dead\n");
+        my_put_str(str);
 }
 
-void print_reg(robot_game_t *robot_game)
+static void print_nbr(int nbr, bool is_ncurse_active)
+{
+    if (is_ncurse_active)
+        printw("%i", nbr);
+    else
+        my_put_nbr(nbr);
+}
+
+void print_header(char *name, unsigned int id, bool is_alive,
+    bool is_ncurse_active)
+{
+    print_str(name, is_ncurse_active);
+    print_str("(", is_ncurse_active);
+    print_nbr(id, is_ncurse_active);
+    print_str(")", is_ncurse_active);
+    if (is_alive)
+        print_str(": alive\n", is_ncurse_active);
+    else
+        print_str(": dead\n", is_ncurse_active);
+}
+
+void print_reg(robot_game_t *robot_game, bool is_ncurse_active)
 {
     for (unsigned int reg = 0; reg < REG_NUMBER; reg++) {
-        my_putchar('r');
-        my_put_nbr(reg);
-        my_put_str(" : ");
-        print_hexa(robot_game->reg[reg], 8);
+        print_str("r", is_ncurse_active);
+        print_nbr(reg, is_ncurse_active);
+        print_str(" : ", is_ncurse_active);
+        print_hexa(robot_game->reg[reg], 8, is_ncurse_active);
         if (reg != 0 && reg % 6 == 0)
-            my_putchar('\n');
+            print_str("\n", is_ncurse_active);
         else
-            my_putchar(' ');
+            print_str(" ", is_ncurse_active);
     }
 }
 
-void print_robot_infos(robot_game_t *robot_game, robot_args_t *robot_arg)
+void print_robot_infos(robot_game_t *robot_game, robot_args_t *robot_arg,
+    bool is_ncurse_active)
 {
-    my_putchar('\n');
+    print_str("\n", is_ncurse_active);
     print_header(robot_arg->header.prog_name, robot_arg->prog_nb,
-        robot_game->is_alive);
-    print_reg(robot_game);
-    my_put_str("\nPC: ");
-    print_hexa(robot_game->pc, 8);
-    my_put_str(" carry: ");
-    my_put_nbr(robot_game->carry);
-    my_putchar('\n');
+        robot_game->is_alive, is_ncurse_active);
+    print_reg(robot_game, is_ncurse_active);
+    print_str("\nPC: ", is_ncurse_active);
+    print_hexa(robot_game->pc, 8, is_ncurse_active);
+    print_str(" carry: ", is_ncurse_active);
+    print_nbr(robot_game->carry, is_ncurse_active);
+    print_str("\n", is_ncurse_active);
 }
 
-void print_memory(game_infos_t *game_infos)
+void print_memory(game_infos_t *game_infos, bool is_ncurse_active)
 {
-    my_put_str("Memory:   ");
-    for (unsigned int index = 0; index < 32; index++) {
-        print_hexa(index, 2);
-        my_putchar(' ');
+    print_str("Memory:   ", is_ncurse_active);
+    for (unsigned int index = 0; index < WIDTH_DISPLAY; index++) {
+        print_hexa(index, 2, is_ncurse_active);
+        print_str(" ", is_ncurse_active);
     }
-    my_put_str("\n        ");
-    for (unsigned int index = 0; index < 32; index++)
-        my_put_str("  -");
-    my_putchar('\n');
+    print_str("\n        ", is_ncurse_active);
+    for (unsigned int index = 0; index < WIDTH_DISPLAY; index++)
+        print_str("  -", is_ncurse_active);
+    print_str("\n", is_ncurse_active);
     for (unsigned int index = 0; index < MEM_SIZE; index++) {
-        print_hexa(index, 8);
-        my_putchar(':');
-        for (unsigned int index_mem = index; index_mem < index + 32;
+        print_hexa(index, 8, is_ncurse_active);
+        print_str(":", is_ncurse_active);
+        for (unsigned int index_mem = index; index_mem < index + WIDTH_DISPLAY;
             index_mem++) {
-            my_putchar(' ');
-            print_hexa(game_infos->arena[index_mem], 2);
+            print_str(" ", is_ncurse_active);
+            print_hexa(game_infos->arena[index_mem], 2, is_ncurse_active);
         }
-        my_putchar('\n');
-        index += 31;
+        print_str("\n", is_ncurse_active);
+        index += WIDTH_DISPLAY;
     }
 }
 
-void print_arena(game_infos_t *game_infos)
+void print_arena(game_infos_t *game_infos, bool is_ncurse_active)
 {
-    my_put_str("Cycle: ");
-    my_put_nbr(game_infos->cycle_nb);
-    my_put_str("\n");
-    my_put_str("Registers:\n");
+    print_str("Cycle: ", is_ncurse_active);
+    print_nbr(game_infos->cycle_nb, is_ncurse_active);
+    print_str("\n", is_ncurse_active);
+    print_str("Registers:\n", is_ncurse_active);
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
         print_robot_infos(&game_infos->robots_game[index],
-            &game_infos->robots_args[index]);
+            &game_infos->robots_args[index], is_ncurse_active);
     }
-    my_putchar('\n');
-    print_memory(game_infos);
+    print_str("\n", is_ncurse_active);
+    print_memory(game_infos, is_ncurse_active);
     return;
 }

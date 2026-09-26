@@ -81,7 +81,7 @@ re_docker:
 
 mac_tests_run:	clean
 	$(TEST_CC) -o $(TEST_NAME) --coverage -lcriterion \
-		$(TEST_SRC) $(SRC) -I./include
+		$(TEST_SRC) $(SRC) -I./include -lncurses
 
 gcovrex:	re
 	$(MAKE) mac_tests_run

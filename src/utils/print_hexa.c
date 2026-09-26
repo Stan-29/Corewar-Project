@@ -6,8 +6,9 @@
 */
 #include <unistd.h>
 #include "utils.h"
+#include <ncurses.h>
 
-void print_hexa(int int_value, int size)
+void print_hexa(int int_value, int size, bool is_ncurse_active)
 {
     unsigned int temp = 0;
 
@@ -17,8 +18,11 @@ void print_hexa(int int_value, int size)
         if (temp < 10)
             temp = temp + '0';
         else
-            temp = temp + '9';
-        print_hexa(int_value, size - 1);
-        my_putchar(temp);
+            temp = temp + '7';
+        print_hexa(int_value, size - 1, is_ncurse_active);
+        if (is_ncurse_active)
+            printw("%c", temp);
+        else
+            my_putchar(temp);
     }
 }

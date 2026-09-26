@@ -14,13 +14,15 @@
 unsigned int find_flag(char *flag, char *value, robot_args_t *robot,
     unsigned int *arg_index)
 {
-    if (is_positive_nb(value) != true)
+    int int_value = my_get_nb(value);
+
+    if (int_value < 0)
         return ERROR;
     for (unsigned int flag_index = 0; flags_tab[flag_index].flag != NULL;
         flag_index++) {
         if (is_same_str(flags_tab[flag_index].flag, flag) == 0) {
             *arg_index += 2;
-            return flags_tab[flag_index].flag_func(value, robot);
+            return flags_tab[flag_index].flag_func(int_value, robot);
         }
     }
     return ERROR;

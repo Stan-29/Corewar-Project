@@ -25,7 +25,7 @@ unsigned char *my_ustrcat(unsigned char *, unsigned int,
 bool is_positive_nb(char *);
 int my_get_nb(const char *);
 void my_put_nbr(int);
-void print_hexa(int, int);
+void print_hexa(int, int, bool);
 
 unsigned int display_error(unsigned int);
 

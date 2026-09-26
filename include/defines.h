@@ -31,6 +31,7 @@
 
 //corewar infos
     #define BYTE_READ 1
+    #define WIDTH_DISPLAY 48
 
     #define MEM_SIZE (6 * 1024)
     #define IDX_MOD 512 /* modulo of the index < */

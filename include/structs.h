@@ -54,6 +54,7 @@ typedef struct game_info_s {
     robot_args_t *robots_args;
     robot_game_t *robots_game;
     bool ncurse_active;
+    int ncurse_timer;
     unsigned int cycle_to_die;
     unsigned int nbr_live_exec;
     unsigned int last_to_live;
@@ -65,7 +66,7 @@ typedef struct game_info_s {
 
 typedef struct flags_s {
     char *flag;
-    unsigned int (*flag_func)(char *, robot_args_t *);
+    unsigned int (*flag_func)(int, robot_args_t *);
 } flags_t;
 
 #endif /* OP_H_ */
