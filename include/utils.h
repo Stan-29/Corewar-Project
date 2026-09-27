@@ -8,6 +8,7 @@
 #ifndef UTILS_H_
     #define UTILS_H_
 
+    #include "structs.h"
     #include <stdbool.h>
 
 //tab handling
@@ -27,7 +28,7 @@ void print_str(char *, bool, int);
 bool is_positive_nb(char *);
 int my_get_nb(const char *);
 void my_put_nbr(int);
-void print_hexa(int, int, bool, int);
+void print_hexa(int, int, game_infos_t *, unsigned int);
 void print_nbr(int, bool, int);
 
 unsigned int display_error(unsigned int);

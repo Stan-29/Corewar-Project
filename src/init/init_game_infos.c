@@ -31,7 +31,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
 {
     for (unsigned int index = 0; index < nb_robots; index++) {
         robot_game[index].carry = 0;
-        robot_game[index].cycle_remaining = 0;
+        robot_game[index].cycle_remaining = -1;
         robot_game[index].has_said_alive = false;
         robot_game[index].is_alive = true;
         robot_game[index].pc = 0;
