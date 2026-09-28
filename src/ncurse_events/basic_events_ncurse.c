@@ -31,13 +31,13 @@ unsigned int pause_start_ncurse(game_infos_t *game_infos)
 unsigned int speed_up_ncurse(game_infos_t *game_infos)
 {
     if (game_infos->ncurse_infos.ncurse_timer - 10 > 5)
-        game_infos->ncurse_infos.ncurse_timer -= 20;
+        game_infos->ncurse_infos.ncurse_timer -= 50;
     return 0;
 }
 
 unsigned int speed_down_ncurse(game_infos_t *game_infos)
 {
     if (game_infos->ncurse_infos.ncurse_timer + 10 < 1000)
-        game_infos->ncurse_infos.ncurse_timer += 20;
+        game_infos->ncurse_infos.ncurse_timer += 50;
     return 0;
 }
