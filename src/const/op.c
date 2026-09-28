@@ -27,7 +27,7 @@ const op_t op_tab[] = {
         "load indirect", &live_func},
     {"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR }, 11, 25,
         "store indirect", &live_func},
-    {"fork", 1, {T_DIR}, 12, 800, "fork"},
+    {"fork", 1, {T_DIR}, 12, 800, "fork", &live_func},
     {"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", &live_func},
     {"lldi", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR, T_REG}, 14, 50,
         "long load indirect", &live_func},
