@@ -32,13 +32,18 @@ typedef struct robot_args_s {
     unsigned int len_instr;
 } robot_args_t;
 
-typedef struct robot_game_s {
+typedef struct instr_infos_s {
     unsigned int cycle_remaining;
+    unsigned int next_instr_id;
+    unsigned char args[MAX_ARGS_NUMBER][MAX_ARG_SIZE];
+} instr_infos_t;
+
+typedef struct robot_game_s {
+    instr_infos_t instr_infos;
     bool has_said_alive;
     bool is_alive;
     int *reg;
     unsigned int pc;
-    unsigned int next_instr_id;
     bool carry;
     unsigned int color_index;
 } robot_game_t;
@@ -69,7 +74,7 @@ typedef struct op_s {
     char code;
     int nbr_cycles;
     char *comment;
-    unsigned int (*func)(game_infos_t *);
+    unsigned int (*func)(game_infos_t *, unsigned int);
 } op_t;
 
 typedef struct flags_s {

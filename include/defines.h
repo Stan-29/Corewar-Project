@@ -64,6 +64,7 @@
     #define T_LAB 8
 
 //size (in bytes)
+    #define MAX_ARG_SIZE 4
     #define IND_SIZE 2
     #define DIR_SIZE 4
     #define REG_SIZE DIR_SIZE
