@@ -13,15 +13,6 @@
 
 typedef char args_type_t;
 
-typedef struct op_s {
-    char *mnemonique;
-    char nbr_args;
-    args_type_t type[MAX_ARGS_NUMBER];
-    char code;
-    int nbr_cycles;
-    char *comment;
-} op_t;
-
 typedef struct header_s {
     int magic;
     char prog_name[PROG_NAME_LENGTH + 1];
@@ -41,8 +32,14 @@ typedef struct robot_args_s {
     unsigned int len_instr;
 } robot_args_t;
 
-typedef struct robot_game_s {
+typedef struct instr_infos_s {
     unsigned int cycle_remaining;
+    unsigned int next_instr_id;
+    unsigned char args[MAX_ARGS_NUMBER][MAX_ARG_SIZE];
+} instr_infos_t;
+
+typedef struct robot_game_s {
+    instr_infos_t instr_infos;
     bool has_said_alive;
     bool is_alive;
     int *reg;
@@ -75,6 +72,16 @@ typedef struct game_info_s {
     unsigned char *arena;
     unsigned int *index_colors;
 } game_infos_t;
+
+typedef struct op_s {
+    char *mnemonique;
+    char nbr_args;
+    args_type_t type[MAX_ARGS_NUMBER];
+    char code;
+    int nbr_cycles;
+    char *comment;
+    unsigned int (*func)(game_infos_t *, unsigned int);
+} op_t;
 
 typedef struct ncurse_event_s {
     int code;

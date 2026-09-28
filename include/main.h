@@ -28,6 +28,7 @@ unsigned int prog_nb_flag(int, robot_args_t *);
 unsigned int ncurse_flag(int, robot_args_t *);
 
 //init
+void reset_instr_args(robot_game_t *, unsigned int);
 robot_args_t *init_robots(void);
 unsigned int init_game_infos(robot_args_t *, game_infos_t *);
 
@@ -43,6 +44,9 @@ unsigned int manage_load_pos(robot_args_t *, unsigned int);
 //dump
 void print_arena(game_infos_t *, bool);
 void print_header(robot_args_t *, robot_game_t *, bool);
+
+//instr_func
+unsigned int live_func(game_infos_t *, unsigned int);
 
 //ncurse
 void print_dashboard(game_infos_t *game_infos);

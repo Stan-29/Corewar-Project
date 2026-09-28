@@ -40,6 +40,7 @@
     #define BYTE_READ 1
     #define MAX_ROBOTS_NUMBER 4
     #define WIDTH_DISPLAY 110
+    #define NBR_INSTR 16
 
     #define MEM_SIZE (6 * 1024)
     #define IDX_MOD 512 /* modulo of the index < */
@@ -71,6 +72,7 @@
     #define T_LAB 8
 
 //size (in bytes)
+    #define MAX_ARG_SIZE 4
     #define IND_SIZE 2
     #define DIR_SIZE 4
     #define REG_SIZE DIR_SIZE

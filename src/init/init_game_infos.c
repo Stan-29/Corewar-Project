@@ -28,11 +28,20 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     }
 }
 
+void reset_instr_args(robot_game_t *robot_game, unsigned int index)
+{
+    robot_game[index].instr_infos.next_instr_id = -1;
+    robot_game[index].instr_infos.cycle_remaining = -1;
+    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+        for (unsigned int arg_index = 0; arg_index < MAX_ARG_SIZE; arg_index++)
+            robot_game[index].instr_infos.args[index][arg_index] = 0;
+    }
+}
+
 unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
 {
     for (unsigned int index = 0; index < nb_robots; index++) {
         robot_game[index].carry = 0;
-        robot_game[index].cycle_remaining = 0;
         robot_game[index].has_said_alive = false;
         robot_game[index].is_alive = true;
         robot_game[index].pc = 0;
@@ -42,6 +51,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
         for (unsigned int index_reg = 0; index_reg < REG_NUMBER; index_reg++) {
             robot_game[index].reg[index_reg] = 0;
         }
+        reset_instr_args(robot_game, index);
     }
     return OK;
 }
