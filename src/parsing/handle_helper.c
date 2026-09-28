@@ -22,7 +22,11 @@ unsigned int display_instr(void)
         " When no address is specified,"
         " optimize the addresses so that the processes are as far"
         " away from each other as possible."
-        " The addresses are MEM_SIZE modulo.";
+        " The addresses are MEM_SIZE modulo.\n"
+        "-v visuals tells the program if you want to see the "
+        "robots fighting in real time. You can use some basic interactions:\n"
+        "\t-space: pause or restart the game;\n\t-arrow keys: skip a cycle;\n\t"
+        "-\'+\' and \'-\': speed up or speed down;\n\t-\'q\': end the game;\n";
 
     write(1, message, my_strlen(message));
     return 1;

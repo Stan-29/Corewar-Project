@@ -15,14 +15,15 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
 {
     game_infos->cycle_infos.dump_cycle = -1;
     game_infos->nb_robots = 0;
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+    for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots_args[index].instr_list != NULL)
             game_infos->nb_robots += 1;
         if (robots_args[index].dump != -1)
             game_infos->cycle_infos.dump_cycle = robots_args[index].dump;
         if (robots_args[index].ncurse_active != -1) {
-            game_infos->ncurse_timer = robots_args[index].ncurse_active;
-            game_infos->ncurse_active = true;
+            game_infos->ncurse_infos.ncurse_timer =
+                robots_args[index].ncurse_active;
+            game_infos->ncurse_infos.ncurse_active = true;
         }
     }
 }

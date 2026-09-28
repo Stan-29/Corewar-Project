@@ -21,6 +21,7 @@ void init_ncurse(game_infos_t *game_infos)
         init_pair(index + 1, COLOR_BLACK + index + 1, COLOR_BLACK);
         game_infos->robots_game[index].color_index = index + 1;
     }
+    game_infos->ncurse_infos.ncurse_stop = false;
 }
 
 void if_same_add(robot_args_t *robots_args, game_infos_t *game_infos,
@@ -54,7 +55,7 @@ unsigned int prepare_infos(robot_args_t *robots_args, game_infos_t **game_infos)
         return display_error(MALLOC_FAIL);
     if (init_game_infos(robots_args, *game_infos) == ERROR)
         return ERROR;
-    if ((*game_infos)->ncurse_active)
+    if ((*game_infos)->ncurse_infos.ncurse_active)
         init_ncurse(*game_infos);
     manage_robots_id(robots_args, (*game_infos)->nb_robots);
     for (unsigned int index = 0; index < (*game_infos)->nb_robots; index++)

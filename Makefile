@@ -7,6 +7,7 @@
 
 SRC = src/const/error_messages.c 	\
 	src/const/flags_tab.c			\
+	src/const/ncurse_events.c		\
 	src/const/op.c 					\
 	src/free/free_game_infos.c			\
 	src/init/init_robots.c					\
@@ -34,6 +35,31 @@ SRC = src/const/error_messages.c 	\
 	src/start_game.c					\
 	src/game_loop.c						\
 	src/dump_function.c					\
+	src/ncurse_events/basic_events_ncurse.c 	\
+	src/parsing/flags_func.c 		\
+	src/parsing/handle_helper.c 	\
+	src/parsing/handle_args.c 		\
+	src/parsing/handle_files.c 		\
+	src/parsing/handle_flags.c 		\
+	src/setup-infos/manage_robots_id.c 	\
+	src/setup-infos/manage_load_pos.c 	\
+	src/setup-infos/prepare_infos.c 	\
+	src/utils/display_error.c 				\
+	src/utils/is_positive_nb.c 				\
+	src/utils/is_same_str.c 				\
+	src/utils/my_get_nb.c					\
+	src/utils/my_put_nbr.c					\
+	src/utils/my_put_str.c					\
+	src/utils/my_putchar.c					\
+	src/utils/my_strlen.c 					\
+	src/utils/my_ustrcat.c 					\
+	src/utils/print_hexa.c 					\
+	src/utils/print_modular.c 				\
+	src/dump_function.c				\
+	src/game_loop.c					\
+	src/manage_ncurse.c				\
+	src/start_game.c				\
+	
 
 NAME = corewar
 

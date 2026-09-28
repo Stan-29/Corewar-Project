@@ -23,7 +23,7 @@ unsigned int start_game(int argc, char **argv)
     if (prepare_infos(robots, &game_infos) == ERROR)
         return ERROR;
     game_loop(game_infos);
-    if (game_infos->ncurse_active)
+    if (game_infos->ncurse_infos.ncurse_active)
         endwin();
     free_game_infos(game_infos);
     return OK;

@@ -12,5 +12,6 @@
 extern const char *error_messages[];
 extern const op_t op_tab[];
 extern const flags_t flags_tab[];
+extern const ncurse_event_t ncurse_events[];
 
 #endif

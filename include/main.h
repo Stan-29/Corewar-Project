@@ -48,4 +48,14 @@ void print_header(robot_args_t *, robot_game_t *, bool);
 //instr_func
 unsigned int live_func(game_infos_t *, unsigned int);
 
+//ncurse
+void print_dashboard(game_infos_t *game_infos);
+unsigned int get_ncurse_events(game_infos_t *game_infos);
+void manage_ncurse(game_infos_t *game_infos);
+unsigned int exit_event_ncurse(game_infos_t *);
+unsigned int pause_start_ncurse(game_infos_t *);
+unsigned int next_cycle_ncurse(game_infos_t *game_infos);
+unsigned int speed_up_ncurse(game_infos_t *game_infos);
+unsigned int speed_down_ncurse(game_infos_t *game_infos);
+
 #endif

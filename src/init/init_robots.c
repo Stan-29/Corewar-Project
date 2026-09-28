@@ -12,11 +12,11 @@
 
 robot_args_t *init_robots(void)
 {
-    robot_args_t *robots = malloc(sizeof(robot_args_t) * MAX_ARGS_NUMBER);
+    robot_args_t *robots = malloc(sizeof(robot_args_t) * MAX_ROBOTS_NUMBER);
 
     if (!robots)
         return NULL;
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+    for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (!&robots[index]) {
             return NULL;
         }
