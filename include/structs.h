@@ -57,18 +57,29 @@ typedef struct cycle_infos_s {
     unsigned int cycle_nb;
 } cycle_infos_t;
 
+typedef struct ncurse_infos_s {
+    bool ncurse_active;
+    bool ncurse_stop;
+    bool ncurse_skip_one;
+    int ncurse_timer;
+} ncurse_infos_t;
+
 typedef struct game_info_s {
     robot_args_t *robots_args;
     robot_game_t *robots_game;
     unsigned int nb_robots;
     cycle_infos_t cycle_infos;
-    bool ncurse_active;
-    int ncurse_timer;
+    ncurse_infos_t ncurse_infos;
     unsigned int nbr_live_exec;
     unsigned int last_to_live;
     unsigned char *arena;
     unsigned int *index_colors;
 } game_infos_t;
+
+typedef struct ncurse_event_s {
+    int code;
+    unsigned int (*event_func)(game_infos_t *);
+} ncurse_event_t;
 
 typedef struct flags_s {
     char *flag;

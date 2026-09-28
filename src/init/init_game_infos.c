@@ -21,8 +21,9 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
         if (robots_args[index].dump != -1)
             game_infos->cycle_infos.dump_cycle = robots_args[index].dump;
         if (robots_args[index].ncurse_active != -1) {
-            game_infos->ncurse_timer = robots_args[index].ncurse_active;
-            game_infos->ncurse_active = true;
+            game_infos->ncurse_infos.ncurse_timer =
+                robots_args[index].ncurse_active;
+            game_infos->ncurse_infos.ncurse_active = true;
         }
     }
 }
