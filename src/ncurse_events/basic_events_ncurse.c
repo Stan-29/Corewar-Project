@@ -4,7 +4,6 @@
 ** File description:
 ** main function
 */
-#include "defines.h"
 #include "main.h"
 #include "structs.h"
 #include <stdlib.h>
