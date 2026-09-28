@@ -37,9 +37,9 @@ bool check_robots_alive(game_infos_t *game_infos)
 
 void game_loop(game_infos_t *game_infos)
 {
+    manage_ncurse(game_infos);
     if (!game_infos->ncurse_infos.ncurse_stop ||
         game_infos->ncurse_infos.ncurse_skip_one) {
-        manage_ncurse(game_infos);
         if (game_infos->cycle_infos.cycle_to_die == 0 &&
             check_robots_alive(game_infos) == 1)
             return;

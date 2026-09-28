@@ -29,6 +29,21 @@ unsigned int get_ncurse_events(game_infos_t *game_infos)
 
 void print_dashboard(game_infos_t *game_infos)
 {
+    double speed = game_infos->ncurse_infos.ncurse_timer;
+
+    if (!game_infos->ncurse_infos.ncurse_stop) {
+        attron(A_STANDOUT);
+        printw("|>");
+        attroff(A_STANDOUT);
+        printw(" ||");
+    } else {
+        printw("|> ");
+        attron(A_STANDOUT);
+        printw("||");
+        attroff(A_STANDOUT);
+    }
+    speed = 10 - speed / 100;
+    printw("\tSpeed = x%.2f\n", speed);
     return;
 }
 
