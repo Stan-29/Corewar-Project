@@ -15,7 +15,7 @@ unsigned int check_dump_flag(robot_args_t *robots)
 {
     unsigned int nb_dump_flag = 0;
 
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+    for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots[index].dump != -1)
             nb_dump_flag++;
     }

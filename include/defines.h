@@ -13,7 +13,6 @@
     #define OK 0
 
 //error handling
-
     #define DEFAULT_ERROR 0
     #define ARGS_NEEDED 1
     #define ROBOT_ERROR 2
@@ -23,6 +22,14 @@
     #define DUMP_FLAG_ERROR 6
     #define MAGIC_ERROR 7
 
+//ncurse infos
+    #define END_EVENT_CODE -1
+    #define PAUSE_START_EVENT 32
+    #define NEXT_CYCLE_EVENT 27
+    #define SPEED_UP_EVENT 61
+    #define SPEED_DOWN_EVENT 45
+    #define EXIT_EVENT 113
+
 //flags
     #define DUMP_FLAG "-dump"
     #define PROG_NB_FLAG "-n"
@@ -31,6 +38,7 @@
 
 //corewar infos
     #define BYTE_READ 1
+    #define MAX_ROBOTS_NUMBER 4
     #define WIDTH_DISPLAY 110
 
     #define MEM_SIZE (6 * 1024)

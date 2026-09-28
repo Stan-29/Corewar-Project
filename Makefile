@@ -7,10 +7,12 @@
 
 SRC = src/const/error_messages.c 	\
 	src/const/flags_tab.c			\
+	src/const/ncurse_events.c		\
 	src/const/op.c 					\
 	src/free/free_game_infos.c			\
 	src/init/init_robots.c					\
 	src/init/init_game_infos.c 				\
+	src/ncurse_events/basic_events_ncurse.c 	\
 	src/parsing/flags_func.c 		\
 	src/parsing/handle_helper.c 	\
 	src/parsing/handle_args.c 		\
@@ -30,9 +32,11 @@ SRC = src/const/error_messages.c 	\
 	src/utils/my_ustrcat.c 					\
 	src/utils/print_hexa.c 					\
 	src/utils/print_modular.c 				\
-	src/start_game.c				\
-	src/game_loop.c					\
 	src/dump_function.c				\
+	src/game_loop.c					\
+	src/manage_ncurse.c				\
+	src/start_game.c				\
+	
 
 NAME = corewar
 
