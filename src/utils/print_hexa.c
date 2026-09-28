@@ -23,7 +23,7 @@ void print_char(game_infos_t *game_infos, unsigned int index_mem,
 {
     unsigned int color = 0;
 
-    if (game_infos->ncurse_active) {
+    if (game_infos->ncurse_infos.ncurse_active) {
         color = (index_mem != -1) ? game_infos->index_colors[index_mem] : 0;
         if (is_pc(game_infos, index_mem))
             attron(A_STANDOUT);
