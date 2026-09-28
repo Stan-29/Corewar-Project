@@ -38,6 +38,7 @@
 
 //corewar infos
     #define BYTE_READ 1
+    #define MAX_ROBOTS_NUMBER 4
     #define WIDTH_DISPLAY 110
 
     #define MEM_SIZE (6 * 1024)

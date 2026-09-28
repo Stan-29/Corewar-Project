@@ -13,7 +13,7 @@ void free_robot_args(robot_args_t *robots)
 {
     if (robots == NULL)
         return;
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
+    for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots[index].instr_list != NULL)
             free(robots[index].instr_list);
     }
