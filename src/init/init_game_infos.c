@@ -35,6 +35,7 @@ void reset_instr_args(robot_game_t *robot_game, unsigned int index)
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
         for (unsigned int arg_index = 0; arg_index < MAX_ARG_SIZE; arg_index++)
             robot_game[index].instr_infos.args[index][arg_index] = 0;
+        robot_game->instr_infos.size_infos[index] = 0;
     }
 }
 

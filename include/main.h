@@ -46,7 +46,10 @@ void print_arena(game_infos_t *, bool);
 void print_header(robot_args_t *, robot_game_t *, bool);
 
 //instr_func
+void manage_instructions(game_infos_t *game_infos);
+unsigned int pending_func(game_infos_t *, unsigned int);
 unsigned int live_func(game_infos_t *, unsigned int);
+unsigned int load_func(game_infos_t *, unsigned int);
 
 //ncurse
 void print_dashboard(game_infos_t *game_infos);

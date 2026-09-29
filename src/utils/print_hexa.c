@@ -9,7 +9,8 @@
 #include "utils.h"
 #include <ncurses.h>
 
-bool is_pc(game_infos_t *game_infos, unsigned int index_mem, unsigned int *color)
+bool is_pc(game_infos_t *game_infos, unsigned int index_mem,
+    unsigned int *color)
 {
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
         if (game_infos->robots_game[index].pc == index_mem) {

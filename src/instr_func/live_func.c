@@ -5,10 +5,32 @@
 ** main function
 */
 #include "structs.h"
+#include "consts.h"
 #include <stdlib.h>
 #include <stdio.h>
 
 unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
+{
+    instr_infos_t instr_infos =
+        game_infos->robots_game[index_robot].instr_infos;
+    unsigned int index_robot_live = instr_infos.args[0][0];
+
+    for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
+        if (game_infos->robots_args[index].prog_nb == index_robot_live)
+            game_infos->robots_game[index].has_said_alive = true;
+    }
+    game_infos->nbr_live_exec += 1;
+    game_infos->robots_game[index_robot].pc += 2;
+    return 0;
+}
+
+unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
+{
+    game_infos->robots_game[index_robot].pc += 1 + 2;
+    return 0;
+}
+
+unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     game_infos->robots_game[index_robot].pc += 1;
     return 0;
