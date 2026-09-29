@@ -11,6 +11,17 @@
 #include "consts.h"
 #include <ncurses.h>
 
+void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
+{
+    game_infos->robots_game[index_robot].is_alive = false;
+    game_infos->robots_game[index_robot].pc = -1;
+    for (unsigned int index = 0; index < MEM_SIZE; index++)
+        if (game_infos->index_colors[index] ==
+            game_infos->robots_game[index_robot].color_index)
+            game_infos->index_colors[index] = 0;
+    game_infos->robots_game[index_robot].color_index = 0;
+}
+
 bool check_robots_alive(game_infos_t *game_infos)
 {
     unsigned int nb_robots_alive = 0;
@@ -21,7 +32,7 @@ bool check_robots_alive(game_infos_t *game_infos)
             game_infos->robots_game[index_robot].has_said_alive)
             nb_robots_alive += 1;
         else
-            game_infos->robots_game[index_robot].is_alive = false;
+            kill_robot(game_infos, index_robot);
         game_infos->robots_game[index_robot].has_said_alive = false;
     }
     game_infos->cycle_infos.cycle_to_die = CYCLE_TO_DIE -
