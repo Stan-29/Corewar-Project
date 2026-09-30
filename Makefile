@@ -45,12 +45,15 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/init_tests/*.c	\
+TEST_SRC = tests/unit_tests/game_loop_tests/*.c	\
+	tests/unit_tests/init_tests/*.c			\
 	tests/unit_tests/parsing_tests/*.c			\
 	tests/unit_tests/setup-infos_tests/*.c			\
 	tests/unit_tests/utils_tests/*.c		\
 	tests/unit_tests/*.c						\
 	tests/functionnal_tests/*.c						\
+
+SPEC_TEST_SRC = tests/unit_tests/game_loop_tests/*.c	\
 
 TEST_NAME = tests_results
 

@@ -73,9 +73,9 @@
 
 //size (in bytes)
     #define MAX_ARG_SIZE 4
+    #define REG_SIZE 1
     #define IND_SIZE 2
     #define DIR_SIZE 4
-    #define REG_SIZE DIR_SIZE
 
 //header
     #define PROG_NAME_LENGTH 128

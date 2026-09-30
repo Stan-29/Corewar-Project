@@ -40,7 +40,11 @@ unsigned int load_flag(int value, robot_args_t *robot)
 
 unsigned int prog_nb_flag(int value, robot_args_t *robot)
 {
-    return manage_flag_value(value, &robot->prog_nb);
+    if (manage_flag_value(value, &robot->prog_nb) == ERROR)
+        return ERROR;
+    if (robot->prog_nb > 255)
+        return ERROR;
+    return OK;
 }
 
 unsigned int ncurse_flag(int value, robot_args_t *robot)

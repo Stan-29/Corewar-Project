@@ -14,6 +14,7 @@
 unsigned int display_instr(void);
 unsigned int start_game(int, char **);
 void game_loop(game_infos_t *);
+unsigned int get_size_infos(robot_game_t *, unsigned char);
 
 //args
 unsigned int handle_args(int, char **, robot_args_t *);
@@ -46,7 +47,10 @@ void print_arena(game_infos_t *, bool);
 void print_header(robot_args_t *, robot_game_t *, bool);
 
 //instr_func
-void manage_instructions(game_infos_t *game_infos);
+void manage_instructions(game_infos_t *);
+void manage_cycles(game_infos_t *, unsigned int,
+    unsigned int, unsigned int);
+void get_usable_args(robot_game_t *);
 unsigned int pending_func(game_infos_t *, unsigned int);
 unsigned int live_func(game_infos_t *, unsigned int);
 unsigned int load_func(game_infos_t *, unsigned int);

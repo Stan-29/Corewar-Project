@@ -37,6 +37,7 @@ typedef struct instr_infos_s {
     unsigned int next_instr_id;
     unsigned int size_infos[MAX_ARGS_NUMBER];
     unsigned char args[MAX_ARGS_NUMBER][MAX_ARG_SIZE];
+    unsigned int usable_args[MAX_ARGS_NUMBER];
 } instr_infos_t;
 
 typedef struct robot_game_s {
