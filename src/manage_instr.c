@@ -60,8 +60,8 @@ unsigned int get_size_infos(robot_game_t *robot, unsigned char coding_byte)
     return OK;
 }
 
-static unsigned int handle_coding_byte(robot_game_t *robot, unsigned char *arena,
-    unsigned int instr_id, unsigned int *index_arena)
+static unsigned int handle_coding_byte(robot_game_t *robot,
+    unsigned char *arena, unsigned int instr_id, unsigned int *index_arena)
 {
     if (instr_id == -1)
         return 1;
@@ -79,15 +79,15 @@ static unsigned int handle_coding_byte(robot_game_t *robot, unsigned char *arena
 
 void get_usable_args(robot_game_t *robot)
 {
-    unsigned char arg_char = 0;
+    unsigned char arg = 0;
 
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0
         && index < MAX_ARGS_NUMBER; index++) {
         for (unsigned int index_arg = 0;
             index_arg < robot->instr_infos.size_infos[index]; index_arg++) {
-            arg_char = robot->instr_infos.args[index]
+            arg = robot->instr_infos.args[index]
                 [robot->instr_infos.size_infos[index] - index_arg - 1];
-            robot->instr_infos.usable_args[index] += arg_char << (index_arg * 8);
+            robot->instr_infos.usable_args[index] += arg << (index_arg * 8);
         }
     }
 }
@@ -95,7 +95,7 @@ void get_usable_args(robot_game_t *robot)
 static void get_instr_infos(robot_game_t *robot, unsigned char *arena,
     unsigned int instr_id)
 {
-    unsigned int index_arena = robot->pc + 1;
+    unsigned int index_arena = robot->pc;
 
     if (handle_coding_byte(robot, arena, instr_id, &index_arena) == 1)
         return;
@@ -111,7 +111,7 @@ static void get_instr_infos(robot_game_t *robot, unsigned char *arena,
 }
 
 void manage_cycles(game_infos_t *game_infos, unsigned int index_robot,
-    unsigned int temp_cycle, unsigned int instr_id) // a tester
+    unsigned int temp_cycle, unsigned int instr_id)
 {
     if (temp_cycle == -1)
         get_instr_infos(&game_infos->robots_game[index_robot],
@@ -131,11 +131,12 @@ void manage_instructions(game_infos_t *game_infos)
     int instr_id = 0;
 
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
-        temp_cycle = game_infos->robots_game[index].
-            instr_infos.cycle_remaining;
-        instr_id = get_id_instr(game_infos, index);
-        if (game_infos->robots_game[index].is_alive)
+        if (game_infos->robots_game[index].is_alive) {
+            temp_cycle = game_infos->robots_game[index].
+                instr_infos.cycle_remaining;
+            instr_id = get_id_instr(game_infos, index);
             manage_cycles(game_infos, index, temp_cycle, instr_id);
+        }
     }
     return;
 }
