@@ -21,7 +21,8 @@ unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
             game_infos->nbr_live_exec += 1;
         }
     }
-    game_infos->robots_game[index_robot].pc += DIR_SIZE + 1;
+    game_infos->robots_game[index_robot].pc =
+        (game_infos->robots_game[index_robot].pc + DIR_SIZE + 1) % MEM_SIZE;
     return 0;
 }
 
@@ -40,7 +41,8 @@ unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
         game_infos->robots_game[index_robot].pc +=
             instr_infos.size_infos[index];
-    game_infos->robots_game[index_robot].pc += 2;
+    game_infos->robots_game[index_robot].pc =
+        (game_infos->robots_game[index_robot].pc + 2) % MEM_SIZE;
     return 0;
 }
 
@@ -54,7 +56,8 @@ unsigned int zjump_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].pc =
             (game_infos->robots_game[index_robot].pc + offset) % MEM_SIZE;
     else
-        game_infos->robots_game[index_robot].pc += IND_SIZE + 1;
+        game_infos->robots_game[index_robot].pc =
+            (game_infos->robots_game[index_robot].pc + IND_SIZE + 1) % MEM_SIZE;
     return 0;
 }
 
@@ -65,7 +68,8 @@ unsigned print_func(game_infos_t *game_infos, unsigned int index_robot)
     unsigned int value = instr_infos.usable_args[0];
 
     my_putchar(value);
-    game_infos->robots_game[index_robot].pc += REG_SIZE + 1;
+    game_infos->robots_game[index_robot].pc =
+        (game_infos->robots_game[index_robot].pc + REG_SIZE + 1) % MEM_SIZE;
     return 0;
 }
 
@@ -78,6 +82,7 @@ unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].pc +=
             instr_infos.size_infos[index];
     if (op_tab[instr_infos.next_instr_id].has_coding_byte)
-        game_infos->robots_game[index_robot].pc += 1;
+        game_infos->robots_game[index_robot].pc =
+            (game_infos->robots_game[index_robot].pc + 1) % MEM_SIZE;
     return 0;
 }

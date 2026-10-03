@@ -92,7 +92,7 @@ void get_instr_infos(robot_game_t *robot, unsigned char *arena,
     unsigned int index_arena = robot->pc + 1;
 
     if (handle_coding_byte(robot, arena, instr_id, &index_arena) == 1) {
-        robot->pc += 1;
+        robot->pc = (robot->pc + 1) % MEM_SIZE;
         return;
     }
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0 &&
