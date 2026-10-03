@@ -8,7 +8,7 @@
 #include "defines.h"
 #include <unistd.h>
 
-unsigned int display_instr(void)
+unsigned int display_helper(void)
 {
     char *message = "USAGE\n"
         "./corewar [-dump_cycle nbr_cycle] [[-n prog_number]"
@@ -36,7 +36,7 @@ unsigned int handle_helper(int argc, char **argv)
 {
     if (argc == 2) {
         if (is_same_str(argv[1], "-h") == 0)
-            return display_instr();
+            return display_helper();
         else
             return display_error(ARGS_NEEDED);
     }

@@ -27,7 +27,7 @@ unsigned int print_winning_message(game_infos_t *game_infos)
     return 1;
 }
 
-bool check_robots_alive(game_infos_t *game_infos)
+unsigned int check_robots_alive(game_infos_t *game_infos)
 {
     unsigned int nb_robots_alive = 0;
 
@@ -55,7 +55,7 @@ void game_loop(game_infos_t *game_infos)
         if (game_infos->cycle_infos.cycle_to_die == 0 &&
             check_robots_alive(game_infos) == 1)
             return;
-        manage_instructions(game_infos);
+        manage_robots(game_infos);
         if (game_infos->cycle_infos.cycle_nb ==
             game_infos->cycle_infos.dump_cycle)
             print_arena(game_infos, 0);

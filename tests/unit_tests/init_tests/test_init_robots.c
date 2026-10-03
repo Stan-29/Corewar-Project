@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2026
 ** corewar
 ** File description:
-** test_display_instr
+** test_init_robots
 */
 #include "main.h"
 #include <criterion/criterion.h>

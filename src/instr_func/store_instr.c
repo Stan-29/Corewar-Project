@@ -24,6 +24,7 @@ unsigned int store_ind(game_infos_t *game_infos, unsigned int index_robot)
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
         game_infos->robots_game[index_robot].pc +=
             instr_infos.size_infos[index];
-    game_infos->robots_game[index_robot].pc += 2;
+    game_infos->robots_game[index_robot].pc =
+        (game_infos->robots_game[index_robot].pc + 2) % MEM_SIZE;
     return 0;
 }
