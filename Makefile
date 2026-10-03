@@ -47,15 +47,17 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/robots_handling_tests/*.c	\
-	tests/unit_tests/instr_tests/*.c	\
+TEST_SRC = tests/unit_tests/game_loop_tests/*.c		\
+	tests/unit_tests/robots_handling_tests/*.c	\
+	tests/unit_tests/instr_tests/*.c		\
+	tests/unit_tests/ncurse_tests/*.c	\
 	tests/unit_tests/init_tests/*.c			\
 	tests/unit_tests/parsing_tests/*.c			\
 	tests/unit_tests/setup-infos_tests/*.c			\
 	tests/unit_tests/utils_tests/*.c		\
 	tests/unit_tests/*.c						\
 
-SPEC_TEST_SRC = tests/unit_tests/robots_handling_tests/test_manage_robots.c	\
+SPEC_TEST_SRC = tests/unit_tests/game_loop_tests/test_check_robots_alive.c	\
 
 FUNC_TEST_SRC = tests/functionnal_tests/*.c				\
 

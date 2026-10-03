@@ -27,7 +27,7 @@ unsigned int print_winning_message(game_infos_t *game_infos)
     return 1;
 }
 
-bool check_robots_alive(game_infos_t *game_infos)
+unsigned int check_robots_alive(game_infos_t *game_infos)
 {
     unsigned int nb_robots_alive = 0;
 

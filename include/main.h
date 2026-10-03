@@ -14,6 +14,8 @@
 unsigned int display_helper(void);
 unsigned int start_game(int, char **);
 void game_loop(game_infos_t *);
+void kill_robot(game_infos_t *, unsigned int);
+unsigned int check_robots_alive(game_infos_t *);
 unsigned int get_size_infos(robot_game_t *, unsigned char);
 
 //args
