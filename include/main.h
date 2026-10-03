@@ -11,7 +11,7 @@
 
     #include "defines.h"
 
-unsigned int display_instr(void);
+unsigned int display_helper(void);
 unsigned int start_game(int, char **);
 void game_loop(game_infos_t *);
 unsigned int get_size_infos(robot_game_t *, unsigned char);
@@ -47,9 +47,10 @@ void print_arena(game_infos_t *, bool);
 void print_header(robot_args_t *, robot_game_t *, bool);
 
 //instr_func
-void manage_instructions(game_infos_t *);
+void manage_robots(game_infos_t *);
 void manage_cycles(game_infos_t *, unsigned int,
     unsigned int, unsigned int);
+void get_instr_infos(robot_game_t *, unsigned char *, unsigned int);
 void get_usable_args(robot_game_t *);
 unsigned int pending_func(game_infos_t *, unsigned int);
 unsigned int live_func(game_infos_t *, unsigned int);
@@ -59,13 +60,14 @@ unsigned int print_func(game_infos_t *, unsigned int);
 unsigned int store_ind(game_infos_t *, unsigned int);
 
 //ncurse
-void print_dashboard(game_infos_t *game_infos);
-unsigned int get_ncurse_events(game_infos_t *game_infos);
-void manage_ncurse(game_infos_t *game_infos);
+void init_ncurse(game_infos_t *);
+void print_dashboard(game_infos_t *);
+unsigned int get_ncurse_events(game_infos_t *);
+void manage_ncurse(game_infos_t *);
 unsigned int exit_event_ncurse(game_infos_t *);
 unsigned int pause_start_ncurse(game_infos_t *);
-unsigned int next_cycle_ncurse(game_infos_t *game_infos);
-unsigned int speed_up_ncurse(game_infos_t *game_infos);
-unsigned int speed_down_ncurse(game_infos_t *game_infos);
+unsigned int next_cycle_ncurse(game_infos_t *);
+unsigned int speed_up_ncurse(game_infos_t *);
+unsigned int speed_down_ncurse(game_infos_t *);
 
 #endif

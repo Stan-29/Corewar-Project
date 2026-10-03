@@ -55,3 +55,16 @@ Test(get_size_infos, three_args)
     cr_assert(robot_game.instr_infos.size_infos[2] == 4);
     cr_assert(robot_game.instr_infos.size_infos[3] == 0);
 }
+
+Test(get_size_infos, three_args_with_dir_exception)
+{
+    robot_game_t robot_game = {0};
+    unsigned char coding_byte = 104;
+
+    robot_game.instr_infos.next_instr_id = 11;
+    get_size_infos(&robot_game, coding_byte);
+    cr_assert(robot_game.instr_infos.size_infos[0] == 1);
+    cr_assert(robot_game.instr_infos.size_infos[1] == 2);
+    cr_assert(robot_game.instr_infos.size_infos[2] == 2);
+    cr_assert(robot_game.instr_infos.size_infos[3] == 0);
+}

@@ -14,12 +14,15 @@
 unsigned int check_dump_flag(robot_args_t *robots)
 {
     unsigned int nb_dump_flag = 0;
+    unsigned int nb_ncurse_flag = 0;
 
     for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots[index].dump != -1)
             nb_dump_flag++;
+        if (robots[index].ncurse_active != -1)
+            nb_ncurse_flag++;
     }
-    if (nb_dump_flag > 1)
+    if (nb_dump_flag > 1 || nb_ncurse_flag > 1)
         return ERROR;
     return OK;
 }
@@ -37,7 +40,7 @@ unsigned int parse_args(int argc, char **argv, robot_args_t *robots)
                 &robot_index, &arg_index) == ERROR)
             return FILE_ERROR;
     }
-    if (robot_index < 2 || robot_index > 4)
+    if (robot_index < 2 || robot_index > MAX_ROBOTS_NUMBER)
         return ROBOT_ERROR;
     if (check_dump_flag(robots) == ERROR)
         return DUMP_FLAG_ERROR;
