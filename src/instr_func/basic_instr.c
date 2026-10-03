@@ -7,8 +7,7 @@
 #include "defines.h"
 #include "structs.h"
 #include "consts.h"
-#include <stdlib.h>
-#include <stdio.h>
+#include "utils.h"
 
 unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
 {
@@ -57,6 +56,17 @@ unsigned int zjump_func(game_infos_t *game_infos, unsigned int index_robot)
     return 0;
 }
 
+unsigned print_func(game_infos_t *game_infos, unsigned int index_robot)
+{
+    instr_infos_t instr_infos =
+        game_infos->robots_game[index_robot].instr_infos;
+    unsigned int value = instr_infos.usable_args[0];
+
+    my_putchar(value);
+    game_infos->robots_game[index_robot].pc += REG_SIZE + 1;
+    return 0;
+}
+
 unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     instr_infos_t instr_infos =
@@ -67,26 +77,5 @@ unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
             instr_infos.size_infos[index];
     if (op_tab[instr_infos.next_instr_id].has_coding_byte)
         game_infos->robots_game[index_robot].pc += 1;
-    return 0;
-}
-
-unsigned int store_ind(game_infos_t *game_infos, unsigned int index_robot)
-{
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-    unsigned int source = game_infos->robots_game[index_robot].
-        reg[instr_infos.usable_args[0]];
-    unsigned int offset_a = instr_infos.usable_args[1];
-    unsigned int offset_b = instr_infos.usable_args[2];
-    unsigned int index_mem = game_infos->robots_game[index_robot].pc +
-        (offset_a + offset_b) % IDX_MOD;
-
-    game_infos->arena[index_mem % MEM_SIZE] = source;
-    game_infos->index_colors[index_mem % MEM_SIZE] =
-        game_infos->robots_game[index_robot].color_index;
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        game_infos->robots_game[index_robot].pc +=
-            instr_infos.size_infos[index];
-    game_infos->robots_game[index_robot].pc += 2;
     return 0;
 }

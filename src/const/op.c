@@ -45,6 +45,6 @@ const op_t op_tab[] = {
     {"lfork", 1, {T_DIR}, 15, 1000,
         "long fork", &pending_func, false, true},
     {"print", 1, {T_REG}, 16, 2,
-        "print character", &pending_func, true, false},
+        "print character", &print_func, true, false},
     {0, 0, {0}, 0, 0, 0}
 };

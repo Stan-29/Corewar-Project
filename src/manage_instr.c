@@ -86,6 +86,8 @@ void get_usable_args(robot_game_t *robot)
 {
     unsigned char arg = 0;
 
+    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
+        robot->instr_infos.usable_args[index] = 0;
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0
         && index < MAX_ARGS_NUMBER; index++) {
         for (unsigned int index_arg = 0;

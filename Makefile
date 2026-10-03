@@ -12,7 +12,8 @@ SRC = src/const/error_messages.c 	\
 	src/free/free_game_infos.c			\
 	src/init/init_robots.c					\
 	src/init/init_game_infos.c 				\
-	src/instr_func/live_func.c 		\
+	src/instr_func/basic_instr.c 		\
+	src/instr_func/store_instr.c 		\
 	src/ncurse_events/basic_events_ncurse.c	\
 	src/parsing/flags_func.c 			\
 	src/parsing/handle_helper.c 		\
