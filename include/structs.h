@@ -35,7 +35,9 @@ typedef struct robot_args_s {
 typedef struct instr_infos_s {
     unsigned int cycle_remaining;
     unsigned int next_instr_id;
+    unsigned int size_infos[MAX_ARGS_NUMBER];
     unsigned char args[MAX_ARGS_NUMBER][MAX_ARG_SIZE];
+    unsigned int usable_args[MAX_ARGS_NUMBER];
 } instr_infos_t;
 
 typedef struct robot_game_s {
@@ -81,6 +83,8 @@ typedef struct op_s {
     int nbr_cycles;
     char *comment;
     unsigned int (*func)(game_infos_t *, unsigned int);
+    bool has_coding_byte;
+    bool dir_exeption;
 } op_t;
 
 typedef struct ncurse_event_s {

@@ -25,6 +25,7 @@ void print_str(char *, bool, int);
 
 
 //number handling
+int my_pow(int, int);
 bool is_positive_nb(char *);
 int my_get_nb(const char *);
 void my_put_nbr(int);

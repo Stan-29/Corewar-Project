@@ -21,7 +21,8 @@ void init_ncurse(game_infos_t *game_infos)
         init_pair(index + 1, COLOR_BLACK + index + 1, COLOR_BLACK);
         game_infos->robots_game[index].color_index = index + 1;
     }
-    game_infos->ncurse_infos.ncurse_stop = false;
+    game_infos->ncurse_infos.ncurse_stop = true;
+    game_infos->ncurse_infos.ncurse_skip_one = false;
 }
 
 void if_same_add(robot_args_t *robots_args, game_infos_t *game_infos,

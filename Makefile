@@ -12,7 +12,8 @@ SRC = src/const/error_messages.c 	\
 	src/free/free_game_infos.c			\
 	src/init/init_robots.c					\
 	src/init/init_game_infos.c 				\
-	src/instr_func/live_func.c 		\
+	src/instr_func/basic_instr.c 		\
+	src/instr_func/store_instr.c 		\
 	src/ncurse_events/basic_events_ncurse.c	\
 	src/parsing/flags_func.c 			\
 	src/parsing/handle_helper.c 		\
@@ -26,6 +27,7 @@ SRC = src/const/error_messages.c 	\
 	src/utils/is_positive_nb.c 		\
 	src/utils/is_same_str.c 		\
 	src/utils/my_get_nb.c			\
+	src/utils/my_pow.c				\
 	src/utils/my_put_nbr.c			\
 	src/utils/my_put_str.c			\
 	src/utils/my_putchar.c			\
@@ -35,6 +37,7 @@ SRC = src/const/error_messages.c 	\
 	src/utils/print_modular.c 		\
 	src/start_game.c					\
 	src/game_loop.c						\
+	src/manage_instr.c 					\
 	src/manage_ncurse.c					\
 	src/dump_function.c					\
 
@@ -43,12 +46,15 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/init_tests/*.c	\
+TEST_SRC = tests/unit_tests/game_loop_tests/*.c	\
+	tests/unit_tests/init_tests/*.c			\
 	tests/unit_tests/parsing_tests/*.c			\
 	tests/unit_tests/setup-infos_tests/*.c			\
 	tests/unit_tests/utils_tests/*.c		\
 	tests/unit_tests/*.c						\
 	tests/functionnal_tests/*.c						\
+
+SPEC_TEST_SRC = tests/unit_tests/game_loop_tests/*.c	\
 
 TEST_NAME = tests_results
 
@@ -64,7 +70,7 @@ all : $(OBJ)
 	$(CC) -o $(NAME) main.c $(OBJ) $(CFLAGS) -lncurses
 
 all_val :
-	$(CC) -o $(NAME) main.c $(SRC) -I./include
+	$(CC) -o $(NAME) main.c $(SRC) -I./include -lncurses
 
 clean:
 	rm -f $(OBJ)
@@ -102,6 +108,6 @@ valgrind: re_docker
          --show-leak-kinds=all \
          --track-origins=yes \
          --log-file=$(VALGRIND_NAME) \
-         ./$(NAME) -dump 0 ./champions/bill.cor ./champions/pdd.cor 
+         ./$(NAME) -dump 0 -n 1 ./champions/bill.cor -n 234 ./champions/abel.cor -n 2 ./champions/pdd.cor -n 123 ./champions/tyron.cor
 
 .PHONY: all clean fclean re mac_tests_run gcovrex valgrind

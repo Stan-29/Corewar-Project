@@ -31,19 +31,20 @@ void print_dashboard(game_infos_t *game_infos)
 {
     double speed = game_infos->ncurse_infos.ncurse_timer;
 
+    speed = 10 - speed / 100;
+    printw("Speed = x%.2f\t", speed);
     if (!game_infos->ncurse_infos.ncurse_stop) {
         attron(A_STANDOUT);
         printw("|>");
         attroff(A_STANDOUT);
-        printw(" ||");
+        printw("  ||");
     } else {
-        printw("|> ");
+        printw("|>  ");
         attron(A_STANDOUT);
         printw("||");
         attroff(A_STANDOUT);
     }
-    speed = 10 - speed / 100;
-    printw("\tSpeed = x%.2f\n", speed);
+    printw("\n");
     return;
 }
 

@@ -52,7 +52,7 @@ Test(init_game_infos, check_inside_init_values)
     test_init_values(robots);
     init_game_infos(robots, game_infos);
     cr_assert(game_infos->nb_robots == 3);
-    cr_assert(game_infos->cycle_nb == 0);
+    cr_assert(game_infos->cycle_infos.cycle_nb == 0);
     cr_assert(game_infos->robots_args[0].dump == 100);
     cr_assert(game_infos->robots_args[2].dump == 100);
     free_game_infos(game_infos);
@@ -67,10 +67,10 @@ Test(init_game_infos, check_inside_values)
         return;
     test_init_values(robots);
     init_game_infos(robots, game_infos);
-    game_infos->cycle_nb = 12;
+    game_infos->cycle_infos.cycle_nb = 12;
     game_infos->robots_args[0].load_adress = 300;
     game_infos->robots_args[3].prog_nb = 1;
-    cr_assert(game_infos->cycle_nb == 12);
+    cr_assert(game_infos->cycle_infos.cycle_nb == 12);
     cr_assert(game_infos->robots_args[0].load_adress == 300);
     cr_assert(game_infos->robots_args[3].prog_nb == 1);
     free_game_infos(game_infos);
@@ -78,7 +78,7 @@ Test(init_game_infos, check_inside_values)
 
 static void modify_some_values(game_infos_t *game_infos)
 {
-    game_infos->dump_cycle = 20;
+    game_infos->cycle_infos.dump_cycle = 20;
     game_infos->robots_args[0].load_adress = 166;
     game_infos->robots_args[3].len_instr = 8;
 }
@@ -93,7 +93,7 @@ Test(init_game_infos, check_inside_values_from_other_function)
     test_init_values(robots);
     init_game_infos(robots, game_infos);
     modify_some_values(game_infos);
-    cr_assert(game_infos->dump_cycle == 20);
+    cr_assert(game_infos->cycle_infos.dump_cycle == 20);
     cr_assert(game_infos->robots_args[0].load_adress == 166);
     cr_assert(game_infos->robots_args[3].len_instr = 8);
     free_game_infos(game_infos);
