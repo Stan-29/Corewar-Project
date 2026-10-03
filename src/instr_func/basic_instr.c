@@ -16,10 +16,11 @@ unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
     unsigned int index_robot_live = instr_infos.usable_args[0];
 
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
-        if (game_infos->robots_args[index].prog_nb == index_robot_live)
+        if (game_infos->robots_args[index].prog_nb == index_robot_live) {
             game_infos->robots_game[index].has_said_alive = true;
+            game_infos->nbr_live_exec += 1;
+        }
     }
-    game_infos->nbr_live_exec += 1;
     game_infos->robots_game[index_robot].pc += DIR_SIZE + 1;
     return 0;
 }
@@ -52,7 +53,8 @@ unsigned int zjump_func(game_infos_t *game_infos, unsigned int index_robot)
     if (game_infos->robots_game[index_robot].carry == 1)
         game_infos->robots_game[index_robot].pc =
             (game_infos->robots_game[index_robot].pc + offset) % MEM_SIZE;
-    game_infos->robots_game[index_robot].pc += IND_SIZE + 1;
+    else
+        game_infos->robots_game[index_robot].pc += IND_SIZE + 1;
     return 0;
 }
 

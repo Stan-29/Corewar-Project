@@ -48,6 +48,7 @@ CC = epiclang
 
 
 TEST_SRC = tests/unit_tests/robots_handling_tests/*.c	\
+	tests/unit_tests/instr_tests/*.c	\
 	tests/unit_tests/init_tests/*.c			\
 	tests/unit_tests/parsing_tests/*.c			\
 	tests/unit_tests/setup-infos_tests/*.c			\

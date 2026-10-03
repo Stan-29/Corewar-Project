@@ -34,11 +34,8 @@ int get_id_instr(game_infos_t *game_infos, unsigned int index_robot)
     unsigned int instr_id = game_infos->arena[
         game_infos->robots_game[index_robot].pc];
 
-    if (instr_id > NBR_INSTR || instr_id < 1) {
-        game_infos->robots_game[index_robot].pc =
-            (game_infos->robots_game[index_robot].pc + 1) % MEM_SIZE;
+    if (instr_id > NBR_INSTR || instr_id < 1)
         return -1;
-    }
     return instr_id;
 }
 
