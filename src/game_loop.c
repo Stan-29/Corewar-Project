@@ -22,6 +22,11 @@ void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
     game_infos->robots_game[index_robot].color_index = 0;
 }
 
+unsigned int print_winning_message(game_infos_t *game_infos)
+{
+    return 1;
+}
+
 bool check_robots_alive(game_infos_t *game_infos)
 {
     unsigned int nb_robots_alive = 0;
@@ -38,7 +43,7 @@ bool check_robots_alive(game_infos_t *game_infos)
     game_infos->cycle_infos.cycle_to_die = CYCLE_TO_DIE -
         CYCLE_DELTA * game_infos->nbr_live_exec % NBR_LIVE;
     if (nb_robots_alive <= 1)
-        return 1;
+        return print_winning_message(game_infos);
     return 0;
 }
 

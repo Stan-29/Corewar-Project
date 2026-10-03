@@ -84,6 +84,7 @@ typedef struct op_s {
     char *comment;
     unsigned int (*func)(game_infos_t *, unsigned int);
     bool has_coding_byte;
+    bool dir_exeption;
 } op_t;
 
 typedef struct ncurse_event_s {

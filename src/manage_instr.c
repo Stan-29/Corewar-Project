@@ -28,11 +28,17 @@ int get_id_instr(game_infos_t *game_infos, unsigned int index_robot)
 
 static void fill_size_infos(robot_game_t *robot, char *bin)
 {
+    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
+        robot->instr_infos.size_infos[index] = 0;
     for (unsigned int index = 0; index < 8; index++) {
         if (bin[index] == '0' && bin[index + 1] == '1')
             robot->instr_infos.size_infos[index / 2] = REG_SIZE;
-        if (bin[index] == '1' && bin[index + 1] == '0')
+        if (bin[index] == '1' && bin[index + 1] == '0' &&
+            !op_tab[robot->instr_infos.next_instr_id].dir_exeption)
             robot->instr_infos.size_infos[index / 2] = DIR_SIZE;
+        if (bin[index] == '1' && bin[index + 1] == '0' &&
+            op_tab[robot->instr_infos.next_instr_id].dir_exeption)
+            robot->instr_infos.size_infos[index / 2] = IND_SIZE;
         if (bin[index] == '1' && bin[index + 1] == '1')
             robot->instr_infos.size_infos[index / 2] = IND_SIZE;
         index++;
@@ -72,7 +78,6 @@ static unsigned int handle_coding_byte(robot_game_t *robot,
     } else {
         robot->instr_infos.size_infos[0] = op_tab[instr_id].type[0];
     }
-    robot->instr_infos.next_instr_id = instr_id;
     robot->instr_infos.cycle_remaining = op_tab[instr_id].nbr_cycles - 1;
     return OK;
 }
@@ -95,8 +100,9 @@ void get_usable_args(robot_game_t *robot)
 static void get_instr_infos(robot_game_t *robot, unsigned char *arena,
     unsigned int instr_id)
 {
-    unsigned int index_arena = robot->pc;
+    unsigned int index_arena = robot->pc + 1;
 
+    robot->instr_infos.next_instr_id = instr_id;
     if (handle_coding_byte(robot, arena, instr_id, &index_arena) == 1)
         return;
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0 &&

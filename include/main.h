@@ -54,6 +54,8 @@ void get_usable_args(robot_game_t *);
 unsigned int pending_func(game_infos_t *, unsigned int);
 unsigned int live_func(game_infos_t *, unsigned int);
 unsigned int load_func(game_infos_t *, unsigned int);
+unsigned int zjump_func(game_infos_t *, unsigned int);
+unsigned int store_ind(game_infos_t *, unsigned int);
 
 //ncurse
 void print_dashboard(game_infos_t *game_infos);
