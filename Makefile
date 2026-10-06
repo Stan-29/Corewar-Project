@@ -40,6 +40,7 @@ SRC = src/const/error_messages.c 	\
 	src/utils/print_modular.c 		\
 	src/utils/uc_to_ui.c 			\
 	src/utils/ui_to_uc.c 			\
+	src/utils/update_pc.c 			\
 	src/start_game.c					\
 	src/game_loop.c						\
 	src/dump_function.c					\
@@ -59,7 +60,7 @@ TEST_SRC = tests/unit_tests/game_loop_tests/*.c		\
 	tests/unit_tests/utils_tests/*.c		\
 	tests/unit_tests/*.c						\
 
-SPEC_TEST_SRC = tests/unit_tests/game_loop_tests/test_check_robots_alive.c	\
+SPEC_TEST_SRC = tests/unit_tests/instr_tests/test_store_instr.c	\
 
 FUNC_TEST_SRC = tests/functionnal_tests/*.c				\
 
@@ -103,6 +104,18 @@ mac_tests_run:	clean
 
 gcovrex:	re
 	$(MAKE) mac_tests_run
+	./$(TEST_NAME)
+	gcovr --gcov-executable "llvm-cov gcov" \
+		--exclude "tests/.*"
+	gcovr --txt-metric branch --gcov-executable "llvm-cov gcov" \
+		--exclude "tests/.*"
+
+mac_tests_run_spec:	clean
+	$(TEST_CC) -o $(TEST_NAME) --coverage -lcriterion \
+	$(SPEC_TEST_SRC) $(SRC) -I./include -lncurses
+
+gcovrex_spec:	re
+	$(MAKE) mac_tests_run_spec
 	./$(TEST_NAME)
 	gcovr --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"

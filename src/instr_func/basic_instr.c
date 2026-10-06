@@ -40,11 +40,7 @@ unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        game_infos->robots_game[index_robot].pc +=
-            instr_infos.size_infos[index];
-    game_infos->robots_game[index_robot].pc =
-        (game_infos->robots_game[index_robot].pc + 2) % MEM_SIZE;
+    update_pc(game_infos, index_robot, 2);
     return 0;
 }
 
