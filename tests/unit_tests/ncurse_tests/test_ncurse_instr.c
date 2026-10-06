@@ -74,7 +74,7 @@ Test(speed_up_ncurse, speed_up_ncurse_max)
         return;
     game_infos->ncurse_infos.ncurse_timer = 50;
     speed_up_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 5);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == 1);
     free(game_infos);
 }
 
@@ -96,8 +96,8 @@ Test(speed_down_ncurse, speed_down_ncurse_max)
 
     if (game_infos == NULL)
         return;
-    game_infos->ncurse_infos.ncurse_timer = 960;
+    game_infos->ncurse_infos.ncurse_timer = 460;
     speed_down_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 1000);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == 500);
     free(game_infos);
 }

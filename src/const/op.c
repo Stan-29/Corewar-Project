@@ -18,7 +18,7 @@ const op_t op_tab[] = {
     {"st", 2, {T_REG, T_REG | T_IND}, 3, 5,
         "store", &store_func, true, false},
     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10,
-        "addition", &pending_func, true, false},
+        "addition", &add_func, true, false},
     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10,
         "subtraction", &pending_func, true, false},
     {"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_DIR | T_IND, T_REG}, 6, 6,

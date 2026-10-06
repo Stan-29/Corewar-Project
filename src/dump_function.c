@@ -29,7 +29,7 @@ void print_reg(game_infos_t *game_infos, robot_game_t *robot_game,
 {
     for (unsigned int reg = 0; reg < REG_NUMBER; reg++) {
         print_str("r", is_ncurse_active, 0);
-        print_nbr(reg, is_ncurse_active, 0);
+        print_nbr(reg + 1, is_ncurse_active, 0);
         print_str(" : ", is_ncurse_active, 0);
         print_hexa(robot_game->reg[reg], 8, game_infos, -1);
         if (reg != 0 && reg % 6 == 0)

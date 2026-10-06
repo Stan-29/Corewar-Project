@@ -30,7 +30,7 @@ Test(load_func, basic_load)
     game_infos->robots_game[0].carry = 0;
     load_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].carry == 0);
-    cr_assert(game_infos->robots_game[0].reg[2] == 222);
+    cr_assert(game_infos->robots_game[0].reg[1] == 222);
     cr_assert(game_infos->robots_game[0].pc == 6);
     free_game_infos(game_infos);
 }
@@ -57,7 +57,7 @@ Test(load_func, zero_load)
     game_infos->robots_game[0].carry = 0;
     load_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].carry == 1);
-    cr_assert(game_infos->robots_game[0].reg[2] == 0);
+    cr_assert(game_infos->robots_game[0].reg[1] == 0);
     cr_assert(game_infos->robots_game[0].pc == 5);
     free_game_infos(game_infos);
 }
