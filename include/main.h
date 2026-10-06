@@ -60,6 +60,7 @@ unsigned int load_func(game_infos_t *, unsigned int);
 unsigned int zjump_func(game_infos_t *, unsigned int);
 unsigned int print_func(game_infos_t *, unsigned int);
 unsigned int store_ind(game_infos_t *, unsigned int);
+unsigned int store_func(game_infos_t *, unsigned int);
 
 //ncurse
 void init_ncurse(game_infos_t *);

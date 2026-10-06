@@ -16,7 +16,7 @@ const op_t op_tab[] = {
     {"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5,
         "load", &load_func, true, false},
     {"st", 2, {T_REG, T_REG | T_IND}, 3, 5,
-        "store", &pending_func, true, false},
+        "store", &store_func, true, false},
     {"add", 3, {T_REG, T_REG, T_REG}, 4, 10,
         "addition", &pending_func, true, false},
     {"sub", 3, {T_REG, T_REG, T_REG}, 5, 10,

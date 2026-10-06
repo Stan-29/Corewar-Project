@@ -32,8 +32,10 @@ unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].instr_infos;
     unsigned int source = instr_infos.usable_args[0];
     unsigned int dest = instr_infos.usable_args[1];
+    unsigned int pc = game_infos->robots_game[index_robot].pc;
+    unsigned char value = game_infos->arena[(pc + source % IDX_MOD) % MEM_SIZE];
 
-    game_infos->robots_game[index_robot].reg[dest] = source;
+    game_infos->robots_game[index_robot].reg[dest] = value << 0;
     if (game_infos->robots_game[index_robot].reg[dest] == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else

@@ -31,6 +31,8 @@ int my_get_nb(const char *);
 void my_put_nbr(int);
 void print_hexa(int, int, game_infos_t *, unsigned int);
 void print_nbr(int, bool, int);
+unsigned int uc_to_ui(unsigned char[4], unsigned int);
+unsigned char *ui_to_uc(unsigned int, unsigned int);
 
 unsigned int display_error(unsigned int);
 

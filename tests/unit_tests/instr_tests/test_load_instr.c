@@ -23,14 +23,15 @@ Test(load_func, basic_load)
         return;
     game_infos->robots_game[0].instr_infos.size_infos[0] = 2;
     game_infos->robots_game[0].instr_infos.size_infos[1] = 1;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 1;
+    game_infos->robots_game[0].instr_infos.usable_args[0] = 4;
     game_infos->robots_game[0].instr_infos.usable_args[1] = 2;
-    game_infos->robots_game[0].pc = 0;
+    game_infos->arena[5] = 222;
+    game_infos->robots_game[0].pc = 1;
     game_infos->robots_game[0].carry = 0;
     load_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].carry == 0);
-    cr_assert(game_infos->robots_game[0].reg[2] == 1);
-    cr_assert(game_infos->robots_game[0].pc == 5);
+    cr_assert(game_infos->robots_game[0].reg[2] == 222);
+    cr_assert(game_infos->robots_game[0].pc == 6);
     free_game_infos(game_infos);
 }
 
@@ -51,6 +52,7 @@ Test(load_func, zero_load)
     game_infos->robots_game[0].instr_infos.size_infos[1] = 1;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 0;
     game_infos->robots_game[0].instr_infos.usable_args[1] = 2;
+    game_infos->arena[0] = 0;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].carry = 0;
     load_func(game_infos, 0);
