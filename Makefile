@@ -28,6 +28,7 @@ SRC = src/const/error_messages.c 	\
 	src/setup-infos/manage_load_pos.c 		\
 	src/setup-infos/prepare_infos.c 		\
 	src/utils/display_error.c 		\
+	src/utils/get_value_from_type.c \
 	src/utils/is_positive_nb.c 		\
 	src/utils/is_same_str.c 		\
 	src/utils/my_get_nb.c			\

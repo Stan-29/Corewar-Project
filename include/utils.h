@@ -36,5 +36,7 @@ unsigned char *ui_to_uc(unsigned int, unsigned int);
 
 unsigned int display_error(unsigned int);
 void update_pc(game_infos_t *, unsigned int, unsigned int);
+unsigned int get_value_from_type(game_infos_t *, unsigned int,
+    unsigned int);
 
 #endif

@@ -12,68 +12,58 @@
 
 unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
 {
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-    unsigned int index_robot_live = instr_infos.usable_args[0];
+    unsigned int robot_live = get_value_from_type(game_infos, index_robot, 0);
 
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
-        if (game_infos->robots_args[index].prog_nb == index_robot_live) {
+        if (game_infos->robots_args[index].prog_nb == robot_live) {
             game_infos->robots_game[index].has_said_alive = true;
             game_infos->nbr_live_exec += 1;
+            my_put_str(game_infos->robots_args[index].header.prog_name);
+            my_put_str(" has said alive.\n");
         }
     }
     game_infos->robots_game[index_robot].pc =
         (game_infos->robots_game[index_robot].pc + 1 + DIR_SIZE) % MEM_SIZE;
-    return 0;
+    return OK;
 }
 
 unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
 {
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-    unsigned int source = instr_infos.usable_args[0];
-    unsigned int dest = instr_infos.usable_args[1] - 1;
-    unsigned int pc = game_infos->robots_game[index_robot].pc;
-    unsigned char value = 0;
+    unsigned int value = get_value_from_type(game_infos, index_robot, 0);
+    unsigned int dest = get_value_from_type(game_infos, index_robot, 1);
 
-    if (instr_infos.size_infos[0] == DIR_SIZE)
-        value = source;
-    else
-        value = game_infos->arena[(pc + source % IDX_MOD) % MEM_SIZE];
-    game_infos->robots_game[index_robot].reg[dest] = value << 0;
-    if (game_infos->robots_game[index_robot].reg[dest] == 0)
+    game_infos->robots_game[index_robot].reg[dest] = value;
+    if (value == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
     update_pc(game_infos, index_robot, 2);
-    return 0;
+    return OK;
 }
 
 unsigned int zjump_func(game_infos_t *game_infos, unsigned int index_robot)
 {
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-    unsigned int offset = instr_infos.usable_args[0];
+    unsigned int offset = get_value_from_type(game_infos, index_robot, 0);
+    unsigned int pc = game_infos->robots_game[index_robot].pc;
 
     if (game_infos->robots_game[index_robot].carry == 1)
         game_infos->robots_game[index_robot].pc =
-            (game_infos->robots_game[index_robot].pc + offset) % MEM_SIZE;
+            (pc + offset) % MEM_SIZE;
     else
         game_infos->robots_game[index_robot].pc =
-            (game_infos->robots_game[index_robot].pc + IND_SIZE + 1) % MEM_SIZE;
-    return 0;
+            (pc + IND_SIZE + 1) % MEM_SIZE;
+    return OK;
 }
 
 unsigned print_func(game_infos_t *game_infos, unsigned int index_robot)
 {
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-    unsigned int value = instr_infos.usable_args[0];
+    unsigned int value = get_value_from_type(game_infos, index_robot, 0);
+    unsigned int pc = game_infos->robots_game[index_robot].pc;
 
-    my_putchar(value);
+    my_putchar(value + '0');
     game_infos->robots_game[index_robot].pc =
-        (game_infos->robots_game[index_robot].pc + REG_SIZE + 1) % MEM_SIZE;
-    return 0;
+        (pc + REG_SIZE + 1) % MEM_SIZE;
+    return OK;
 }
 
 unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -87,5 +77,5 @@ unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
     if (op_tab[instr_infos.next_instr_id].has_coding_byte)
         game_infos->robots_game[index_robot].pc =
             (game_infos->robots_game[index_robot].pc + 1) % MEM_SIZE;
-    return 0;
+    return OK;
 }
