@@ -7,7 +7,7 @@
 #include "defines.h"
 #include "structs.h"
 #include "utils.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 unsigned int store_func(game_infos_t *game_infos, unsigned int index_robot)
 {
@@ -15,16 +15,23 @@ unsigned int store_func(game_infos_t *game_infos, unsigned int index_robot)
     unsigned int dest = get_value_from_type(game_infos, index_robot, 1);
     unsigned char *usable_value = ui_to_uc(source, 4);
 
-    for (unsigned int index = 0; index < 4; index++) {
-        game_infos->arena[(dest + index) % MEM_SIZE] = usable_value[index];
-        game_infos->index_colors[(dest + index) % MEM_SIZE] =
-            game_infos->robots_game[index_robot].color_index;
+    if (game_infos->robots_game[index_robot].instr_infos.size_infos[1] == 1) {
+        dest = game_infos->robots_game[index_robot].instr_infos.usable_args[1];
+        game_infos->robots_game[index_robot].reg[dest - 1] = source;
+    } else {
+        for (unsigned int index = 0; index < 4; index++) {
+            game_infos->arena[(dest % IDX_MOD + index) % MEM_SIZE] =
+                usable_value[index];
+            game_infos->index_colors[(dest % IDX_MOD + index) % MEM_SIZE] =
+                game_infos->robots_game[index_robot].color_index;
+        }
     }
     update_pc(game_infos, index_robot, 3);
+    free(usable_value);
     return OK;
 }
 
-unsigned int store_ind(game_infos_t *game_infos, unsigned int index_robot)
+unsigned int store_ind_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int source = get_value_from_type(game_infos, index_robot, 0);
     unsigned char *usable_value = ui_to_uc(source, 4);

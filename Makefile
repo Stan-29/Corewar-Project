@@ -14,6 +14,7 @@ SRC = src/const/error_messages.c 	\
 	src/init/init_game_infos.c 				\
 	src/instr_func/basic_instr.c 		\
 	src/instr_func/bin_instr.c 			\
+	src/instr_func/load_instr.c 		\
 	src/instr_func/store_instr.c 		\
 	src/ncurse_handling/basic_events_ncurse.c	\
 	src/ncurse_handling/manage_ncurse.c			\
@@ -52,8 +53,7 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/functionnal_tests/*.c					\
-	tests/unit_tests/game_loop_tests/*.c			\
+TEST_SRC = 	tests/unit_tests/game_loop_tests/*.c			\
 	tests/unit_tests/robots_handling_tests/*.c	\
 	tests/unit_tests/instr_tests/*.c		\
 	tests/unit_tests/ncurse_tests/*.c	\
@@ -62,6 +62,8 @@ TEST_SRC = tests/functionnal_tests/*.c					\
 	tests/unit_tests/setup-infos_tests/*.c			\
 	tests/unit_tests/utils_tests/*.c					\
 	tests/unit_tests/*.c						\
+
+FUNC_TEST_SRC = tests/functionnal_tests/*.c \
 
 TEST_NAME = tests_results
 
@@ -99,7 +101,7 @@ re:
 
 tests_run:	clean
 	$(TEST_CC) -o $(TEST_NAME) --coverage -lcriterion \
-	$(TEST_SRC) $(SRC) -I./include -lncurses
+	$(TEST_SRC) $(FUNC_TEST_SRC) $(SRC) -I./include -lncurses
 
 gcovrex:	all
 	$(MAKE) tests_run

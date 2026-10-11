@@ -6,6 +6,7 @@
 */
 #include "defines.h"
 #include "main.h"
+#include "instr.h"
 #include "structs.h"
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
@@ -24,7 +25,10 @@ Test(print_func, basic_print, .init = cr_redirect_stdout)
         return;
     if (game_infos == NULL)
         return;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 48;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 16;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
+    game_infos->robots_game[0].instr_infos.usable_args[0] = 2;
+    game_infos->robots_game[0].reg[1] = 48;
     game_infos->robots_game[0].pc = 0;
     print_func(game_infos, 0);
     cr_assert_stdout_eq_str("0");
@@ -45,7 +49,10 @@ Test(print_func, print_one, .init = cr_redirect_stdout)
         return;
     if (game_infos == NULL)
         return;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 49;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 16;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
+    game_infos->robots_game[0].instr_infos.usable_args[0] = 2;
+    game_infos->robots_game[0].reg[1] = 49;
     game_infos->robots_game[0].pc = 0;
     print_func(game_infos, 0);
     cr_assert_stdout_eq_str("1");

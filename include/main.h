@@ -54,18 +54,6 @@ void manage_cycles(game_infos_t *, unsigned int,
     unsigned int, unsigned int);
 void get_instr_infos(robot_game_t *, unsigned char *, unsigned int);
 unsigned int get_usable_args(robot_game_t *);
-unsigned int pending_func(game_infos_t *, unsigned int);
-unsigned int live_func(game_infos_t *, unsigned int);
-unsigned int load_func(game_infos_t *, unsigned int);
-unsigned int zjump_func(game_infos_t *, unsigned int);
-unsigned int print_func(game_infos_t *, unsigned int);
-unsigned int store_ind(game_infos_t *, unsigned int);
-unsigned int store_func(game_infos_t *, unsigned int);
-unsigned int add_func(game_infos_t *, unsigned int);
-unsigned int sub_func(game_infos_t *, unsigned int);
-unsigned int and_func(game_infos_t *, unsigned int);
-unsigned int or_func(game_infos_t *, unsigned int);
-unsigned int xor_func(game_infos_t *, unsigned int);
 
 //ncurse
 void init_ncurse(game_infos_t *);

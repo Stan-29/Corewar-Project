@@ -6,6 +6,7 @@
 */
 #include "defines.h"
 #include "main.h"
+#include "instr.h"
 #include "structs.h"
 #include <criterion/criterion.h>
 
@@ -22,6 +23,8 @@ Test(zjump_func, basic_jump)
         return;
     if (game_infos == NULL)
         return;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 9;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 2;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 10;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].carry = 1;
@@ -43,6 +46,8 @@ Test(zjump_func, zero_carry_jump)
         return;
     if (game_infos == NULL)
         return;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 9;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 2;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 10;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].carry = 0;
@@ -64,6 +69,8 @@ Test(zjump_func, jump_using_modulo_mem_index)
         return;
     if (game_infos == NULL)
         return;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 9;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 2;
     game_infos->robots_game[0].instr_infos.usable_args[0] = MEM_SIZE + 5;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].carry = 1;

@@ -5,6 +5,7 @@
 ** test_check_helper
 */
 #include "main.h"
+#include "instr.h"
 #include "structs.h"
 #include <criterion/criterion.h>
 
@@ -21,8 +22,10 @@ Test(live_func, basic_live)
         return;
     if (game_infos == NULL)
         return;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 1;
     game_infos->nbr_live_exec = 0;
     game_infos->robots_game[0].has_said_alive = false;
+    game_infos->robots_game[0].instr_infos.size_infos[0] = 4;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 1;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_args[0].prog_nb = 1; 
@@ -48,6 +51,7 @@ Test(live_func, bad_index_live)
         return;
     if (game_infos == NULL)
         return;
+    game_infos->robots_game[0].instr_infos.next_instr_id = 1;
     game_infos->nbr_live_exec = 0;
     game_infos->robots_game[0].has_said_alive = false;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 18;
