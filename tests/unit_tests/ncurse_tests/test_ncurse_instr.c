@@ -4,6 +4,7 @@
 ** File description:
 ** test_check_helper
 */
+#include "defines.h"
 #include "main.h"
 #include "structs.h"
 #include <criterion/criterion.h>
@@ -62,7 +63,7 @@ Test(speed_up_ncurse, speed_up_ncurse)
         return;
     game_infos->ncurse_infos.ncurse_timer = 100;
     speed_up_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 50);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == 100 - STEP_TIMEOUT);
     free(game_infos);
 }
 
@@ -74,7 +75,7 @@ Test(speed_up_ncurse, speed_up_ncurse_max)
         return;
     game_infos->ncurse_infos.ncurse_timer = 50;
     speed_up_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 1);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == MIN_TIMEOUT);
     free(game_infos);
 }
 
@@ -86,7 +87,7 @@ Test(speed_down_ncurse, speed_down_ncurse)
         return;
     game_infos->ncurse_infos.ncurse_timer = 100;
     speed_down_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 150);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == 100 + STEP_TIMEOUT);
     free(game_infos);
 }
 
@@ -98,6 +99,6 @@ Test(speed_down_ncurse, speed_down_ncurse_max)
         return;
     game_infos->ncurse_infos.ncurse_timer = 460;
     speed_down_ncurse(game_infos);
-    cr_assert(game_infos->ncurse_infos.ncurse_timer == 500);
+    cr_assert(game_infos->ncurse_infos.ncurse_timer == MAX_TIMEOUT);
     free(game_infos);
 }

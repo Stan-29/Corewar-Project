@@ -13,7 +13,7 @@
 unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value = get_value_from_type(game_infos, index_robot, 0);
-    unsigned int dest = 
+    unsigned int dest =
         game_infos->robots_game[index_robot].instr_infos.usable_args[1] - 1;
 
     game_infos->robots_game[index_robot].reg[dest] = value;
@@ -50,7 +50,7 @@ unsigned int load_ind_func(game_infos_t *game_infos, unsigned int index_robot)
 unsigned int long_load_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value = get_value_from_type(game_infos, index_robot, 0);
-    unsigned int dest = 
+    unsigned int dest =
         game_infos->robots_game[index_robot].instr_infos.usable_args[1] - 1;
 
     if (game_infos->robots_game[index_robot].instr_infos.size_infos[0] == 2)
@@ -65,7 +65,8 @@ unsigned int long_load_func(game_infos_t *game_infos, unsigned int index_robot)
     return OK;
 }
 
-unsigned int long_load_ind_func(game_infos_t *game_infos, unsigned int index_robot)
+unsigned int long_load_ind_func(game_infos_t *game_infos,
+    unsigned int index_robot)
 {
     unsigned int offset_a = get_value_from_type(game_infos, index_robot, 0);
     unsigned int offset_b = get_value_from_type(game_infos, index_robot, 1);

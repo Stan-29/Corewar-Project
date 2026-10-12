@@ -85,6 +85,9 @@ all : $(OBJ)
 exec : all
 	./corewar $(EXEC_FLAG) -n 1 ./champions/bill.cor -n 234 ./champions/abel.cor -n 2 ./champions/pdd.cor -n 123 ./champions/tyron.cor
 
+exec_spec : all
+	./corewar $(EXEC_FLAG) -n 1 ./champions/bill.cor ./champions/bill.cor ./champions/bill.cor ./champions/bill.cor
+
 clean:
 	rm -f $(OBJ)
 	rm -f *.gcno
