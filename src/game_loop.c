@@ -13,6 +13,8 @@
 
 void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
 {
+    if (game_infos->robots_game[index_robot].is_alive == false)
+        return;
     game_infos->robots_game[index_robot].is_alive = false;
     game_infos->robots_game[index_robot].pc = MEM_SIZE + 1;
     for (unsigned int index = 0; index < MEM_SIZE; index++)

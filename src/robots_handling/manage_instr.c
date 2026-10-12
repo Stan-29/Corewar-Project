@@ -14,8 +14,6 @@
 
 unsigned int get_usable_args(robot_game_t *robot)
 {
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        robot->instr_infos.usable_args[index] = 0;
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0
         && index < MAX_ARGS_NUMBER; index++) {
         robot->instr_infos.usable_args[index] =
@@ -30,8 +28,6 @@ unsigned int get_usable_args(robot_game_t *robot)
 
 void fill_size_infos(robot_game_t *robot, char *bin)
 {
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        robot->instr_infos.size_infos[index] = 0;
     for (unsigned int index = 0; index < 8; index++) {
         if (bin[index] == '0' && bin[index + 1] == '1')
             robot->instr_infos.size_infos[index / 2] = REG_SIZE;
