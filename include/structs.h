@@ -54,6 +54,7 @@ typedef struct cycle_infos_s {
     int dump_cycle;
     unsigned int cycle_to_die;
     unsigned int cycle_nb;
+    unsigned int cycle_to_die_max;
 } cycle_infos_t;
 
 typedef struct ncurse_infos_s {

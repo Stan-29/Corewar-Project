@@ -89,6 +89,7 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     game_infos->robots_args = robots_args;
     game_infos->cycle_infos.cycle_nb = 0;
     game_infos->cycle_infos.cycle_to_die = CYCLE_TO_DIE;
+    game_infos->cycle_infos.cycle_to_die_max = CYCLE_TO_DIE;
     game_infos->nbr_live_exec = 0;
     return OK;
 }
