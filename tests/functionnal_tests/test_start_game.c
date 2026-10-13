@@ -26,7 +26,7 @@ Test(start_game, no_args)
 Test(start_game, two_args)
 {
     int argc = 3;
-    char *argv[] = {"corewar", "./champions/bill.cor", "./champions/pdd.cor"};
+    char *argv[] = {"./corewar", "./champions/bill.cor", "./champions/pdd.cor"};
 
     cr_assert(start_game(argc, argv) == 0);
 }
@@ -42,7 +42,7 @@ Test(start_game, four_args)
 Test(start_game, four_same_args)
 {
     int argc = 5;
-    char *argv[] = {"corewar", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor"};
+    char *argv[] = {"corewar", "./champions/abel.cor", "./champions/tyron.cor", "./champions/bill.cor", "./champions/pdd.cor"};
 
     cr_assert(start_game(argc, argv) == 0);
 }
@@ -58,8 +58,8 @@ Test(start_game, four_args_with_flags)
 
 Test(start_game, four_robots_with_flag_at_end)
 {
-    int argc = 15;
-    char *argv[] = {"corewar", "-dump", "65", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor", "./champions/bill.cor", "-dump", "5"};
+    int argc = 7;
+    char *argv[] = {"corewar", "./champions/pdd.cor", "./champions/tyron.cor", "./champions/abel.cor", "./champions/bill.cor", "-dump", "5"};
 
     cr_assert(start_game(argc, argv) == 0);
 }

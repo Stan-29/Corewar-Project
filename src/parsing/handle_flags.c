@@ -10,7 +10,6 @@
 #include "consts.h"
 #include <unistd.h>
 
-
 unsigned int find_flag(char *flag, char *value, robot_args_t *robot,
     unsigned int *arg_index)
 {
