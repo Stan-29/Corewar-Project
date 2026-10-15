@@ -122,7 +122,7 @@ re_docker:
 	$(MAKE) fclean
 	$(MAKE) all_docker
 
-valgrind: re_docker
+valgrind: all_docker
 	$(MAKE) clean
 	valgrind --leak-check=full \
          --show-leak-kinds=all \

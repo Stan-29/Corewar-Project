@@ -46,5 +46,6 @@ unsigned int store_ind_func(game_infos_t *game_infos, unsigned int index_robot)
             game_infos->robots_game[index_robot].color_index;
     }
     update_pc(game_infos, index_robot, 11);
+    free(usable_value);
     return OK;
 }

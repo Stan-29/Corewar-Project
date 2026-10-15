@@ -30,14 +30,14 @@ unsigned int check_dump_flag(robot_args_t *robots)
 unsigned int parse_args(int argc, char **argv, robot_args_t *robots)
 {
     unsigned int robot_index = 0;
-    unsigned int temp_robot_index = 0;
+    unsigned int temp_index = 0;
     unsigned int arg_index = 1;
 
     while (arg_index < argc) {
-        temp_robot_index = robot_index;
+        temp_index = robot_index;
         if (robot_index == 4)
-            temp_robot_index = robot_index - 1;
-        if (handle_flags(argc, argv, &robots[temp_robot_index], &arg_index) == ERROR)
+            temp_index = robot_index - 1;
+        if (handle_flags(argc, argv, &robots[temp_index], &arg_index) == ERROR)
             return FLAG_ERROR;
         if (arg_index < argc && argv[arg_index][0] != '-' &&
             handle_file(argv[arg_index], robots,

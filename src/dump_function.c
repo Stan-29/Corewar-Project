@@ -57,8 +57,10 @@ static void print_memory_header(game_infos_t *game_infos, bool is_ncurse_active)
     print_str("Memory:   ", is_ncurse_active, 0);
     for (unsigned int index = 0; index < WIDTH_DISPLAY; index++) {
         print_hexa(index, 2, game_infos, -1);
-        print_str(" ", is_ncurse_active, 0);
+        if (index < WIDTH_DISPLAY - 1)
+            print_str(" ", is_ncurse_active, 0);
     }
+    print_str("\n", is_ncurse_active, 0);
     print_str("        ", is_ncurse_active, 0);
     for (unsigned int index = 0; index < WIDTH_DISPLAY; index++)
         print_str("  -", is_ncurse_active, 0);

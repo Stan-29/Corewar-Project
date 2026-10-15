@@ -17,6 +17,7 @@ Test(ui_to_uc, zero)
     cr_assert(tab[1] == 0);
     cr_assert(tab[2] == 0);
     cr_assert(tab[3] == 0);
+    free(tab);
 }
 
 Test(ui_to_uc, basic_number)
@@ -29,6 +30,7 @@ Test(ui_to_uc, basic_number)
     cr_assert(tab[1] == 0);
     cr_assert(tab[2] == 0);
     cr_assert(tab[3] == 22);
+    free(tab);
 }
 
 Test(ui_to_uc, size_two_nbr)
@@ -41,6 +43,7 @@ Test(ui_to_uc, size_two_nbr)
     cr_assert(tab[1] == 0);
     cr_assert(tab[2] == 16);
     cr_assert(tab[3] == 22);
+    free(tab);
 }
 
 Test(ui_to_uc, complex_number)
@@ -53,4 +56,5 @@ Test(ui_to_uc, complex_number)
     cr_assert(tab[1] == 1);
     cr_assert(tab[2] == 16);
     cr_assert(tab[3] == 22);
+    free(tab);
 }

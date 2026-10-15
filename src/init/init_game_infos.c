@@ -14,6 +14,7 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
     game_infos->cycle_infos.dump_cycle = -1;
+    game_infos->ncurse_infos.ncurse_active = false;
     game_infos->nb_robots = 0;
     for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots_args[index].instr_list != NULL)
@@ -47,6 +48,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
         robot_game[index].has_said_alive = false;
         robot_game[index].is_alive = true;
         robot_game[index].pc = 0;
+        robot_game[index].color_index = 0;
         robot_game[index].reg = malloc(sizeof(int) * REG_NUMBER);
         if (robot_game[index].reg == NULL)
             return ERROR;
