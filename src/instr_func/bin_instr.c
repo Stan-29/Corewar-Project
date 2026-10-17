@@ -18,8 +18,7 @@ unsigned int add_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 4);
-    return OK;
+    return update_pc(game_infos, index_robot, 4, false);
 }
 
 unsigned int sub_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -34,8 +33,7 @@ unsigned int sub_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 5);
-    return OK;
+    return update_pc(game_infos, index_robot, 5, false);
 }
 
 unsigned int and_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -50,8 +48,7 @@ unsigned int and_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 6);
-    return OK;
+    return update_pc(game_infos, index_robot, 6, false);
 }
 
 unsigned int or_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -66,8 +63,7 @@ unsigned int or_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 7);
-    return OK;
+    return update_pc(game_infos, index_robot, 7, false);
 }
 
 unsigned int xor_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -82,6 +78,5 @@ unsigned int xor_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 8);
-    return OK;
+    return update_pc(game_infos, index_robot, 8, false);
 }

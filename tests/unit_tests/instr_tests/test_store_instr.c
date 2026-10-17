@@ -8,32 +8,18 @@
 #include "main.h"
 #include "instr.h"
 #include "structs.h"
+#include "tests.h"
 #include <criterion/criterion.h>
 
-Test(store_func, basic_store)
+Test(store_func, basic_store_indirect)
 {
     game_infos_t *game_infos = malloc(sizeof(game_infos_t));
-    robot_args_t *robots = init_robots();
-    int argc = 3;
-    char *argv[] = {"./corewar", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int size_infos[MAX_ARGS_NUMBER] = {1, 2, 0, 0};
+    unsigned int args[MAX_ARGS_NUMBER] = {4, 10, 0, 0};
 
-    if (handle_args(argc, argv, robots) == ERROR)
+    if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
-    if (prepare_infos(robots, &game_infos) == ERROR)
-        return;
-    if (game_infos == NULL)
-        return;
-    game_infos->robots_game[0].instr_infos.next_instr_id = 3;
-    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
-    game_infos->robots_game[0].instr_infos.size_infos[1] = 2;
-    game_infos->robots_game[0].instr_infos.size_infos[2] = 0;
-    game_infos->robots_game[0].instr_infos.size_infos[3] = 0;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 4;
-    game_infos->robots_game[0].instr_infos.usable_args[1] = 10;
-    game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].reg[3] = 22;
-    for (unsigned int index = 10; index < 14; index++)
-        game_infos->arena[index] = 0;
     store_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].pc == 5);
@@ -41,34 +27,19 @@ Test(store_func, basic_store)
     cr_assert(game_infos->arena[11] == 0);
     cr_assert(game_infos->arena[12] == 0);
     cr_assert(game_infos->arena[13] == 22);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 
 Test(store_func, complex_store)
 {
     game_infos_t *game_infos = malloc(sizeof(game_infos_t));
-    robot_args_t *robots = init_robots();
-    int argc = 3;
-    char *argv[] = {"./corewar", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int size_infos[MAX_ARGS_NUMBER] = {1, 2, 0, 0};
+    unsigned int args[MAX_ARGS_NUMBER] = {4, 10, 0, 0};
 
-    if (handle_args(argc, argv, robots) == ERROR)
+    if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
-    if (prepare_infos(robots, &game_infos) == ERROR)
-        return;
-    if (game_infos == NULL)
-        return;
-    game_infos->robots_game[0].instr_infos.next_instr_id = 3;
-    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
-    game_infos->robots_game[0].instr_infos.size_infos[1] = 2;
-    game_infos->robots_game[0].instr_infos.size_infos[2] = 0;
-    game_infos->robots_game[0].instr_infos.size_infos[3] = 0;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 4;
-    game_infos->robots_game[0].instr_infos.usable_args[1] = 10;
-    game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].reg[3] = 287341;
-    for (unsigned int index = 10; index < 14; index++)
-        game_infos->arena[index] = 0;
     store_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].reg[3] == 287341);
     cr_assert(game_infos->robots_game[0].pc == 5);
@@ -76,34 +47,18 @@ Test(store_func, complex_store)
     cr_assert(game_infos->arena[11] == 4);
     cr_assert(game_infos->arena[12] == 98);
     cr_assert(game_infos->arena[13] == 109);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
-
 
 Test(store_func, basic_store_with_idx_mod)
 {
     game_infos_t *game_infos = malloc(sizeof(game_infos_t));
-    robot_args_t *robots = init_robots();
-    int argc = 3;
-    char *argv[] = {"./corewar", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int size_infos[MAX_ARGS_NUMBER] = {1, 2, 0, 0};
+    unsigned int args[MAX_ARGS_NUMBER] = {4, IDX_MOD + 10, 0, 0};
 
-    if (handle_args(argc, argv, robots) == ERROR)
+    if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
-    if (prepare_infos(robots, &game_infos) == ERROR)
-        return;
-    if (game_infos == NULL)
-        return;
-    game_infos->robots_game[0].instr_infos.next_instr_id = 3;
-    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
-    game_infos->robots_game[0].instr_infos.size_infos[1] = 2;
-    game_infos->robots_game[0].instr_infos.size_infos[2] = 0;
-    game_infos->robots_game[0].instr_infos.size_infos[3] = 0;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 4;
-    game_infos->robots_game[0].instr_infos.usable_args[1] = IDX_MOD + 10;
-    game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].reg[3] = 22;
-    for (unsigned int index = 10; index < 14; index++)
-        game_infos->arena[index] = 0;
     store_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].pc == 5);
@@ -111,35 +66,39 @@ Test(store_func, basic_store_with_idx_mod)
     cr_assert(game_infos->arena[11] == 0);
     cr_assert(game_infos->arena[12] == 0);
     cr_assert(game_infos->arena[13] == 22);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(store_func, basic_store_with_reg)
 {
     game_infos_t *game_infos = malloc(sizeof(game_infos_t));
-    robot_args_t *robots = init_robots();
-    int argc = 3;
-    char *argv[] = {"./corewar", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int size_infos[MAX_ARGS_NUMBER] = {1, 1, 0, 0};
+    unsigned int args[MAX_ARGS_NUMBER] = {4, 2, 0, 0};
 
-    if (handle_args(argc, argv, robots) == ERROR)
+    if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
-    if (prepare_infos(robots, &game_infos) == ERROR)
-        return;
-    if (game_infos == NULL)
-        return;
-    game_infos->robots_game[0].instr_infos.next_instr_id = 3;
-    game_infos->robots_game[0].instr_infos.size_infos[0] = 1;
-    game_infos->robots_game[0].instr_infos.size_infos[1] = 1;
-    game_infos->robots_game[0].instr_infos.size_infos[2] = 0;
-    game_infos->robots_game[0].instr_infos.size_infos[3] = 0;
-    game_infos->robots_game[0].instr_infos.usable_args[0] = 4;
-    game_infos->robots_game[0].instr_infos.usable_args[1] = 2;
-    game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].reg[3] = 22;
     game_infos->robots_game[0].reg[1] = 0;
     store_func(game_infos, 0);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].reg[1] == 22);
     cr_assert(game_infos->robots_game[0].pc == 4);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
+}
+
+Test(store_func, store_with_reg_not_existent)
+{
+    game_infos_t *game_infos = malloc(sizeof(game_infos_t));
+    unsigned int size_infos[MAX_ARGS_NUMBER] = {1, 1, 0, 0};
+    unsigned int args[MAX_ARGS_NUMBER] = {18, 2, 0, 0};
+
+    if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
+        return;
+    game_infos->robots_game[0].reg[3] = 22;
+    game_infos->robots_game[0].reg[1] = 0;
+    store_func(game_infos, 0);
+    cr_assert(game_infos->robots_game[0].reg[3] == 22);
+    cr_assert(game_infos->robots_game[0].reg[1] == 0);
+    cr_assert(game_infos->robots_game[0].pc == 1);
+    free_tests(game_infos);
 }

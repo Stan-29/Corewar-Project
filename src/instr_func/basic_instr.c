@@ -62,6 +62,5 @@ unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
     instr_infos_t instr_infos =
         game_infos->robots_game[index_robot].instr_infos;
 
-    update_pc(game_infos, index_robot, instr_infos.next_instr_id);
-    return OK;
+    return update_pc(game_infos, index_robot, instr_infos.next_instr_id, false);
 }

@@ -16,13 +16,14 @@ unsigned int load_func(game_infos_t *game_infos, unsigned int index_robot)
     unsigned int dest =
         game_infos->robots_game[index_robot].instr_infos.usable_args[1] - 1;
 
+    if (dest > 15)
+        return update_pc(game_infos, index_robot, 2, true);
     game_infos->robots_game[index_robot].reg[dest] = value;
     if (value == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 2);
-    return OK;
+    return update_pc(game_infos, index_robot, 2, false);
 }
 
 unsigned int load_ind_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -43,8 +44,7 @@ unsigned int load_ind_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 10);
-    return OK;
+    return update_pc(game_infos, index_robot, 10, false);
 }
 
 unsigned int long_load_func(game_infos_t *game_infos, unsigned int index_robot)
@@ -61,8 +61,7 @@ unsigned int long_load_func(game_infos_t *game_infos, unsigned int index_robot)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 13);
-    return OK;
+    return update_pc(game_infos, index_robot, 13, false);
 }
 
 unsigned int long_load_ind_func(game_infos_t *game_infos,
@@ -84,6 +83,5 @@ unsigned int long_load_ind_func(game_infos_t *game_infos,
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
-    update_pc(game_infos, index_robot, 14);
-    return OK;
+    return update_pc(game_infos, index_robot, 14, false);
 }

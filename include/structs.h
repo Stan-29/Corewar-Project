@@ -44,7 +44,7 @@ typedef struct robot_game_s {
     instr_infos_t instr_infos;
     bool has_said_alive;
     bool is_alive;
-    int *reg;
+    unsigned int reg[REG_NUMBER];
     unsigned int pc;
     bool carry;
     unsigned int color_index;

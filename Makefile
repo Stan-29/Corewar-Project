@@ -104,7 +104,7 @@ re:
 
 tests_run:	clean
 	$(TEST_CC) -o $(TEST_NAME) --coverage -lcriterion \
-	$(TEST_SRC) $(FUNC_TEST_SRC) $(SRC) -I./include -lncurses
+	$(TEST_SRC) $(FUNC_TEST_SRC) $(SRC) ./tests/utils/*.c -I./include -lncurses
 
 gcovrex:	all
 	$(MAKE) tests_run

@@ -8,7 +8,7 @@
 #include "consts.h"
 #include "structs.h"
 
-unsigned int get_value_from_type(game_infos_t *game_infos,
+int get_value_from_type(game_infos_t *game_infos,
     unsigned int index_robot, unsigned int index_arg)
 {
     robot_game_t robot_game = game_infos->robots_game[index_robot];
@@ -26,5 +26,5 @@ unsigned int get_value_from_type(game_infos_t *game_infos,
     if (robot_game.instr_infos.size_infos[index_arg] == REG_SIZE)
         if ((value - 1) <= 15 && (value - 1) >= 0)
             return robot_game.reg[value - 1];
-    return 0;
+    return -1;
 }
