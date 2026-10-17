@@ -13,6 +13,8 @@ SRC = src/const/error_messages.c 	\
 	src/init/init_robots.c					\
 	src/init/init_game_infos.c 				\
 	src/instr_func/basic_instr.c 		\
+	src/instr_func/bin_instr.c 			\
+	src/instr_func/load_instr.c 		\
 	src/instr_func/store_instr.c 		\
 	src/ncurse_handling/basic_events_ncurse.c	\
 	src/ncurse_handling/manage_ncurse.c			\
@@ -27,6 +29,7 @@ SRC = src/const/error_messages.c 	\
 	src/setup-infos/manage_load_pos.c 		\
 	src/setup-infos/prepare_infos.c 		\
 	src/utils/display_error.c 		\
+	src/utils/get_value_from_type.c \
 	src/utils/is_positive_nb.c 		\
 	src/utils/is_same_str.c 		\
 	src/utils/my_get_nb.c			\
@@ -38,6 +41,9 @@ SRC = src/const/error_messages.c 	\
 	src/utils/my_ustrcat.c 			\
 	src/utils/print_hexa.c 			\
 	src/utils/print_modular.c 		\
+	src/utils/uc_to_ui.c 			\
+	src/utils/ui_to_uc.c 			\
+	src/utils/update_pc.c 			\
 	src/start_game.c					\
 	src/game_loop.c						\
 	src/dump_function.c					\
@@ -47,35 +53,40 @@ NAME = corewar
 CC = epiclang
 
 
-TEST_SRC = tests/unit_tests/game_loop_tests/*.c		\
+TEST_SRC = 	tests/unit_tests/game_loop_tests/*.c			\
 	tests/unit_tests/robots_handling_tests/*.c	\
 	tests/unit_tests/instr_tests/*.c		\
 	tests/unit_tests/ncurse_tests/*.c	\
 	tests/unit_tests/init_tests/*.c			\
 	tests/unit_tests/parsing_tests/*.c			\
 	tests/unit_tests/setup-infos_tests/*.c			\
-	tests/unit_tests/utils_tests/*.c		\
+	tests/unit_tests/utils_tests/*.c					\
 	tests/unit_tests/*.c						\
 
-SPEC_TEST_SRC = tests/unit_tests/game_loop_tests/test_check_robots_alive.c	\
-
-FUNC_TEST_SRC = tests/functionnal_tests/*.c				\
+FUNC_TEST_SRC = tests/functionnal_tests/*.c \
 
 TEST_NAME = tests_results
 
 TEST_CC = gcc
 
+
 VALGRIND_OUTPUT_NAME = valgrind-out.txt
 
+
 CFLAGS = -I./include
+
+EXEC_FLAG = -v 50
 
 OBJ = 	$(SRC:.c=.o)
 
 all : $(OBJ)
 	$(CC) -o $(NAME) main.c $(OBJ) $(CFLAGS) -lncurses
 
-all_valgrind :
-	$(CC) -o $(NAME) main.c $(SRC) -I./include -lncurses
+exec : all
+	./corewar $(EXEC_FLAG) -n 1 ./champions/bill.cor -n 234 ./champions/abel.cor -n 2 ./champions/pdd.cor -n 123 ./champions/tyron.cor
+
+exec_spec : all
+	./corewar $(EXEC_FLAG) ./champions/bill.cor ./champions/pdd.cor
 
 clean:
 	rm -f $(OBJ)
@@ -91,23 +102,27 @@ re:
 	$(MAKE) fclean
 	$(MAKE) all
 
-re_docker:	
-	$(MAKE) fclean
-	$(MAKE) all_valgrind
-
-mac_tests_run:	clean
+tests_run:	clean
 	$(TEST_CC) -o $(TEST_NAME) --coverage -lcriterion \
-	$(TEST_SRC) $(SRC) -I./include -lncurses
+	$(TEST_SRC) $(FUNC_TEST_SRC) $(SRC) ./tests/utils/*.c -I./include -lncurses
 
-gcovrex:	re
-	$(MAKE) mac_tests_run
+gcovrex:	all
+	$(MAKE) tests_run
 	./$(TEST_NAME)
 	gcovr --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"
 	gcovr --txt-metric branch --gcov-executable "llvm-cov gcov" \
 		--exclude "tests/.*"
 
-valgrind: re_docker
+
+all_docker :
+	$(CC) -o $(NAME) main.c $(SRC) -I./include -lncurses
+
+re_docker:	
+	$(MAKE) fclean
+	$(MAKE) all_docker
+
+valgrind: all_docker
 	$(MAKE) clean
 	valgrind --leak-check=full \
          --show-leak-kinds=all \

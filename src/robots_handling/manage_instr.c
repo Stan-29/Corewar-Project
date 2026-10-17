@@ -12,27 +12,22 @@
 #include "utils.h"
 #include <stdlib.h>
 
-void get_usable_args(robot_game_t *robot)
+unsigned int get_usable_args(robot_game_t *robot)
 {
-    unsigned char arg = 0;
-
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        robot->instr_infos.usable_args[index] = 0;
     for (unsigned int index = 0; robot->instr_infos.size_infos[index] != 0
         && index < MAX_ARGS_NUMBER; index++) {
-        for (unsigned int index_arg = 0;
-            index_arg < robot->instr_infos.size_infos[index]; index_arg++) {
-            arg = robot->instr_infos.args[index]
-                [robot->instr_infos.size_infos[index] - index_arg - 1];
-            robot->instr_infos.usable_args[index] += arg << (index_arg * 8);
-        }
+        robot->instr_infos.usable_args[index] =
+            uc_to_ui(robot->instr_infos.args[index],
+            robot->instr_infos.size_infos[index]);
+        if (robot->instr_infos.usable_args[index] == 0 &&
+            robot->instr_infos.size_infos[index] == REG_SIZE)
+            return ERROR;
     }
+    return OK;
 }
 
 void fill_size_infos(robot_game_t *robot, char *bin)
 {
-    for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++)
-        robot->instr_infos.size_infos[index] = 0;
     for (unsigned int index = 0; index < 8; index++) {
         if (bin[index] == '0' && bin[index + 1] == '1')
             robot->instr_infos.size_infos[index / 2] = REG_SIZE;
@@ -103,5 +98,6 @@ void get_instr_infos(robot_game_t *robot, unsigned char *arena,
             index_arena = (index_arena + 1) % MEM_SIZE;
         }
     }
-    get_usable_args(robot);
+    if (get_usable_args(robot) == ERROR)
+        robot->pc = (robot->pc + 1) % MEM_SIZE;
 }

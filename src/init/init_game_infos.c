@@ -14,6 +14,7 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     game_infos_t *game_infos)
 {
     game_infos->cycle_infos.dump_cycle = -1;
+    game_infos->ncurse_infos.ncurse_active = false;
     game_infos->nb_robots = 0;
     for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
         if (robots_args[index].instr_list != NULL)
@@ -28,15 +29,15 @@ void get_nb_robots_and_unique_values(robot_args_t *robots_args,
     }
 }
 
-void reset_instr_args(robot_game_t *robot_game, unsigned int index)
+void reset_instr_args(robot_game_t *robot_game, unsigned int index_robot)
 {
-    robot_game[index].instr_infos.next_instr_id = -1;
-    robot_game[index].instr_infos.cycle_remaining = -1;
+    robot_game[index_robot].instr_infos.next_instr_id = -1;
+    robot_game[index_robot].instr_infos.cycle_remaining = -1;
     for (unsigned int index = 0; index < MAX_ARGS_NUMBER; index++) {
         for (unsigned int arg_index = 0; arg_index < MAX_ARG_SIZE; arg_index++)
-            robot_game[index].instr_infos.args[index][arg_index] = 0;
-        robot_game->instr_infos.size_infos[index] = 0;
-        robot_game->instr_infos.usable_args[index] = 0;
+            robot_game[index_robot].instr_infos.args[index][arg_index] = 0;
+        robot_game[index_robot].instr_infos.size_infos[index] = 0;
+        robot_game[index_robot].instr_infos.usable_args[index] = 0;
     }
 }
 
@@ -47,9 +48,7 @@ unsigned int init_robot_game(robot_game_t *robot_game, unsigned int nb_robots)
         robot_game[index].has_said_alive = false;
         robot_game[index].is_alive = true;
         robot_game[index].pc = 0;
-        robot_game[index].reg = malloc(sizeof(int) * REG_NUMBER);
-        if (robot_game[index].reg == NULL)
-            return ERROR;
+        robot_game[index].color_index = 0;
         for (unsigned int index_reg = 0; index_reg < REG_NUMBER; index_reg++) {
             robot_game[index].reg[index_reg] = 0;
         }
@@ -89,6 +88,7 @@ unsigned int init_game_infos(robot_args_t *robots_args,
     game_infos->robots_args = robots_args;
     game_infos->cycle_infos.cycle_nb = 0;
     game_infos->cycle_infos.cycle_to_die = CYCLE_TO_DIE;
+    game_infos->cycle_infos.cycle_to_die_max = CYCLE_TO_DIE;
     game_infos->nbr_live_exec = 0;
     return OK;
 }

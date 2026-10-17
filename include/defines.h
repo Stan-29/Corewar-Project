@@ -23,6 +23,9 @@
     #define MAGIC_ERROR 7
 
 //ncurse infos
+    #define STEP_TIMEOUT 50
+    #define MIN_TIMEOUT 0
+    #define MAX_TIMEOUT 500
     #define END_EVENT_CODE -1
     #define PAUSE_START_EVENT 32
     #define NEXT_CYCLE_EVENT 27

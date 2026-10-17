@@ -9,6 +9,7 @@
 #include "main.h"
 #include "structs.h"
 #include "consts.h"
+#include "utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
