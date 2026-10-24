@@ -10,11 +10,13 @@ unsigned int add_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value1 = get_value_from_type(game_infos, index_robot, 0);
     unsigned int value2 = get_value_from_type(game_infos, index_robot, 1);
-    unsigned int dest = get_value_from_type(game_infos, index_robot, 2);
-    unsigned int res = value1 + value2;
+    unsigned int dest =
+        game_infos->robots_game[index_robot].instr_infos.usable_args[2];
 
-    game_infos->robots_game[index_robot].reg[dest] = res;
-    if (res == 0)
+    if (value1 == -1 || value2 == -1 || dest > 16 || dest < 1)
+        return update_pc(game_infos, index_robot, 4, true);
+    game_infos->robots_game[index_robot].reg[dest - 1] = value1 + value2;
+    if (value1 + value2 == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
@@ -25,10 +27,13 @@ unsigned int sub_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value1 = get_value_from_type(game_infos, index_robot, 0);
     unsigned int value2 = get_value_from_type(game_infos, index_robot, 1);
-    unsigned int dest = get_value_from_type(game_infos, index_robot, 2);
+    unsigned int dest =
+        game_infos->robots_game[index_robot].instr_infos.usable_args[2];
     int res = value1 - value2;
 
-    game_infos->robots_game[index_robot].reg[dest] = res;
+    if (value1 == -1 || value2 == -1 || dest > 16 || dest < 1)
+        return update_pc(game_infos, index_robot, 4, true);
+    game_infos->robots_game[index_robot].reg[dest - 1] = res;
     if (res < 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
@@ -40,11 +45,13 @@ unsigned int and_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value1 = get_value_from_type(game_infos, index_robot, 0);
     unsigned int value2 = get_value_from_type(game_infos, index_robot, 1);
-    unsigned int dest = get_value_from_type(game_infos, index_robot, 2);
-    unsigned int res = 0;
+    unsigned int dest =
+        game_infos->robots_game[index_robot].instr_infos.usable_args[2];
 
-    game_infos->robots_game[index_robot].reg[dest] = value1 & value2;
-    if (res < 0)
+    if (value1 == -1 || value2 == -1 || dest > 16 || dest < 1)
+        return update_pc(game_infos, index_robot, 4, true);
+    game_infos->robots_game[index_robot].reg[dest - 1] = value1 & value2;
+    if ((value1 & value2) == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
@@ -55,11 +62,13 @@ unsigned int or_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value1 = get_value_from_type(game_infos, index_robot, 0);
     unsigned int value2 = get_value_from_type(game_infos, index_robot, 1);
-    unsigned int dest = get_value_from_type(game_infos, index_robot, 2);
-    unsigned int res = 0;
+    unsigned int dest =
+        game_infos->robots_game[index_robot].instr_infos.usable_args[2];
 
-    game_infos->robots_game[index_robot].reg[dest] = value1 | value2;
-    if (res < 0)
+    if (value1 == -1 || value2 == -1 || dest > 16 || dest < 1)
+        return update_pc(game_infos, index_robot, 4, true);
+    game_infos->robots_game[index_robot].reg[dest - 1] = value1 | value2;
+    if ((value1 | value2) == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
@@ -70,11 +79,13 @@ unsigned int xor_func(game_infos_t *game_infos, unsigned int index_robot)
 {
     unsigned int value1 = get_value_from_type(game_infos, index_robot, 0);
     unsigned int value2 = get_value_from_type(game_infos, index_robot, 1);
-    unsigned int dest = get_value_from_type(game_infos, index_robot, 2);
-    unsigned int res = 0;
+    unsigned int dest =
+        game_infos->robots_game[index_robot].instr_infos.usable_args[2];
 
-    game_infos->robots_game[index_robot].reg[dest] = value1 ^ value2;
-    if (res < 0)
+    if (value1 == -1 || value2 == -1 || dest > 16 || dest < 1)
+        return update_pc(game_infos, index_robot, 4, true);
+    game_infos->robots_game[index_robot].reg[dest - 1] = value1 ^ value2;
+    if ((value1 ^ value2) == 0)
         game_infos->robots_game[index_robot].carry = 1;
     else
         game_infos->robots_game[index_robot].carry = 0;
