@@ -20,7 +20,7 @@ Test(store_func, basic_store_indirect)
     if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[3] = 22;
-    store_func(game_infos, 0);
+    store_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].pc == 5);
     cr_assert(game_infos->arena[10] == 0);
@@ -40,7 +40,7 @@ Test(store_func, complex_store)
     if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[3] = 287341;
-    store_func(game_infos, 0);
+    store_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].reg[3] == 287341);
     cr_assert(game_infos->robots_game[0].pc == 5);
     cr_assert(game_infos->arena[10] == 0);
@@ -59,7 +59,7 @@ Test(store_func, basic_store_with_idx_mod)
     if (!game_infos || init_test_infos(game_infos, 3, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[3] = 22;
-    store_func(game_infos, 0);
+    store_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].pc == 5);
     cr_assert(game_infos->arena[10] == 0);
@@ -79,7 +79,7 @@ Test(store_func, basic_store_with_reg)
         return;
     game_infos->robots_game[0].reg[3] = 22;
     game_infos->robots_game[0].reg[1] = 0;
-    store_func(game_infos, 0);
+    store_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].reg[1] == 22);
     cr_assert(game_infos->robots_game[0].pc == 4);
@@ -96,7 +96,7 @@ Test(store_func, store_with_reg_not_existent)
         return;
     game_infos->robots_game[0].reg[3] = 22;
     game_infos->robots_game[0].reg[1] = 0;
-    store_func(game_infos, 0);
+    store_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].reg[3] == 22);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);
     cr_assert(game_infos->robots_game[0].pc == 1);

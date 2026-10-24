@@ -20,7 +20,7 @@ Test(zjump_func, basic_jump)
     if (!game_infos || init_test_infos(game_infos, 9, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].carry = 1;
-    zjump_func(game_infos, 0);
+    zjump_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].pc == 10);
     free_tests(game_infos);
 }
@@ -33,7 +33,7 @@ Test(zjump_func, zero_carry_jump)
 
     if (!game_infos || init_test_infos(game_infos, 9, size_infos, args) == ERROR)
         return;
-    zjump_func(game_infos, 0);
+    zjump_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].pc == 3);
     free_tests(game_infos);
 }
@@ -47,7 +47,7 @@ Test(zjump_func, jump_using_modulo_mem_index)
     if (!game_infos || init_test_infos(game_infos, 9, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].carry = 1;
-    zjump_func(game_infos, 0);
+    zjump_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].pc == 5);
     free_tests(game_infos);
 }

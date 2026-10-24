@@ -21,7 +21,7 @@ Test(sub_func, basic_sub)
     game_infos->robots_game[0].reg[0] = 4;
     game_infos->robots_game[0].reg[1] = 2;
     game_infos->robots_game[0].reg[2] = 0;
-    sub_func(game_infos, 0);
+    sub_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 4);
     cr_assert(game_infos->robots_game[0].reg[1] == 2);
@@ -41,7 +41,7 @@ Test(sub_func, basic_sub_zero)
     game_infos->robots_game[0].reg[0] = 2;
     game_infos->robots_game[0].reg[1] = 4;
     game_infos->robots_game[0].reg[2] = 0;
-    sub_func(game_infos, 0);
+    sub_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 1);
     cr_assert(game_infos->robots_game[0].reg[0] == 2);
     cr_assert(game_infos->robots_game[0].reg[1] == 4);
@@ -60,7 +60,7 @@ Test(sub_func, sub_with_reg_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    sub_func(game_infos, 0);
+    sub_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);
@@ -80,7 +80,7 @@ Test(sub_func, sub_with_dest_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    sub_func(game_infos, 0);
+    sub_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);

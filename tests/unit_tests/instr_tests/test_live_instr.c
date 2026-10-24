@@ -19,7 +19,7 @@ Test(live_func, basic_live)
 
     if (!game_infos || init_test_infos(game_infos, 1, size_infos, args) == ERROR)
         return;
-    live_func(game_infos, 0);
+    live_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].has_said_alive == true);
     cr_assert(game_infos->robots_game[0].pc == 5);
     cr_assert(game_infos->nbr_live_exec == 1);
@@ -34,7 +34,7 @@ Test(live_func, bad_index_live)
 
     if (!game_infos || init_test_infos(game_infos, 1, size_infos, args) == ERROR)
         return;
-    live_func(game_infos, 0);
+    live_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].has_said_alive == false);
     cr_assert(game_infos->robots_game[0].pc == 5);
     cr_assert(game_infos->nbr_live_exec == 0);

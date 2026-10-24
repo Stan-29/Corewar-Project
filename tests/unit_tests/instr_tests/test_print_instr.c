@@ -22,7 +22,7 @@ Test(print_func, basic_print, .init = cr_redirect_stdout)
     if (!game_infos || init_test_infos(game_infos, 16, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[1] = 48;
-    print_func(game_infos, 0);
+    print_func(game_infos, &game_infos->robots_game[0]);
     cr_assert_stdout_eq_str("0");
     cr_assert(game_infos->robots_game[0].pc == 2);
     free_tests(game_infos);
@@ -37,7 +37,7 @@ Test(print_func, print_one, .init = cr_redirect_stdout)
     if (!game_infos || init_test_infos(game_infos, 16, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[1] = 49;
-    print_func(game_infos, 0);
+    print_func(game_infos, &game_infos->robots_game[0]);
     cr_assert_stdout_eq_str("1");
     cr_assert(game_infos->robots_game[0].pc == 2);
     free_tests(game_infos);

@@ -21,7 +21,7 @@ Test(xor_func, reg_xor)
     game_infos->robots_game[0].reg[0] = 5;
     game_infos->robots_game[0].reg[1] = 7;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 5);
     cr_assert(game_infos->robots_game[0].reg[1] == 7);
@@ -41,7 +41,7 @@ Test(xor_func, ind_xor)
     game_infos->arena[1] = 5;
     game_infos->arena[2] = 7;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == (5 ^ 7));
     cr_assert(game_infos->robots_game[0].pc == 7);
@@ -59,7 +59,7 @@ Test(xor_func, ind_xor_with_IDX_MOD)
     game_infos->arena[1] = 5;
     game_infos->arena[2] = 7;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == (5 ^ 7));
     cr_assert(game_infos->robots_game[0].pc == 7);
@@ -75,7 +75,7 @@ Test(xor_func, dir_xor)
     if (!game_infos || init_test_infos(game_infos, 4, size_infos, args) == ERROR)
         return;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == (5 ^ 7));
     cr_assert(game_infos->robots_game[0].pc == 11);
@@ -92,7 +92,7 @@ Test(xor_func, mixed_xor)
         return;
     game_infos->arena[1] = 5;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == (5 ^ 7));
     cr_assert(game_infos->robots_game[0].pc == 9);
@@ -110,7 +110,7 @@ Test(xor_func, basic_xor_zero)
     game_infos->robots_game[0].reg[0] = 5;
     game_infos->robots_game[0].reg[1] = 5;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 1);
     cr_assert(game_infos->robots_game[0].reg[0] == 5);
     cr_assert(game_infos->robots_game[0].reg[1] == 5);
@@ -130,7 +130,7 @@ Test(xor_func, xor_with_reg_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);
@@ -150,7 +150,7 @@ Test(xor_func, xor_with_dest_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    xor_func(game_infos, 0);
+    xor_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);

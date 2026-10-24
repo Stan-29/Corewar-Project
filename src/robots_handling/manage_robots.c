@@ -9,24 +9,22 @@
 #include "main.h"
 #include "structs.h"
 #include "consts.h"
-#include "utils.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-void manage_cycles(game_infos_t *game_infos, unsigned int index_robot,
+void manage_cycles(game_infos_t *game_infos, robot_game_t *robot,
     unsigned int cycle_remaining, unsigned int instr_id)
 {
     if (cycle_remaining != -1 && cycle_remaining != 0) {
-        game_infos->robots_game[index_robot].instr_infos.cycle_remaining -= 1;
+        robot->instr_infos.cycle_remaining -= 1;
         return;
     }
     if (cycle_remaining == -1)
-        get_instr_infos(&game_infos->robots_game[index_robot],
-            game_infos->arena, instr_id);
+        get_instr_infos(robot, game_infos->arena, instr_id);
     if (cycle_remaining == 0) {
-        op_tab[game_infos->robots_game[index_robot].instr_infos.next_instr_id].
-        func(game_infos, index_robot);
-        reset_instr_args(game_infos->robots_game, index_robot);
+        op_tab[robot->instr_infos.next_instr_id].
+        func(game_infos, robot);
+        reset_instr_args(robot);
     }
 }
 
@@ -40,6 +38,20 @@ int get_id_instr(game_infos_t *game_infos, unsigned int index_robot)
     return instr_id;
 }
 
+void manage_forks(game_infos_t *game_infos, unsigned int index_robot)
+{
+    robot_game_t *temp = game_infos->robots_game[index_robot].next_fork;
+    int cycle_remaining = 0;
+    int instr_id = 0;
+
+    while (temp != NULL) {
+        cycle_remaining = temp->instr_infos.cycle_remaining;
+        instr_id = game_infos->arena[temp->pc];
+        manage_cycles(game_infos, temp, cycle_remaining, instr_id);
+        temp = temp->next_fork;
+    }
+}
+
 void manage_robots(game_infos_t *game_infos)
 {
     int cycle_remaining = 0;
@@ -50,7 +62,9 @@ void manage_robots(game_infos_t *game_infos)
             cycle_remaining = game_infos->robots_game[index].
                 instr_infos.cycle_remaining;
             instr_id = get_id_instr(game_infos, index);
-            manage_cycles(game_infos, index, cycle_remaining, instr_id);
+            manage_cycles(game_infos, &game_infos->robots_game[index],
+                cycle_remaining, instr_id);
+            manage_forks(game_infos, index);
         }
     }
     return;
