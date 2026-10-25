@@ -25,7 +25,7 @@ Test(manage_cycles, temp_cycle_minus_one_instr_live)
     game_infos->arena[2] = 0;
     game_infos->arena[3] = 0;
     game_infos->arena[4] = 1;
-    manage_cycles(game_infos, 0, -1, 1);
+    manage_cycles(game_infos, &game_infos->robots_game[0], -1, 1);
     cr_assert(game_infos->robots_game[0].instr_infos.next_instr_id == 1);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[0] == 4);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[1] == 0);
@@ -57,7 +57,7 @@ Test(manage_cycles, temp_cycle_minus_one_instr_minus_one)
     game_infos->arena[2] = 0;
     game_infos->arena[3] = 0;
     game_infos->arena[4] = 1;
-    manage_cycles(game_infos, 0, -1, -1);
+    manage_cycles(game_infos, &game_infos->robots_game[0], -1, -1);
     cr_assert(game_infos->robots_game[0].instr_infos.next_instr_id == -1);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[0] == 0);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[1] == 0);
@@ -90,7 +90,7 @@ Test(manage_cycles, temp_cycle_minus_one_instr_load)
     game_infos->arena[2] = 0;
     game_infos->arena[3] = 1;
     game_infos->arena[4] = 1;
-    manage_cycles(game_infos, 0, -1, 2);
+    manage_cycles(game_infos, &game_infos->robots_game[0], -1, 2);
     cr_assert(game_infos->robots_game[0].instr_infos.next_instr_id == 2);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[0] == 2);
     cr_assert(game_infos->robots_game[0].instr_infos.size_infos[1] == 1);
@@ -120,7 +120,7 @@ Test(manage_cycles, temp_cycle_random)
         return;
     game_infos->robots_game[0].pc = 0;
     game_infos->robots_game[0].instr_infos.cycle_remaining = 128;
-    manage_cycles(game_infos, 0, 128, 1);
+    manage_cycles(game_infos, &game_infos->robots_game[0], 128, 1);
     cr_assert(game_infos->robots_game[0].instr_infos.cycle_remaining == 127);
     cr_assert(game_infos->robots_game[0].pc == 0);
     free_game_infos(game_infos);
@@ -144,7 +144,7 @@ Test(manage_cycles, temp_cycle_zero)
     game_infos->robots_game[0].instr_infos.args[0][3] = 1;
     game_infos->robots_game[0].instr_infos.usable_args[0] = 1;
     game_infos->robots_game[0].instr_infos.usable_args[1] = 0;
-    manage_cycles(game_infos, 0, 0, 1);
+    manage_cycles(game_infos, &game_infos->robots_game[0], 0, 1);
     cr_assert(game_infos->robots_game[0].instr_infos.next_instr_id == -1);
     cr_assert(game_infos->robots_game[0].instr_infos.args[0][0] == 0);
     cr_assert(game_infos->robots_game[0].instr_infos.args[0][1] == 0);

@@ -10,12 +10,12 @@
 #include "utils.h"
 #include <stdio.h>
 
-unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
+unsigned int live_func(game_infos_t *game_infos, robot_game_t *robot)
 {
-    unsigned int robot_live = get_value_from_type(game_infos, index_robot, 0);
+    unsigned int robot_alive = get_value_from_type(game_infos, robot, 0);
 
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
-        if (game_infos->robots_args[index].prog_nb == robot_live) {
+        if (game_infos->robots_args[index].prog_nb == robot_alive) {
             game_infos->robots_game[index].has_said_alive = true;
             game_infos->last_to_live = index;
             game_infos->nbr_live_exec += 1;
@@ -26,41 +26,27 @@ unsigned int live_func(game_infos_t *game_infos, unsigned int index_robot)
             my_put_str(" has said alive.\n");
         }
     }
-    game_infos->robots_game[index_robot].pc =
-        (game_infos->robots_game[index_robot].pc + 1 + DIR_SIZE) % MEM_SIZE;
+    robot->pc = (robot->pc + 1 + DIR_SIZE) % MEM_SIZE;
     return OK;
 }
 
-unsigned int zjump_func(game_infos_t *game_infos, unsigned int index_robot)
+unsigned int zjump_func(game_infos_t *game_infos, robot_game_t *robot)
 {
-    unsigned int offset = get_value_from_type(game_infos, index_robot, 0);
-    unsigned int pc = game_infos->robots_game[index_robot].pc;
+    unsigned int offset = get_value_from_type(game_infos, robot, 0);
 
-    if (game_infos->robots_game[index_robot].carry == 1) {
-        game_infos->robots_game[index_robot].pc =
-            (pc + offset) % MEM_SIZE;
+    if (robot->carry == 1) {
+        robot->pc = (robot->pc + offset) % MEM_SIZE;
     } else {
-        game_infos->robots_game[index_robot].pc =
-            (pc + IND_SIZE + 1) % MEM_SIZE;
+        robot->pc = (robot->pc + IND_SIZE + 1) % MEM_SIZE;
     }
     return OK;
 }
 
-unsigned print_func(game_infos_t *game_infos, unsigned int index_robot)
+unsigned print_func(game_infos_t *game_infos, robot_game_t *robot)
 {
-    unsigned int value = get_value_from_type(game_infos, index_robot, 0);
-    unsigned int pc = game_infos->robots_game[index_robot].pc;
+    unsigned int value = get_value_from_type(game_infos, robot, 0);
 
     my_putchar(value);
-    game_infos->robots_game[index_robot].pc =
-        (pc + REG_SIZE + 1) % MEM_SIZE;
+    robot->pc = (robot->pc + REG_SIZE + 1) % MEM_SIZE;
     return OK;
-}
-
-unsigned int pending_func(game_infos_t *game_infos, unsigned int index_robot)
-{
-    instr_infos_t instr_infos =
-        game_infos->robots_game[index_robot].instr_infos;
-
-    return update_pc(game_infos, index_robot, instr_infos.next_instr_id, false);
 }

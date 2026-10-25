@@ -35,9 +35,9 @@ unsigned int uc_to_ui(unsigned char[4], unsigned int);
 unsigned char *ui_to_uc(unsigned int, unsigned int);
 
 unsigned int display_error(unsigned int);
-unsigned int update_pc(game_infos_t *, unsigned int,
+unsigned int update_pc(game_infos_t *, robot_game_t *,
     unsigned int, bool);
-int get_value_from_type(game_infos_t *, unsigned int,
+int get_value_from_type(game_infos_t *, robot_game_t *,
     unsigned int);
 
 #endif

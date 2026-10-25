@@ -15,6 +15,7 @@ SRC = src/const/error_messages.c 	\
 	src/instr_func/basic_instr.c 		\
 	src/instr_func/bin_instr.c 			\
 	src/instr_func/load_instr.c 		\
+	src/instr_func/fork_instr.c 		\
 	src/instr_func/store_instr.c 		\
 	src/ncurse_handling/basic_events_ncurse.c	\
 	src/ncurse_handling/manage_ncurse.c			\

@@ -41,6 +41,7 @@ typedef struct instr_infos_s {
 } instr_infos_t;
 
 typedef struct robot_game_s {
+    struct robot_game_s *next_fork;
     instr_infos_t instr_infos;
     bool has_said_alive;
     bool is_alive;
@@ -83,7 +84,7 @@ typedef struct op_s {
     char code;
     int nbr_cycles;
     char *comment;
-    unsigned int (*func)(game_infos_t *, unsigned int);
+    unsigned int (*func)(game_infos_t *, robot_game_t *);
     bool has_coding_byte;
     bool dir_exeption;
     bool use_index;

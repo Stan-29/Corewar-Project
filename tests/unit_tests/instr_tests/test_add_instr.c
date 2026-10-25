@@ -4,7 +4,6 @@
 ** File description:
 ** test_check_helper
 */
-#include "main.h"
 #include "instr.h"
 #include "structs.h"
 #include "tests.h"
@@ -21,7 +20,7 @@ Test(add_func, basic_add)
     game_infos->robots_game[0].reg[0] = 2;
     game_infos->robots_game[0].reg[1] = 2;
     game_infos->robots_game[0].reg[2] = 0;
-    add_func(game_infos, 0);
+    add_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 2);
     cr_assert(game_infos->robots_game[0].reg[1] == 2);
@@ -41,7 +40,7 @@ Test(add_func, basic_add_zero)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    add_func(game_infos, 0);
+    add_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 1);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);
@@ -61,7 +60,7 @@ Test(add_func, add_with_reg_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    add_func(game_infos, 0);
+    add_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);
@@ -81,7 +80,7 @@ Test(add_func, add_with_dest_out_of_range)
     game_infos->robots_game[0].reg[0] = 0;
     game_infos->robots_game[0].reg[1] = 0;
     game_infos->robots_game[0].reg[2] = 0;
-    add_func(game_infos, 0);
+    add_func(game_infos, &game_infos->robots_game[0]);
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[0] == 0);
     cr_assert(game_infos->robots_game[0].reg[1] == 0);

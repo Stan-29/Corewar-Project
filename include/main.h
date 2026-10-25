@@ -4,11 +4,11 @@
 ** File description:
 ** main includes
 */
-#include "structs.h"
 
 #ifndef MAIN_H_
     #define MAIN_H_
 
+    #include "structs.h"
     #include "defines.h"
 
 unsigned int display_helper(void);
@@ -31,7 +31,7 @@ unsigned int prog_nb_flag(int, robot_args_t *);
 unsigned int ncurse_flag(int, robot_args_t *);
 
 //init
-void reset_instr_args(robot_game_t *, unsigned int);
+void reset_instr_args(robot_game_t *);
 robot_args_t *init_robots(void);
 unsigned int init_game_infos(robot_args_t *, game_infos_t *);
 
@@ -50,7 +50,7 @@ void print_header(robot_args_t *, robot_game_t *, bool);
 
 //instr_func
 void manage_robots(game_infos_t *);
-void manage_cycles(game_infos_t *, unsigned int,
+void manage_cycles(game_infos_t *, robot_game_t *,
     unsigned int, unsigned int);
 void get_instr_infos(robot_game_t *, unsigned char *, unsigned int);
 unsigned int get_usable_args(robot_game_t *);

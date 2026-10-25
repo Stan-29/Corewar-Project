@@ -9,11 +9,25 @@
 #include "utils.h"
 #include <ncurses.h>
 
+bool manage_forks_pc(game_infos_t *game_infos, unsigned int index_robot,
+    unsigned int index_mem)
+{
+    robot_game_t *temp = game_infos->robots_game[index_robot].next_fork;
+
+    while (temp != NULL) {
+        if (temp->pc == index_mem)
+            return true;
+        temp = temp->next_fork;
+    }
+    return false;
+}
+
 bool is_pc(game_infos_t *game_infos, unsigned int index_mem,
     unsigned int *color)
 {
     for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
-        if (game_infos->robots_game[index].pc == index_mem) {
+        if (game_infos->robots_game[index].pc == index_mem ||
+            manage_forks_pc(game_infos, index, index_mem)) {
             *color = game_infos->robots_game[index].color_index;
             return true;
         }

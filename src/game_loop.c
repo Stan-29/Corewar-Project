@@ -59,7 +59,7 @@ unsigned int check_robots_alive(game_infos_t *game_infos)
     return 0;
 }
 
-unsigned int check_info(game_infos_t *game_infos)
+unsigned int check_live_infos(game_infos_t *game_infos)
 {
     if (game_infos->nbr_live_exec > NBR_LIVE) {
         game_infos->cycle_infos.cycle_to_die_max -= CYCLE_DELTA;
@@ -77,7 +77,7 @@ void game_loop(game_infos_t *game_infos)
     manage_ncurse(game_infos);
     if (!game_infos->ncurse_infos.ncurse_stop ||
         game_infos->ncurse_infos.ncurse_skip_one) {
-        if (check_info(game_infos) == 1)
+        if (check_live_infos(game_infos) == 1)
             return;
         manage_robots(game_infos);
         if (game_infos->cycle_infos.cycle_nb ==
