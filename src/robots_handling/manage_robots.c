@@ -47,6 +47,8 @@ void manage_forks(game_infos_t *game_infos, unsigned int index_robot)
     while (temp != NULL) {
         cycle_remaining = temp->instr_infos.cycle_remaining;
         instr_id = game_infos->arena[temp->pc];
+        if (instr_id > NBR_INSTR || instr_id < 1)
+            instr_id = -1;
         manage_cycles(game_infos, temp, cycle_remaining, instr_id);
         temp = temp->next_fork;
     }

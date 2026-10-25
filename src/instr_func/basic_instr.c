@@ -50,11 +50,3 @@ unsigned print_func(game_infos_t *game_infos, robot_game_t *robot)
     robot->pc = (robot->pc + REG_SIZE + 1) % MEM_SIZE;
     return OK;
 }
-
-unsigned int pending_func(game_infos_t *game_infos, robot_game_t *robot)
-{
-    instr_infos_t instr_infos =
-        robot->instr_infos;
-
-    return update_pc(game_infos, robot, instr_infos.next_instr_id, false);
-}

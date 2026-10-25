@@ -6,7 +6,6 @@
 */
 #include "defines.h"
 #include "tests.h"
-#include "main.h"
 #include "instr.h"
 #include "structs.h"
 #include <criterion/criterion.h>

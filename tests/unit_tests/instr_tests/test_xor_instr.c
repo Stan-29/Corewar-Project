@@ -4,7 +4,6 @@
 ** File description:
 ** test_xor_instr
 */
-#include "main.h"
 #include "instr.h"
 #include "structs.h"
 #include "tests.h"

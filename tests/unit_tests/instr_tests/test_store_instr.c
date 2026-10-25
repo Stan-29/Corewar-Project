@@ -5,7 +5,6 @@
 ** test_check_helper
 */
 #include "defines.h"
-#include "main.h"
 #include "instr.h"
 #include "structs.h"
 #include "tests.h"
