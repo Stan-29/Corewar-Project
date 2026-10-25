@@ -28,23 +28,29 @@ void copy_robot(robot_game_t *robot, robot_game_t *fork,
 unsigned int fork_func(game_infos_t *game_infos, robot_game_t *robot)
 {
     unsigned int offset = get_value_from_type(game_infos, robot, 0);
+    robot_game_t *temp = robot->next_fork;
 
-    robot->next_fork = malloc(sizeof(robot_game_t));
-    if (!robot->next_fork)
+    while (temp != NULL)
+        temp = temp->next_fork;
+    temp = malloc(sizeof(robot_game_t));
+    if (!temp)
         return -1;
-    copy_robot(robot, robot->next_fork, offset);
-    robot->next_fork->pc = (robot->pc + offset % IDX_MOD) % MEM_SIZE;
+    copy_robot(robot, temp, offset);
+    temp->pc = (robot->pc + offset % IDX_MOD) % MEM_SIZE;
     return update_pc(game_infos, robot, 12, false);
 }
 
 unsigned int long_fork_func(game_infos_t *game_infos, robot_game_t *robot)
 {
     unsigned int offset = get_value_from_type(game_infos, robot, 0);
+    robot_game_t *temp = robot->next_fork;
 
-    robot->next_fork = malloc(sizeof(robot_game_t));
-    if (!robot->next_fork)
+    while (temp != NULL)
+        temp = temp->next_fork;
+    temp = malloc(sizeof(robot_game_t));
+    if (!temp)
         return -1;
     copy_robot(robot, robot->next_fork, offset);
-    robot->next_fork->pc = (robot->pc + offset) % MEM_SIZE;
-    return update_pc(game_infos, robot, 12, false);
+    temp->pc = (robot->pc + offset) % MEM_SIZE;
+    return update_pc(game_infos, robot, 15, false);
 }
