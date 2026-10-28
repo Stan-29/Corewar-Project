@@ -30,6 +30,9 @@ unsigned int print_winning_message(game_infos_t *game_infos)
 
 void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
 {
+    robot_game_t *temp = game_infos->robots_game[index_robot].next_fork;
+    robot_game_t *next_temp = NULL;
+
     if (game_infos->robots_game[index_robot].is_alive == false)
         return;
     game_infos->robots_game[index_robot].is_alive = false;
@@ -39,7 +42,11 @@ void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
             game_infos->robots_game[index_robot].color_index)
             game_infos->index_colors[index] = 0;
     game_infos->robots_game[index_robot].color_index = 0;
-    free(game_infos->robots_game[index_robot].next_fork);
+    while (temp != NULL) {
+        next_temp = temp->next_fork;
+        free(temp);
+        temp = next_temp;
+    }
     game_infos->robots_game[index_robot].next_fork = NULL;
 }
 

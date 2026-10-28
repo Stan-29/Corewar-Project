@@ -47,7 +47,6 @@ Test(fork_func, two_forks)
         return;
     fork_func(game_infos, &game_infos->robots_game[0]);
     fork_func(game_infos, &game_infos->robots_game[0]);
-    printf("pc: %i\n", game_infos->robots_game[0].next_fork->next_fork->pc);
     cr_assert(game_infos->robots_game[0].next_fork != NULL);
     cr_assert(game_infos->robots_game[0].next_fork->pc == 5);
     cr_assert(game_infos->robots_game[0].next_fork->next_fork != NULL);
