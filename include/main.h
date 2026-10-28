@@ -17,6 +17,7 @@ void game_loop(game_infos_t *);
 void kill_robot(game_infos_t *, unsigned int);
 unsigned int check_robots_alive(game_infos_t *);
 unsigned int get_size_infos(robot_game_t *, unsigned char);
+unsigned int check_live_infos(game_infos_t *);
 
 //args
 unsigned int handle_args(int, char **, robot_args_t *);

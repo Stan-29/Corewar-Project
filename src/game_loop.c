@@ -10,7 +10,23 @@
 #include "structs.h"
 #include "consts.h"
 #include "utils.h"
+#include <stdlib.h>
 #include <ncurses.h>
+
+unsigned int print_winning_message(game_infos_t *game_infos)
+{
+    unsigned int index = game_infos->last_to_live;
+
+    if (game_infos->ncurse_infos.ncurse_active)
+        endwin();
+    my_put_str("The player ");
+    my_put_nbr(game_infos->robots_args[index].prog_nb);
+    my_put_str("(");
+    my_put_str(game_infos->robots_args[index].header.prog_name);
+    my_put_str(")");
+    my_put_str(" has won.\n");
+    return 1;
+}
 
 void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
 {
@@ -23,20 +39,8 @@ void kill_robot(game_infos_t *game_infos, unsigned int index_robot)
             game_infos->robots_game[index_robot].color_index)
             game_infos->index_colors[index] = 0;
     game_infos->robots_game[index_robot].color_index = 0;
-}
-
-unsigned int print_winning_message(game_infos_t *game_infos)
-{
-    unsigned int index = game_infos->last_to_live;
-
-    if (game_infos->ncurse_infos.ncurse_active)
-        endwin();
-    my_put_str(game_infos->robots_args[index].header.prog_name);
-    my_put_str("(");
-    my_put_nbr(game_infos->robots_args[index].prog_nb);
-    my_put_str(")");
-    my_put_str(" won the game!\n");
-    return 1;
+    free(game_infos->robots_game[index_robot].next_fork);
+    game_infos->robots_game[index_robot].next_fork = NULL;
 }
 
 unsigned int check_robots_alive(game_infos_t *game_infos)

@@ -143,6 +143,33 @@ Test(handle_flags, unvalid_prog_nb_flag_baceause_two_flags)
     free(robots);
 }
 
+Test(handle_flags, valid_ncurse_flag)
+{
+    int argc = 5;
+    char *argv[] = {"corewar", "-v", "10", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int arg_index = 1;
+    robot_args_t *robots = init_robots();
+
+    if (robots == NULL)
+        return;
+    cr_assert(handle_flags(argc, argv, &robots[0], &arg_index) == OK);
+    cr_assert(robots[0].ncurse_active == 10);
+    free(robots);
+}
+
+Test(handle_flags, unvalid_ncurse_flag)
+{
+    int argc = 5;
+    char *argv[] = {"corewar", "-v", "-10", "./champions/bill.cor", "./champions/pdd.cor"};
+    unsigned int arg_index = 1;
+    robot_args_t *robots = init_robots();
+
+    if (robots == NULL)
+        return;
+    cr_assert(handle_flags(argc, argv, &robots[0], &arg_index) == ERROR);
+    free(robots);
+}
+
 Test(handle_flags, unvalid_flag_because_nothing_after)
 {
     int argc = 3;

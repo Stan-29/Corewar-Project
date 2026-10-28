@@ -50,6 +50,9 @@ void print_robot_infos(game_infos_t *game_infos, robot_game_t *robot_game,
     print_str(" carry: ", is_ncurse_active, 0);
     print_nbr(robot_game->carry, is_ncurse_active, 0);
     print_str("\n", is_ncurse_active, 0);
+    if (robot_game->next_fork != NULL)
+        print_robot_infos(game_infos, robot_game->next_fork,
+            robot_arg, is_ncurse_active);
 }
 
 static void print_memory_header(game_infos_t *game_infos, bool is_ncurse_active)
@@ -84,28 +87,14 @@ void print_memory(game_infos_t *game_infos, bool is_ncurse_active)
     }
 }
 
-static void manage_forks_printing(game_infos_t *game_infos,
-    unsigned int index_robot, bool is_ncurse_active, unsigned int index)
-{
-    robot_game_t *temp = game_infos->robots_game[index_robot].next_fork;
-
-    while (temp != NULL) {
-        print_robot_infos(game_infos, temp,
-            &game_infos->robots_args[index], is_ncurse_active);
-        temp = temp->next_fork;
-    }
-}
-
 void print_arena(game_infos_t *game_infos, bool is_ncurse_active)
 {
     print_str("Cycle: ", is_ncurse_active, 0);
     print_nbr(game_infos->cycle_infos.cycle_nb, is_ncurse_active, 0);
     print_str("\n", is_ncurse_active, 0);
-    for (unsigned int index = 0; index < game_infos->nb_robots; index++) {
+    for (unsigned int index = 0; index < game_infos->nb_robots; index++)
         print_robot_infos(game_infos, &game_infos->robots_game[index],
             &game_infos->robots_args[index], is_ncurse_active);
-        manage_forks_printing(game_infos, index, is_ncurse_active, index);
-    }
     print_str("\n", is_ncurse_active, 0);
     print_memory(game_infos, is_ncurse_active);
     return;

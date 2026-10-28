@@ -12,8 +12,7 @@
 #include <stddef.h>
 #include <stdlib.h>
 
-void copy_robot(robot_game_t *robot, robot_game_t *fork,
-    unsigned int offset)
+void copy_robot(robot_game_t *robot, robot_game_t *fork)
 {
     fork->next_fork = NULL;
     fork->carry = robot->carry;
@@ -28,29 +27,31 @@ void copy_robot(robot_game_t *robot, robot_game_t *fork,
 unsigned int fork_func(game_infos_t *game_infos, robot_game_t *robot)
 {
     unsigned int offset = get_value_from_type(game_infos, robot, 0);
-    robot_game_t *temp = robot->next_fork;
+    robot_game_t *new_elem = malloc(sizeof(robot_game_t));
+    robot_game_t *temp = robot;
 
-    while (temp != NULL)
+    if (!new_elem)
+        return ERROR;
+    copy_robot(robot, new_elem);
+    new_elem->pc = (robot->pc + offset) % MEM_SIZE;
+    while (temp->next_fork != NULL)
         temp = temp->next_fork;
-    temp = malloc(sizeof(robot_game_t));
-    if (!temp)
-        return -1;
-    copy_robot(robot, temp, offset);
-    temp->pc = (robot->pc + offset % IDX_MOD) % MEM_SIZE;
+    temp->next_fork = new_elem;
     return update_pc(game_infos, robot, 12, false);
 }
 
 unsigned int long_fork_func(game_infos_t *game_infos, robot_game_t *robot)
 {
-    unsigned int offset = get_value_from_type(game_infos, robot, 0);
-    robot_game_t *temp = robot->next_fork;
+    unsigned int offset = robot->instr_infos.usable_args[0];
+    robot_game_t *new_elem = malloc(sizeof(robot_game_t));
+    robot_game_t *temp = robot;
 
-    while (temp != NULL)
-        temp = temp->next_fork;
-    temp = malloc(sizeof(robot_game_t));
-    if (!temp)
+    if (!new_elem)
         return -1;
-    copy_robot(robot, robot->next_fork, offset);
-    temp->pc = (robot->pc + offset) % MEM_SIZE;
+    copy_robot(robot, new_elem);
+    new_elem->pc = (robot->pc + offset) % MEM_SIZE;
+    while (temp->next_fork != NULL)
+        temp = temp->next_fork;
+    temp->next_fork = new_elem;
     return update_pc(game_infos, robot, 15, false);
 }

@@ -12,8 +12,10 @@ void init_test_robots(game_infos_t *game_infos, unsigned int instr_id,
     unsigned int size_infos[MAX_ARGS_NUMBER], unsigned int args[MAX_ARGS_NUMBER])
 {
     for (unsigned int index = 0; index < MAX_ROBOTS_NUMBER; index++) {
+        game_infos->robots_game[index].next_fork = NULL;
         game_infos->robots_game[index].color_index = index;
         game_infos->robots_game[index].carry = 0;
+        game_infos->robots_game[index].is_alive = true;
         game_infos->robots_game[index].has_said_alive = false;
         game_infos->robots_game[index].pc = 0;
         for (unsigned int index_reg = 0; index_reg < REG_NUMBER; index_reg++)

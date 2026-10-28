@@ -44,7 +44,7 @@ Test(load_ind_func, basic_load_ind_with_index)
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == 222);
     cr_assert(game_infos->robots_game[0].pc == 7);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(load_ind_func, basic_load_ind_with_IDX_MOD)
@@ -62,7 +62,7 @@ Test(load_ind_func, basic_load_ind_with_IDX_MOD)
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == 222);
     cr_assert(game_infos->robots_game[0].pc == 7);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(load_ind_func, mixed_load_ind)
@@ -81,7 +81,7 @@ Test(load_ind_func, mixed_load_ind)
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == 222);
     cr_assert(game_infos->robots_game[0].pc == 6);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(load_ind_func, zero_load)
@@ -97,7 +97,7 @@ Test(load_ind_func, zero_load)
     cr_assert(game_infos->robots_game[0].carry == 1);
     cr_assert(game_infos->robots_game[0].reg[2] == 0);
     cr_assert(game_infos->robots_game[0].pc == 7);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(load_ind_func, load_ind_reg_not_in_range)
@@ -114,7 +114,7 @@ Test(load_ind_func, load_ind_reg_not_in_range)
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == 0);
     cr_assert(game_infos->robots_game[0].pc == 1);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }
 
 Test(load_ind_func, load_ind_dest_not_a_reg_nbr)
@@ -131,5 +131,5 @@ Test(load_ind_func, load_ind_dest_not_a_reg_nbr)
     cr_assert(game_infos->robots_game[0].carry == 0);
     cr_assert(game_infos->robots_game[0].reg[2] == 0);
     cr_assert(game_infos->robots_game[0].pc == 1);
-    free_game_infos(game_infos);
+    free_tests(game_infos);
 }

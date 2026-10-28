@@ -19,11 +19,12 @@ unsigned int live_func(game_infos_t *game_infos, robot_game_t *robot)
             game_infos->robots_game[index].has_said_alive = true;
             game_infos->last_to_live = index;
             game_infos->nbr_live_exec += 1;
-            my_put_str(game_infos->robots_args[index].header.prog_name);
-            my_put_str("(");
+            my_put_str("The player ");
             my_put_nbr(game_infos->robots_args[index].prog_nb);
+            my_put_str("(");
+            my_put_str(game_infos->robots_args[index].header.prog_name);
             my_put_str(")");
-            my_put_str(" has said alive.\n");
+            my_put_str(" is alive.\n");
         }
     }
     robot->pc = (robot->pc + 1 + DIR_SIZE) % MEM_SIZE;

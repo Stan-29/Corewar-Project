@@ -26,4 +26,7 @@ unsigned int long_load_ind_func(game_infos_t *, robot_game_t *);
 unsigned int long_fork_func(game_infos_t *, robot_game_t *);
 unsigned int print_func(game_infos_t *, robot_game_t *);
 
+void copy_robot(robot_game_t *robot, robot_game_t *fork,
+    unsigned int offset);
+
 #endif

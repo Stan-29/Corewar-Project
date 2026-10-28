@@ -50,7 +50,7 @@ Test(start_game, four_same_args)
 Test(start_game, four_args_with_flags)
 {
     int argc = 15;
-    char *argv[] = {"corewar", "-dump", "65", "./champions/bill.cor", "-a", "323", "./champions/bill.cor", "-n", "21", "./champions/bill.cor", "-a", "323", "-n", "21", "./champions/bill.cor"};
+    char *argv[] = {"corewar", "-dump", "65", "./champions/bill.cor", "-a", "323", "./champions/tyron.cor", "-n", "21", "./champions/pdd.cor", "-a", "323", "-n", "21", "./champions/bill.cor"};
 
     cr_assert(start_game(argc, argv) == 0);
 }

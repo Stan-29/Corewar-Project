@@ -43,7 +43,7 @@ Test(manage_robots, all_three_temp_cylce)
     cr_assert(game_infos->robots_game[1].instr_infos.next_instr_id == -1);
     //robot3
     cr_assert(game_infos->robots_game[2].instr_infos.cycle_remaining == 122);
-    //free_game_infos(game_infos);
+    free_game_infos(game_infos);
 }
 
 Test(manage_robots, temp_cycle_minus_one_instr_live)
